@@ -320,7 +320,7 @@ const listItems = [
 
 .section-title {
   display: flex;
-  padding-bottom: 8px;
+  padding: 0 0 8px 24px;
   align-items: flex-start;
   gap: 10px;
   align-self: stretch;
@@ -340,17 +340,18 @@ const listItems = [
   align-items: flex-start;
   gap: 4px;
   align-self: stretch;
+  padding-left: 24px;
 }
 
 .sidebar--collapsed .lists-items {
-  align-items: center;
+  align-items: flex-start;
 }
 
 .list-item {
   display: flex;
   padding: 8px 0;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   gap: 8px;
   align-self: stretch;
   width: 100%;
@@ -385,6 +386,7 @@ const listItems = [
   font-style: normal;
   font-weight: 500;
   line-height: 140%;
+  text-align: left;
 }
 
 .footer-section {
