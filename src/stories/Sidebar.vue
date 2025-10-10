@@ -221,7 +221,7 @@ const listItems = [
   transition: width 0.3s ease;
 
   &--collapsed {
-    width: 100px;
+    width: 68px;
   }
 }
 
@@ -233,6 +233,7 @@ const listItems = [
   align-items: flex-start;
   border-right: 1px solid #222325;
   background: #1b1b1c;
+  width: 100%;
 
   .sidebar--collapsed & {
     padding: 24px 0 24px 3px;
@@ -243,6 +244,7 @@ const listItems = [
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .container {
@@ -258,9 +260,10 @@ const listItems = [
   display: flex;
   padding: 0 6px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 4px;
-  align-self: stretch;
+  align-self: center;
+  width: 100%;
 }
 
 .navigation-item {
@@ -268,7 +271,8 @@ const listItems = [
   padding: 8px 16px;
   align-items: center;
   gap: 16px;
-  align-self: stretch;
+  align-self: center;
+  width: 100%;
   border-radius: 6px;
   background: transparent;
   border: none;
@@ -280,8 +284,12 @@ const listItems = [
   }
 
   &--active {
-    background: #222325;
+    background: #4a4a4a;
   }
+}
+
+.sidebar--collapsed .navigation-item {
+  justify-content: center;
 }
 
 .nav-icon {
@@ -303,7 +311,7 @@ const listItems = [
 
 .lists-section {
   display: flex;
-  padding: 0 24px;
+  padding: 0 6px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
@@ -333,6 +341,10 @@ const listItems = [
   align-self: stretch;
 }
 
+.sidebar--collapsed .lists-items {
+  align-items: center;
+}
+
 .list-item {
   display: flex;
   padding: 8px 0;
@@ -340,6 +352,7 @@ const listItems = [
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+  width: 100%;
   border-radius: 6px;
   background: transparent;
   border: none;
@@ -349,6 +362,10 @@ const listItems = [
   &:hover {
     background: #222325;
   }
+}
+
+.sidebar--collapsed .list-item {
+  align-items: center;
 }
 
 .list-icon {
@@ -377,6 +394,11 @@ const listItems = [
   align-self: stretch;
   background: #1b1b1c;
   box-shadow: 0 0 16px 0 rgba(27, 27, 28, 0.4), 0 0 1px 0 rgba(27, 27, 28, 0.2);
+}
+
+.sidebar--collapsed .footer-section {
+  padding: 24px 6px;
+  align-self: center;
 }
 
 .add-button {
