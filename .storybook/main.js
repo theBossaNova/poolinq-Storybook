@@ -15,7 +15,7 @@ module.exports = {
   // Force a supported hash function to avoid md4 usage
   managerWebpack: async (config) => {
     if (!config.output) config.output = {};
-    config.output.hashFunction = 'xxhash64';
+    config.output.hashFunction = 'sha256';
     return config;
   },
 };
