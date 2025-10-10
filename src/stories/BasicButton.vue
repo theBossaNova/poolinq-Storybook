@@ -21,7 +21,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   primary: false,
-  disabled: false
+  disabled: false,
 });
 
 const emit = defineEmits<Emits>();
@@ -36,14 +36,13 @@ const classes = computed(() => ({
   "storybook-button--secondary": !props.primary,
   [`storybook-button--${props.size || "medium"}`]: true,
 }));
-
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
 .storybook-button {
-  font-family: 'Roboto', -apple-system, Roboto, Helvetica, sans-serif;
+  font-family: "Roboto", -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 14px;
   text-transform: uppercase;
@@ -62,8 +61,8 @@ const classes = computed(() => ({
 }
 
 .storybook-button--primary {
-  color: #FFF;
-  background-color: #10B981;
+  color: #fff;
+  background-color: #10b981;
 
   &:hover:not(:disabled) {
     background-color: #059669;
@@ -71,11 +70,11 @@ const classes = computed(() => ({
 }
 
 .storybook-button--secondary {
-  color: #E6E1F3;
-  background-color: #6B7280;
+  color: #e6e1f3;
+  background-color: #6b7280;
 
   &:hover:not(:disabled) {
-    background-color: #4B5563;
+    background-color: #4b5563;
   }
 }
 
