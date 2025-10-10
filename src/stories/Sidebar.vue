@@ -273,6 +273,7 @@ const listItems = [
   gap: 16px;
   align-self: center;
   width: 100%;
+  margin-left: 0;
   border-radius: 6px;
   background: transparent;
   border: none;
@@ -353,6 +354,7 @@ const listItems = [
   gap: 8px;
   align-self: stretch;
   width: 100%;
+  margin-left: 0;
   border-radius: 6px;
   background: transparent;
   border: none;
