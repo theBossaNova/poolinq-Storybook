@@ -1,7 +1,7 @@
 module.exports = {
   core: {
     // Use Vite for the preview builder
-    builder: 'storybook-builder-vite',
+    builder: '@storybook/builder-vite',
   },
   framework: '@storybook/vue3',
   stories: ['../src/stories/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
