@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">
+  <button type="button" :class="classes" @click="onClick" :disabled="disabled">
     {{ label }}
   </button>
 </template>
@@ -11,15 +11,18 @@ import { computed } from "vue";
 interface Props {
   label: string;
   primary?: boolean;
-  backgroundColor?: string;
   size: Size;
+  disabled?: boolean;
 }
 
 interface Emits {
   (event: "click"): void;
 }
 
-const props = withDefaults(defineProps<Props>(), { primary: false });
+const props = withDefaults(defineProps<Props>(), {
+  primary: false,
+  disabled: false,
+});
 
 const emit = defineEmits<Emits>();
 
@@ -33,86 +36,60 @@ const classes = computed(() => ({
   "storybook-button--secondary": !props.primary,
   [`storybook-button--${props.size || "medium"}`]: true,
 }));
-
-const style = computed(() => ({
-  backgroundColor: props.backgroundColor,
-}));
 </script>
 
 <style lang="scss" scoped>
-@use "@/styles/functions/color" as *;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
 .storybook-button {
-  font-family: "Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", -apple-system, Roboto, Helvetica, sans-serif;
   font-weight: 700;
-  border: 0;
-  border-radius: 3rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
   display: inline-block;
-  line-height: 1;
-  transition: all 0.15s ease-in-out;
+  line-height: normal;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 }
 
 .storybook-button--primary {
-  color: color(light);
-  background-color: color(cta, primary);
-  border-color: color(cta, primary);
+  color: #fff;
+  background-color: #10b981;
 
-  box-shadow: color(shadow) 2px 2px 4px,
-    inset rgba(color(light), 0.2) 2px -2px 4px;
-
-  &:hover {
-    background-color: rgba(color(cta, primary), 0.9);
-    border-color: rgba(color(cta, primary), 0.9);
-  }
-
-  &:active {
-    transform: translateY(1px);
-    box-shadow: color(shadow) 1px 2px 2px,
-      inset rgba(color(light), 0.2) 2px -2px 4px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    color: color(dark);
-    background-color: color(light);
+  &:hover:not(:disabled) {
+    background-color: #059669;
   }
 }
 
 .storybook-button--secondary {
-  background-color: color(light);
-  color: color(dark);
-  box-shadow: color(shadow) 2px 2px 4px,
-    inset rgba(color(light), 0.2) 2px -2px 4px;
+  color: #e6e1f3;
+  background-color: #6b7280;
 
-  &:hover {
-    background-color: rgba(color(dark), 0.9);
-    color: rgba(color(light), 0.9);
-  }
-
-  &:active {
-    transform: translateY(1px);
-    box-shadow: color(shadow) 1px 2px 2px,
-      inset rgba(color(light), 0.2) 2px -2px 4px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background-color: color(dark);
-    color: color(light);
+  &:hover:not(:disabled) {
+    background-color: #4b5563;
   }
 }
 
 .storybook-button--small {
-  font-size: 12px;
-  padding: 10px 16px;
+  padding: 8px 16px;
+  font-size: 14px;
 }
 
 .storybook-button--medium {
+  padding: 12px 24px;
   font-size: 14px;
-  padding: 11px 20px;
 }
 
 .storybook-button--large {
-  font-size: 16px;
-  padding: 12px 24px;
+  padding: 16px 32px;
+  font-size: 14px;
 }
 </style>
