@@ -1,9 +1,8 @@
 module.exports = {
-  core: {
-    // Use Vite for the preview builder
-    builder: '@storybook/builder-vite',
+  framework: {
+    name: '@storybook/vue3-vite',
+    options: {},
   },
-  framework: '@storybook/vue3',
   stories: ['../src/stories/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   addons: [
     '@storybook/addon-links',
@@ -11,13 +10,6 @@ module.exports = {
     '@storybook/addon-a11y',
     'storybook-dark-mode',
   ],
-  // Fix for Node >=17 OpenSSL 3 with Webpack (used by Storybook manager)
-  // Force a supported hash function to avoid md4 usage
-  managerWebpack: async (config) => {
-    if (!config.output) config.output = {};
-    config.output.hashFunction = 'sha256';
-    return config;
-  },
   viteFinal: async (config) => {
     const path = require('path');
     config.resolve = config.resolve || {};
