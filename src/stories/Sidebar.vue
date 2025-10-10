@@ -70,7 +70,10 @@
         <button
           v-for="item in navItems"
           :key="item.id"
-          :class="['navigation-item', { 'navigation-item--active': item.active }]"
+          :class="[
+            'navigation-item',
+            { 'navigation-item--active': item.active },
+          ]"
         >
           <div class="nav-icon" v-html="item.icon"></div>
           <div v-if="!collapsed" class="nav-label">{{ item.label }}</div>
