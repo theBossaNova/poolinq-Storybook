@@ -1,41 +1,21 @@
-const { loadConfigFromFile, mergeConfig } = require("vite");
-
-const vueI18n = require("@intlify/vite-plugin-vue-i18n").default;
-
-const eslintPlugin = require("vite-plugin-eslint").default;
-
-const path = require("path");
-
 module.exports = {
-  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|ts)"],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-a11y",
-    "storybook-dark-mode",
-  ],
-  framework: "@storybook/vue3",
   core: {
-    builder: "@storybook/builder-vite",
+    // Use Vite for the preview builder
+    builder: 'storybook-builder-vite',
   },
-  typescript: {
-    check: false,
-    checkOptions: {},
-  },
-  async viteFinal(previousConfig) {
-    const { config } = await loadConfigFromFile(
-      path.resolve(__dirname, "../vite.config.ts")
-    );
-    return mergeConfig(previousConfig, {
-      ...config,
-      plugins: [
-        vueI18n({
-          include: path.resolve(__dirname, "../src/locales/**"),
-          compositionOnly: false,
-          runtimeOnly: false,
-        }),
-        eslintPlugin(),
-      ],
-    });
+  framework: '@storybook/vue3',
+  stories: ['../src/stories/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-a11y',
+    'storybook-dark-mode',
+  ],
+  // Fix for Node >=17 OpenSSL 3 with Webpack (used by Storybook manager)
+  // Force a supported hash function to avoid md4 usage
+  managerWebpack: async (config) => {
+    if (!config.output) config.output = {};
+    config.output.hashFunction = 'xxhash64';
+    return config;
   },
 };
