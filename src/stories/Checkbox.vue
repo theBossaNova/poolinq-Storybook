@@ -19,10 +19,11 @@
       >
         <path
           d="M10 3L4.5 8.5L2 6"
-          :stroke="disabled ? '#495057' : '#00C46C'"
+          stroke="#00C46C"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="check-path"
         />
       </svg>
       <svg
