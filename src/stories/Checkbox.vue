@@ -134,5 +134,17 @@ const checkboxClasses = computed(() => ({
     align-self: stretch;
     aspect-ratio: 1/1;
   }
+
+  .check-path {
+    transition: stroke 0.2s ease-in-out;
+  }
+
+  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) & .check-path {
+    stroke: #33D68C;
+  }
+
+  .checkbox-wrapper--disabled & .check-path {
+    stroke: #495057;
+  }
 }
 </style>
