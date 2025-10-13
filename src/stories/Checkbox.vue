@@ -3,7 +3,7 @@
     <input
       :type="type === 'radio' ? 'radio' : 'checkbox'"
       :checked="checked"
-      :disabled="disabled"
+      :disabled="isDisabled"
       @change="handleChange"
       class="checkbox-input"
     />
@@ -52,6 +52,7 @@ interface Props {
   type?: "checkbox" | "radio";
   checked?: boolean;
   disabled?: boolean;
+  state?: "default" | "hover" | "disabled";
 }
 
 interface Emits {
@@ -62,9 +63,12 @@ const props = withDefaults(defineProps<Props>(), {
   type: "checkbox",
   checked: false,
   disabled: false,
+  state: "default",
 });
 
 const emit = defineEmits<Emits>();
+
+const isDisabled = computed(() => props.disabled || props.state === "disabled");
 
 const handleChange = (e: Event) => {
   const target = e.target as HTMLInputElement;
@@ -73,9 +77,10 @@ const handleChange = (e: Event) => {
 
 const checkboxClasses = computed(() => ({
   "checkbox-wrapper": true,
-  "checkbox-wrapper--disabled": props.disabled,
+  "checkbox-wrapper--disabled": isDisabled.value,
   "checkbox-wrapper--radio": props.type === "radio",
   "checkbox-wrapper--checked": props.checked,
+  "checkbox-wrapper--hover": props.state === "hover",
 }));
 </script>
 
