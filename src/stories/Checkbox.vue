@@ -2,7 +2,7 @@
   <label :class="checkboxClasses">
     <input
       :type="type === 'radio' ? 'radio' : 'checkbox'"
-      :checked="checked"
+      :checked="isChecked"
       :disabled="isDisabled"
       @change="handleChange"
       class="checkbox-input"
@@ -56,6 +56,7 @@ interface Props {
 }
 
 interface Emits {
+  (event: "update:checked", value: boolean): void;
   (event: "change", value: boolean): void;
 }
 
@@ -70,8 +71,11 @@ const emit = defineEmits<Emits>();
 
 const isDisabled = computed(() => props.disabled || props.state === "disabled");
 
+const isChecked = computed(() => props.checked);
+
 const handleChange = (e: Event) => {
   const target = e.target as HTMLInputElement;
+  emit("update:checked", target.checked);
   emit("change", target.checked);
 };
 
@@ -79,7 +83,7 @@ const checkboxClasses = computed(() => ({
   "checkbox-wrapper": true,
   "checkbox-wrapper--disabled": isDisabled.value,
   "checkbox-wrapper--radio": props.type === "radio",
-  "checkbox-wrapper--checked": props.checked,
+  "checkbox-wrapper--checked": isChecked.value,
   "checkbox-wrapper--hover": props.state === "hover",
 }));
 </script>
@@ -124,6 +128,10 @@ const checkboxClasses = computed(() => ({
 
 .checkbox-wrapper--checked .checkbox-icon {
   border-color: #0cba4a;
+}
+
+.checkbox-wrapper--checked.checkbox-wrapper--disabled .checkbox-icon {
+  border-color: #495057;
 }
 
 .checkbox-wrapper--radio .checkbox-icon {
