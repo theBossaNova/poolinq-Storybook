@@ -12,17 +12,6 @@
         </div>
       </div>
 
-      <!-- Hover Row -->
-      <div class="checkbox-row">
-        <span class="row-label">Hover</span>
-        <div class="checkbox-variant-row">
-          <Checkbox type="checkbox" :checked="true" />
-          <Checkbox type="checkbox" :checked="false" />
-          <Checkbox type="radio" :checked="true" />
-          <Checkbox type="radio" :checked="false" />
-        </div>
-      </div>
-
       <!-- Disabled Row -->
       <div class="checkbox-row">
         <span class="row-label">Disabled</span>
