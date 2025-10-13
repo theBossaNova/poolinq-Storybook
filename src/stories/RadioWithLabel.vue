@@ -2,12 +2,12 @@
   <div :class="wrapperClasses">
     <Checkbox
       type="radio"
-      :checked="checked"
+      :checked="model"
       :disabled="isDisabled"
       :state="props.state"
-      @change="handleChange"
+      @update:checked="handleCheckboxUpdate"
     />
-    <div class="label">{{ label }}</div>
+    <div class="label">{{ labelModel }}</div>
   </div>
 </template>
 
@@ -23,6 +23,8 @@ interface Props {
 }
 
 interface Emits {
+  (event: "update:checked", value: boolean): void;
+  (event: "update:label", value: string): void;
   (event: "change", value: boolean): void;
 }
 
@@ -35,16 +37,27 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
+const model = computed({
+  get: () => props.checked,
+  set: (value: boolean) => emit("update:checked", value),
+});
+
+const labelModel = computed({
+  get: () => props.label,
+  set: (value: string) => emit("update:label", value),
+});
+
 const isDisabled = computed(() => props.disabled || props.state === "disabled");
 
-const handleChange = (value: boolean) => {
+const handleCheckboxUpdate = (value: boolean) => {
   emit("change", value);
+  emit("update:checked", value);
 };
 
 const wrapperClasses = computed(() => ({
   "radio-with-label": true,
   "radio-with-label--disabled": isDisabled.value,
-  "radio-with-label--checked": props.checked,
+  "radio-with-label--checked": model.value,
   "radio-with-label--hover": props.state === "hover",
 }));
 </script>
