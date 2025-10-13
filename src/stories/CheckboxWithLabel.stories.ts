@@ -1,19 +1,49 @@
-import { Story } from "@storybook/vue3";
-import SelectionControls from "./SelectionControls.vue";
+import type { Meta, StoryObj } from "@storybook/vue3";
+import { useArgs } from "@storybook/preview-api";
+import CheckboxWithLabel from "./CheckboxWithLabel.vue";
+import "./selectionControls.story.scss";
 
-export default {
+const meta: Meta<typeof CheckboxWithLabel> = {
   title: "Selection Controls/Checkbox With Label",
-  component: SelectionControls,
+  component: CheckboxWithLabel,
+  args: {
+    type: "checkbox",
+    checked: false,
+    disabled: false,
+    label: "Label",
+    state: "default",
+  },
+  argTypes: {
+    type: { table: { disable: true } },
+    state: { table: { disable: true } },
+    checked: { control: { type: "boolean" } },
+    disabled: { control: { type: "boolean" } },
+    label: { control: { type: "text" } },
+  },
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
 };
 
-const Template: Story = () => ({
-  components: { SelectionControls },
-  setup() {
-    const sections = ["checkboxWithLabel"] as const;
-    return { sections };
-  },
-  template: '<selection-controls :sections="sections" :show-title="false" />',
-});
+export default meta;
 
-export const States = Template.bind({});
-States.storyName = "States";
+type Story = StoryObj<typeof meta>;
+
+export const Interactive: Story = {
+  name: "Interactive",
+  render: (args) => ({
+    components: { CheckboxWithLabel },
+    setup() {
+      const [, updateArgs] = useArgs();
+      const handleUpdate = (value: boolean) => {
+        updateArgs({ checked: value });
+      };
+      return { args, handleUpdate };
+    },
+    template: `
+      <div class="control-story-wrapper">
+        <checkbox-with-label v-bind="args" @update:checked="handleUpdate" />
+      </div>
+    `,
+  }),
+};
