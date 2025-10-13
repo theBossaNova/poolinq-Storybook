@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 import Checkbox from "./Checkbox.vue";
+import "./selectionControls.story.scss";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Selection Controls/Checkbox",
@@ -37,7 +38,7 @@ export const Interactive: Story = {
       return { args, handleUpdate };
     },
     template: `
-      <div class="story-dark-surface">
+      <div class="control-story-wrapper">
         <checkbox v-bind="args" @update:checked="handleUpdate" />
       </div>
     `,
