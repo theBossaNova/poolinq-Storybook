@@ -147,5 +147,17 @@ const checkboxClasses = computed(() => ({
   .checkbox-wrapper--disabled & .check-path {
     stroke: #495057;
   }
+
+  .radio-path {
+    transition: fill 0.2s ease-in-out;
+  }
+
+  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) & .radio-path {
+    fill: #33D68C;
+  }
+
+  .checkbox-wrapper--disabled & .radio-path {
+    fill: #495057;
+  }
 }
 </style>
