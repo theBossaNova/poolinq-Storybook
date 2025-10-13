@@ -1,100 +1,111 @@
 <template>
   <div class="selection-controls">
-    <h1 class="main-title">Controls</h1>
+    <h1 v-if="props.showTitle" class="main-title">Controls</h1>
 
-    <!-- CHECKBOX Section -->
-    <section class="control-section">
+    <section v-if="visibleSections.has('checkbox')" class="control-section">
       <h2 class="section-title">CHECKBOX</h2>
       <div class="variant-row">
         <span class="row-label">Default</span>
-        <Checkbox :checked="true" />
-        <Checkbox :checked="false" />
+        <Checkbox state="default" :checked="true" />
+        <Checkbox state="default" :checked="false" />
       </div>
       <div class="variant-row">
         <span class="row-label">Hover</span>
-        <Checkbox :checked="true" />
-        <Checkbox :checked="false" />
+        <Checkbox state="hover" :checked="true" />
+        <Checkbox state="hover" :checked="false" />
       </div>
       <div class="variant-row">
         <span class="row-label">Disabled</span>
-        <Checkbox :checked="true" disabled />
-        <Checkbox :checked="false" disabled />
+        <Checkbox state="disabled" :checked="true" />
+        <Checkbox state="disabled" :checked="false" />
       </div>
     </section>
 
-    <!-- RADIO Section -->
-    <section class="control-section">
+    <section v-if="visibleSections.has('radio')" class="control-section">
       <h2 class="section-title">RADIO</h2>
       <div class="variant-row">
         <span class="row-label">Default</span>
-        <Checkbox type="radio" :checked="true" />
-        <Checkbox type="radio" :checked="false" />
+        <Checkbox type="radio" state="default" :checked="true" />
+        <Checkbox type="radio" state="default" :checked="false" />
       </div>
       <div class="variant-row">
         <span class="row-label">Hover</span>
-        <Checkbox type="radio" :checked="true" />
-        <Checkbox type="radio" :checked="false" />
+        <Checkbox type="radio" state="hover" :checked="true" />
+        <Checkbox type="radio" state="hover" :checked="false" />
       </div>
       <div class="variant-row">
         <span class="row-label">Disabled</span>
-        <Checkbox type="radio" :checked="true" disabled />
-        <Checkbox type="radio" :checked="false" disabled />
+        <Checkbox type="radio" state="disabled" :checked="true" />
+        <Checkbox type="radio" state="disabled" :checked="false" />
       </div>
     </section>
 
-    <!-- CHECKBOX WITH LABEL Section -->
-    <section class="control-section">
+    <section v-if="visibleSections.has('checkboxWithLabel')" class="control-section">
       <h2 class="section-title">CHECKBOX WITH LABEL</h2>
       <div class="variant-row">
         <span class="row-label">Default</span>
-        <CheckboxWithLabel :checked="true" label="Label" />
-        <CheckboxWithLabel :checked="false" label="Label" />
+        <CheckboxWithLabel state="default" :checked="true" label="Label" />
+        <CheckboxWithLabel state="default" :checked="false" label="Label" />
       </div>
       <div class="variant-row">
         <span class="row-label">Hover</span>
-        <CheckboxWithLabel :checked="true" label="Label" />
-        <CheckboxWithLabel :checked="false" label="Label" />
+        <CheckboxWithLabel state="hover" :checked="true" label="Label" />
+        <CheckboxWithLabel state="hover" :checked="false" label="Label" />
       </div>
       <div class="variant-row">
         <span class="row-label">Disabled</span>
-        <CheckboxWithLabel :checked="true" disabled label="Label" />
-        <CheckboxWithLabel :checked="false" disabled label="Label" />
+        <CheckboxWithLabel state="disabled" :checked="true" label="Label" />
+        <CheckboxWithLabel state="disabled" :checked="false" label="Label" />
       </div>
     </section>
 
-    <!-- RADIO WITH LABEL Section -->
-    <section class="control-section">
+    <section v-if="visibleSections.has('radioWithLabel')" class="control-section">
       <h2 class="section-title">RADIO WITH LABEL</h2>
       <div class="variant-row">
         <span class="row-label">Default</span>
-        <RadioWithLabel :checked="true" label="Label" />
-        <RadioWithLabel :checked="false" label="Label" />
+        <RadioWithLabel state="default" :checked="true" label="Label" />
+        <RadioWithLabel state="default" :checked="false" label="Label" />
       </div>
       <div class="variant-row">
         <span class="row-label">Hover</span>
-        <RadioWithLabel :checked="true" label="Label" />
-        <RadioWithLabel :checked="false" label="Label" />
+        <RadioWithLabel state="hover" :checked="true" label="Label" />
+        <RadioWithLabel state="hover" :checked="false" label="Label" />
       </div>
       <div class="variant-row">
         <span class="row-label">Disabled</span>
-        <RadioWithLabel :checked="true" disabled label="Label" />
-        <RadioWithLabel :checked="false" disabled label="Label" />
+        <RadioWithLabel state="disabled" :checked="true" label="Label" />
+        <RadioWithLabel state="disabled" :checked="false" label="Label" />
       </div>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import Checkbox from "./Checkbox.vue";
 import CheckboxWithLabel from "./CheckboxWithLabel.vue";
 import RadioWithLabel from "./RadioWithLabel.vue";
+
+type SectionKey = "checkbox" | "radio" | "checkboxWithLabel" | "radioWithLabel";
+
+interface Props {
+  sections?: SectionKey[];
+  showTitle?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  sections: () => ["checkbox", "radio", "checkboxWithLabel", "radioWithLabel"],
+  showTitle: true,
+});
+
+const visibleSections = computed(() => new Set(props.sections));
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 .selection-controls {
-  background-color: #2b2b2b;
+  background-color: #121212;
   min-height: 100vh;
   padding: 40px;
   color: #fff;
