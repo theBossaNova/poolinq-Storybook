@@ -100,47 +100,66 @@ const checkboxClasses = computed(() => ({
 
 .checkbox-icon {
   display: flex;
-  width: 16px;
-  height: 16px;
-  padding: 0 2px;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  background: rgba(12, 186, 74, 0);
-  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+  border: 2px solid #0CBA4A;
+  background-color: transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
   flex-shrink: 0;
+  box-sizing: border-box;
+}
 
-  // Checkbox checked state - padding: 2px
-  .checkbox-wrapper--checked:not(.checkbox-wrapper--radio) & {
-    padding: 2px;
-  }
+.checkbox-wrapper--radio .checkbox-icon {
+  border-radius: 50%;
+  padding: 3px;
+}
 
-  // Radio button styling
-  .checkbox-wrapper--radio & {
-    border-radius: 5px;
-  }
+.checkbox-wrapper--disabled .checkbox-icon {
+  border-color: rgba(34, 35, 37, 0.6);
+  background-color: rgba(34, 35, 37, 0.6);
+}
 
-  // Radio checked state - padding: 3px
-  .checkbox-wrapper--checked.checkbox-wrapper--radio & {
-    padding: 3px;
-  }
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .checkbox-icon {
+  border-color: #33D68C;
+}
 
-  // Disabled unchecked state - background #222325
-  .checkbox-wrapper--disabled:not(.checkbox-wrapper--checked) & {
-    background: #222325;
-  }
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled):not(.checkbox-wrapper--checked) .checkbox-icon,
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled).checkbox-wrapper--radio .checkbox-icon {
+  background-color: rgba(12, 186, 74, 0.1);
+}
 
-  // Hover state for unchecked radio - background rgba(12, 186, 74, 0.10)
-  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled):not(.checkbox-wrapper--checked).checkbox-wrapper--radio
-    & {
-    background: rgba(12, 186, 74, 0.1);
-  }
+.check-icon,
+.radio-icon {
+  flex: 1 0 0;
+  align-self: stretch;
+  aspect-ratio: 1/1;
+}
 
-  .check-icon,
-  .radio-icon {
-    flex: 1 0 0;
-    align-self: stretch;
-    aspect-ratio: 1/1;
-  }
+.check-path {
+  transition: stroke 0.15s ease;
+}
+
+.radio-path {
+  transition: fill 0.15s ease;
+}
+
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .check-path {
+  stroke: #33D68C;
+}
+
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .radio-path {
+  fill: #33D68C;
+}
+
+.checkbox-wrapper--disabled .check-path {
+  stroke: #495057;
+}
+
+.checkbox-wrapper--disabled .radio-path {
+  fill: #495057;
 }
 </style>
