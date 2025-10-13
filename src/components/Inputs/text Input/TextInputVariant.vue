@@ -48,14 +48,10 @@ const wrapperClasses = computed(() => [
   { "text-input-wrapper--disabled": isDisabled.value },
 ]);
 
-const updateValue = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const value = target.value;
-
-  internalValue.value = value;
+watch(internalValue, (value) => {
   emit("update:modelValue", value);
   emit("change", value);
-};
+});
 </script>
 
 <template>
@@ -69,7 +65,6 @@ const updateValue = (event: Event) => {
       type="text"
       autocomplete="off"
       spellcheck="false"
-      @input="updateValue"
     />
   </div>
 </template>
