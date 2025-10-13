@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import TextInputVariant from "./TextInputVariant.vue";
 
-defineOptions({
-  name: "Input – Typing",
-});
-
 interface Props {
   modelValue?: string;
   placeholder?: string;
