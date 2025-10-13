@@ -111,11 +111,19 @@ const checkboxClasses = computed(() => ({
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  border: 2px solid #0CBA4A;
+  border: 2px solid transparent;
   background-color: transparent;
   transition: border-color 0.15s ease, background-color 0.15s ease;
   flex-shrink: 0;
   box-sizing: border-box;
+}
+
+.checkbox-wrapper:not(.checkbox-wrapper--checked) .checkbox-icon {
+  border-color: #e6e1f3;
+}
+
+.checkbox-wrapper--checked .checkbox-icon {
+  border-color: #0cba4a;
 }
 
 .checkbox-wrapper--radio .checkbox-icon {
@@ -128,12 +136,15 @@ const checkboxClasses = computed(() => ({
   background-color: transparent;
 }
 
-.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .checkbox-icon {
-  border-color: #33D68C;
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .checkbox-icon,
+.checkbox-wrapper--hover:not(.checkbox-wrapper--disabled) .checkbox-icon {
+  border-color: #33d68c;
 }
 
 .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled):not(.checkbox-wrapper--checked) .checkbox-icon,
-.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled).checkbox-wrapper--radio .checkbox-icon {
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled).checkbox-wrapper--radio .checkbox-icon,
+.checkbox-wrapper--hover:not(.checkbox-wrapper--disabled):not(.checkbox-wrapper--checked) .checkbox-icon,
+.checkbox-wrapper--hover:not(.checkbox-wrapper--disabled).checkbox-wrapper--radio .checkbox-icon {
   background-color: rgba(12, 186, 74, 0.1);
 }
 
@@ -154,12 +165,14 @@ const checkboxClasses = computed(() => ({
   transition: fill 0.15s ease;
 }
 
-.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .check-path {
-  stroke: #33D68C;
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .check-path,
+.checkbox-wrapper--hover:not(.checkbox-wrapper--disabled) .check-path {
+  stroke: #33d68c;
 }
 
-.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .radio-path {
-  fill: #33D68C;
+.checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .radio-path,
+.checkbox-wrapper--hover:not(.checkbox-wrapper--disabled) .radio-path {
+  fill: #33d68c;
 }
 
 .checkbox-wrapper--disabled .check-path {
