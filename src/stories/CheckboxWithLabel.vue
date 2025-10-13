@@ -7,7 +7,7 @@
       :state="props.state"
       @update:checked="handleCheckboxUpdate"
     />
-    <div class="label" contenteditable="false">{{ labelModel }}</div>
+    <div class="label">{{ labelModel }}</div>
   </div>
 </template>
 
