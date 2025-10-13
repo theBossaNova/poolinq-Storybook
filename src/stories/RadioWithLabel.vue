@@ -7,7 +7,7 @@
       :state="props.state"
       @update:checked="handleCheckboxUpdate"
     />
-    <div class="label">{{ labelModel }}</div>
+    <div class="label">{{ labelText }}</div>
   </div>
 </template>
 
@@ -24,7 +24,6 @@ interface Props {
 
 interface Emits {
   (event: "update:checked", value: boolean): void;
-  (event: "update:label", value: string): void;
   (event: "change", value: boolean): void;
 }
 
@@ -42,16 +41,13 @@ const model = computed({
   set: (value: boolean) => emit("update:checked", value),
 });
 
-const labelModel = computed({
-  get: () => props.label,
-  set: (value: string) => emit("update:label", value),
-});
+const labelText = computed(() => props.label);
 
 const isDisabled = computed(() => props.disabled || props.state === "disabled");
 
 const handleCheckboxUpdate = (value: boolean) => {
+  model.value = value;
   emit("change", value);
-  emit("update:checked", value);
 };
 
 const wrapperClasses = computed(() => ({
