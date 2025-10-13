@@ -42,6 +42,8 @@ import Checkbox from "./Checkbox.vue";
 </script>
 
 <style scoped lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+
 .checkbox-showcase {
   display: flex;
   align-items: center;
