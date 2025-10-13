@@ -19,10 +19,11 @@
       >
         <path
           d="M10 3L4.5 8.5L2 6"
-          :stroke="disabled ? '#495057' : '#0CBA4A'"
+          stroke="#0CBA4A"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="check-path"
         />
       </svg>
       <svg
@@ -36,7 +37,8 @@
       >
         <path
           d="M4.99999 0.416656C2.46868 0.416656 0.416656 2.46868 0.416656 4.99999C0.416656 7.53129 2.46868 9.58332 4.99999 9.58332C7.53129 9.58332 9.58332 7.53129 9.58332 4.99999C9.58332 2.46868 7.53129 0.416656 4.99999 0.416656Z"
-          :fill="disabled ? '#495057' : '#0CBA4A'"
+          fill="#0CBA4A"
+          class="radio-path"
         />
       </svg>
     </span>
