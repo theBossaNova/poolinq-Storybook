@@ -1,19 +1,46 @@
-import { Story } from "@storybook/vue3";
-import SelectionControls from "./SelectionControls.vue";
+import type { Meta, StoryObj } from "@storybook/vue3";
+import { useArgs } from "@storybook/preview-api";
+import Checkbox from "./Checkbox.vue";
+import "./selectionControls.story.scss";
 
-export default {
+const meta: Meta<typeof Checkbox> = {
   title: "Selection Controls/Radio",
-  component: SelectionControls,
+  component: Checkbox,
+  args: {
+    type: "radio",
+    checked: false,
+    disabled: false,
+  },
+  argTypes: {
+    type: { table: { disable: true } },
+    state: { table: { disable: true } },
+    checked: { control: { type: "boolean" } },
+    disabled: { control: { type: "boolean" } },
+  },
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
 };
 
-const Template: Story = () => ({
-  components: { SelectionControls },
-  setup() {
-    const sections = ["radio"] as const;
-    return { sections };
-  },
-  template: '<selection-controls :sections="sections" :show-title="false" />',
-});
+export default meta;
 
-export const States = Template.bind({});
-States.storyName = "States";
+type Story = StoryObj<typeof meta>;
+
+export const Interactive: Story = {
+  name: "Interactive",
+  render: (args) => ({
+    components: { Checkbox },
+    setup() {
+      const [, updateArgs] = useArgs();
+      const handleUpdate = (value: boolean) => {
+        updateArgs({ checked: value });
+      };
+      return { args, handleUpdate };
+    },
+    template: `
+      <div class="control-story-wrapper">
+        <checkbox v-bind="args" @update:checked="handleUpdate" />
+      </div>
+    `,
+  }),
+};
