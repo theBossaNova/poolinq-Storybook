@@ -1,65 +1,19 @@
 import { Story } from "@storybook/vue3";
-import RadioWithLabel from "./RadioWithLabel.vue";
+import SelectionControls from "./SelectionControls.vue";
 
 export default {
-  title: "Radio/With Label",
-  component: RadioWithLabel,
-  argTypes: {
-    onChange: {},
-    checked: {
-      control: { type: "boolean" },
-    },
-    disabled: {
-      control: { type: "boolean" },
-    },
-    label: {
-      control: { type: "text" },
-    },
-  },
+  title: "Selection Controls/Radio With Label",
+  component: SelectionControls,
 };
 
-const Template: Story = (args) => ({
-  components: { RadioWithLabel },
+const Template: Story = () => ({
+  components: { SelectionControls },
   setup() {
-    return { args };
+    const sections = ["radioWithLabel"] as const;
+    return { sections };
   },
-  template: '<radio-with-label v-bind="args" />',
+  template: '<selection-controls :sections="sections" :show-title="false" />',
 });
 
-// Default States
-export const Default = Template.bind({});
-Default.args = {
-  checked: false,
-  disabled: false,
-  label: "Label",
-};
-
-export const Checked = Template.bind({});
-Checked.args = {
-  checked: true,
-  disabled: false,
-  label: "Label",
-};
-
-// Disabled States
-export const DisabledUnchecked = Template.bind({});
-DisabledUnchecked.args = {
-  checked: false,
-  disabled: true,
-  label: "Label",
-};
-
-export const DisabledChecked = Template.bind({});
-DisabledChecked.args = {
-  checked: true,
-  disabled: true,
-  label: "Label",
-};
-
-// Custom Label
-export const CustomLabel = Template.bind({});
-CustomLabel.args = {
-  checked: false,
-  disabled: false,
-  label: "Radio option",
-};
+export const States = Template.bind({});
+States.storyName = "States";
