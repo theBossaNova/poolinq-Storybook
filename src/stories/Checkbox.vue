@@ -136,6 +136,10 @@ const checkboxClasses = computed(() => ({
   background-color: transparent;
 }
 
+.checkbox-wrapper--disabled.checkbox-wrapper--checked .checkbox-icon {
+  border-color: #495057;
+}
+
 .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .checkbox-icon,
 .checkbox-wrapper--hover:not(.checkbox-wrapper--disabled) .checkbox-icon {
   border-color: #33d68c;
