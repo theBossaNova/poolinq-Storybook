@@ -4,7 +4,7 @@
       :type="type"
       :checked="checked"
       :disabled="isDisabled"
-      :state="state"
+      :state="props.state"
       @change="handleChange"
     />
     <div class="label">{{ label }}</div>
