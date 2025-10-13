@@ -13,7 +13,7 @@
       </div>
 
       <!-- Hover Row -->
-      <div class="checkbox-row checkbox-row--hover">
+      <div class="checkbox-row">
         <span class="row-label">Hover</span>
         <div class="checkbox-variant-row">
           <Checkbox type="checkbox" :checked="true" />
@@ -46,55 +46,33 @@ import Checkbox from "./Checkbox.vue";
 
 .checkbox-showcase {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: #121212;
   min-height: 100vh;
-  padding: 48px 16px;
+  padding: 18px 6px;
 }
 
 .checkbox-showcase-content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
+  align-self: stretch;
 }
 
 .checkbox-row {
   display: flex;
   align-items: center;
   gap: 24px;
-
-  &--hover {
-    .checkbox-wrapper {
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-
-      // Simulate hover state
-      .checkbox-icon {
-        border-color: #33d68c;
-      }
-
-      .checkbox-input:checked + .checkbox-icon {
-        .check-path {
-          stroke: #33d68c;
-        }
-
-        .radio-path {
-          fill: #33d68c;
-        }
-      }
-    }
-  }
 }
 
 .row-label {
   color: #fff;
+  font-feature-settings: "ss01" on;
   font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 14px;
+  font-style: normal;
   font-weight: 400;
   line-height: 20px;
   min-width: 80px;
