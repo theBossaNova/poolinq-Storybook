@@ -19,7 +19,7 @@
       >
         <path
           d="M10 3L4.5 8.5L2 6"
-          :stroke="disabled ? '#495057' : '#0CBA4A'"
+          :stroke="disabled ? '#495057' : '#00C46C'"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -36,7 +36,7 @@
       >
         <path
           d="M6 0.5C2.96243 0.5 0.5 2.96243 0.5 6C0.5 9.03757 2.96243 11.5 6 11.5C9.03757 11.5 11.5 9.03757 11.5 6C11.5 2.96243 9.03757 0.5 6 0.5Z"
-          :fill="disabled ? '#495057' : '#0CBA4A'"
+          :fill="disabled ? '#495057' : '#00C46C'"
         />
       </svg>
     </span>
@@ -98,30 +98,33 @@ const checkboxClasses = computed(() => ({
 
 .checkbox-icon {
   display: flex;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   padding: 0 2px;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  background: rgba(12, 186, 74, 0.1);
+  border-radius: 4px;
+  background: transparent;
+  border: 2px solid transparent;
   transition: all 0.2s ease-in-out;
   flex-shrink: 0;
+  box-sizing: border-box;
 
   .checkbox-wrapper--radio & {
     border-radius: 50%;
   }
 
   .checkbox-wrapper--disabled & {
-    background: #222325;
+    background: rgba(34, 35, 37, 0.6);
+    border-color: transparent;
   }
 
-  .checkbox-input:checked + & {
-    background: rgba(12, 186, 74, 0);
+  .checkbox-input:not(:checked) + &:not(.checkbox-wrapper--disabled &) {
+    border-color: #00C46C;
   }
 
-  .checkbox-wrapper--disabled .checkbox-input:checked + & {
-    background: #222325;
+  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .checkbox-input:not(:checked) + & {
+    border-color: #33D68C;
   }
 
   .check-icon,
