@@ -19,11 +19,10 @@
       >
         <path
           d="M10 3L4.5 8.5L2 6"
-          stroke="#00C46C"
+          :stroke="disabled ? '#495057' : '#0CBA4A'"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="check-path"
         />
       </svg>
       <svg
@@ -37,8 +36,7 @@
       >
         <path
           d="M4.99999 0.416656C2.46868 0.416656 0.416656 2.46868 0.416656 4.99999C0.416656 7.53129 2.46868 9.58332 4.99999 9.58332C7.53129 9.58332 9.58332 7.53129 9.58332 4.99999C9.58332 2.46868 7.53129 0.416656 4.99999 0.416656Z"
-          fill="#00C46C"
-          class="radio-path"
+          :fill="disabled ? '#495057' : '#0CBA4A'"
         />
       </svg>
     </span>
@@ -75,6 +73,7 @@ const checkboxClasses = computed(() => ({
   "checkbox-wrapper": true,
   "checkbox-wrapper--disabled": props.disabled,
   "checkbox-wrapper--radio": props.type === "radio",
+  "checkbox-wrapper--checked": props.checked,
 }));
 </script>
 
@@ -87,7 +86,6 @@ const checkboxClasses = computed(() => ({
 
   &--disabled {
     cursor: not-allowed;
-    opacity: 0.7;
   }
 }
 
@@ -100,34 +98,40 @@ const checkboxClasses = computed(() => ({
 
 .checkbox-icon {
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   padding: 0 2px;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
-  background: transparent;
-  border: 2px solid transparent;
+  border-radius: 5px;
+  background: rgba(12, 186, 74, 0);
   transition: all 0.2s ease-in-out;
   flex-shrink: 0;
-  box-sizing: border-box;
 
+  // Checkbox checked state - padding: 2px
+  .checkbox-wrapper--checked:not(.checkbox-wrapper--radio) & {
+    padding: 2px;
+  }
+
+  // Radio button styling
   .checkbox-wrapper--radio & {
-    border-radius: 50%;
-    padding: 0 3px;
+    border-radius: 5px;
   }
 
-  .checkbox-wrapper--disabled & {
-    background: rgba(34, 35, 37, 0.6);
-    border-color: transparent;
+  // Radio checked state - padding: 3px
+  .checkbox-wrapper--checked.checkbox-wrapper--radio & {
+    padding: 3px;
   }
 
-  .checkbox-input:not(:checked) + &:not(.checkbox-wrapper--disabled &) {
-    border-color: #00C46C;
+  // Disabled unchecked state - background #222325
+  .checkbox-wrapper--disabled:not(.checkbox-wrapper--checked) & {
+    background: #222325;
   }
 
-  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) .checkbox-input:not(:checked) + & {
-    border-color: #33D68C;
+  // Hover state for unchecked radio - background rgba(12, 186, 74, 0.10)
+  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled):not(.checkbox-wrapper--checked).checkbox-wrapper--radio
+    & {
+    background: rgba(12, 186, 74, 0.1);
   }
 
   .check-icon,
@@ -135,30 +139,6 @@ const checkboxClasses = computed(() => ({
     flex: 1 0 0;
     align-self: stretch;
     aspect-ratio: 1/1;
-  }
-
-  .check-path {
-    transition: stroke 0.2s ease-in-out;
-  }
-
-  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) & .check-path {
-    stroke: #33D68C;
-  }
-
-  .checkbox-wrapper--disabled & .check-path {
-    stroke: #495057;
-  }
-
-  .radio-path {
-    transition: fill 0.2s ease-in-out;
-  }
-
-  .checkbox-wrapper:hover:not(.checkbox-wrapper--disabled) & .radio-path {
-    fill: #33D68C;
-  }
-
-  .checkbox-wrapper--disabled & .radio-path {
-    fill: #495057;
   }
 }
 </style>
