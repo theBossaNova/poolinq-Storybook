@@ -140,10 +140,12 @@ const checkboxClasses = computed(() => ({
 }
 
 .check-path {
+  stroke: #0CBA4A;
   transition: stroke 0.15s ease;
 }
 
 .radio-path {
+  fill: #0CBA4A;
   transition: fill 0.15s ease;
 }
 
