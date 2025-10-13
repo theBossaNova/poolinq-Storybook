@@ -114,6 +114,7 @@ const checkboxClasses = computed(() => ({
 
   .checkbox-wrapper--radio & {
     border-radius: 50%;
+    padding: 0 3px;
   }
 
   .checkbox-wrapper--disabled & {
