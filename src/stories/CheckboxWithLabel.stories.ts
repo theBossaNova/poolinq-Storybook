@@ -1,83 +1,19 @@
 import { Story } from "@storybook/vue3";
-import CheckboxWithLabel from "./CheckboxWithLabel.vue";
+import SelectionControls from "./SelectionControls.vue";
 
 export default {
-  title: "Checkbox/With Label",
-  component: CheckboxWithLabel,
-  argTypes: {
-    onChange: {},
-    type: {
-      control: { type: "select" },
-      options: ["checkbox", "radio"],
-    },
-    checked: {
-      control: { type: "boolean" },
-    },
-    disabled: {
-      control: { type: "boolean" },
-    },
-    label: {
-      control: { type: "text" },
-    },
-  },
+  title: "Selection Controls/Checkbox With Label",
+  component: SelectionControls,
 };
 
-const Template: Story = (args) => ({
-  components: { CheckboxWithLabel },
+const Template: Story = () => ({
+  components: { SelectionControls },
   setup() {
-    return { args };
+    const sections = ["checkboxWithLabel"] as const;
+    return { sections };
   },
-  template: '<checkbox-with-label v-bind="args" />',
+  template: '<selection-controls :sections="sections" :show-title="false" />',
 });
 
-// Default States
-export const Default = Template.bind({});
-Default.args = {
-  type: "checkbox",
-  checked: false,
-  disabled: false,
-  label: "Label",
-};
-
-export const Checked = Template.bind({});
-Checked.args = {
-  type: "checkbox",
-  checked: true,
-  disabled: false,
-  label: "Label",
-};
-
-// Disabled States
-export const DisabledUnchecked = Template.bind({});
-DisabledUnchecked.args = {
-  type: "checkbox",
-  checked: false,
-  disabled: true,
-  label: "Label",
-};
-
-export const DisabledChecked = Template.bind({});
-DisabledChecked.args = {
-  type: "checkbox",
-  checked: true,
-  disabled: true,
-  label: "Label",
-};
-
-// Custom Label
-export const CustomLabel = Template.bind({});
-CustomLabel.args = {
-  type: "checkbox",
-  checked: false,
-  disabled: false,
-  label: "I agree to the terms and conditions",
-};
-
-// Radio with Label
-export const RadioWithLabel = Template.bind({});
-RadioWithLabel.args = {
-  type: "radio",
-  checked: true,
-  disabled: false,
-  label: "Radio option",
-};
+export const States = Template.bind({});
+States.storyName = "States";
