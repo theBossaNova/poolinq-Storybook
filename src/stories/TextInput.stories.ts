@@ -2,12 +2,12 @@ import type { Component } from "vue";
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import InputDefault from "@/components/Inputs/text Input/Input-Default.vue";
-import InputTyping from "@/components/Inputs/text Input/Input-Typing.vue";
-import InputFilled from "@/components/Inputs/text Input/Input-Filled.vue";
-import InputWarning from "@/components/Inputs/text Input/Input-Warning.vue";
-import InputError from "@/components/Inputs/text Input/Input-Error.vue";
-import InputDisabled from "@/components/Inputs/text Input/Input-Disabled.vue";
+import InputDefault from "../components/Inputs/text Input/Input-Default.vue";
+import InputTyping from "../components/Inputs/text Input/Input-Typing.vue";
+import InputFilled from "../components/Inputs/text Input/Input-Filled.vue";
+import InputWarning from "../components/Inputs/text Input/Input-Warning.vue";
+import InputError from "../components/Inputs/text Input/Input-Error.vue";
+import InputDisabled from "../components/Inputs/text Input/Input-Disabled.vue";
 
 import "./textInput.story.scss";
 
