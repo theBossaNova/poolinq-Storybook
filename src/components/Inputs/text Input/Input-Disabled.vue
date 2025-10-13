@@ -1,18 +1,45 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import TextInputVariant from "./TextInputVariant.vue";
 
 defineOptions({
   name: "Input – Disabled",
 });
 
-const disabledValue = ref("Disabled state");
+interface Props {
+  modelValue?: string;
+  placeholder?: string;
+  autofocus?: boolean;
+}
+
+interface Emits {
+  (event: "update:modelValue", value: string): void;
+  (event: "change", value: string): void;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: "Disabled state",
+  placeholder: "Placeholder",
+  autofocus: false,
+});
+
+const emit = defineEmits<Emits>();
+
+const handleModelUpdate = (value: string) => {
+  emit("update:modelValue", value);
+};
+
+const handleChange = (value: string) => {
+  emit("change", value);
+};
 </script>
 
 <template>
-  <text-input-variant
-    v-model="disabledValue"
+  <TextInputVariant
     variant="disabled"
-    placeholder="Placeholder"
+    :model-value="props.modelValue"
+    :placeholder="props.placeholder"
+    :autofocus="props.autofocus"
+    @update:modelValue="handleModelUpdate"
+    @change="handleChange"
   />
 </template>
