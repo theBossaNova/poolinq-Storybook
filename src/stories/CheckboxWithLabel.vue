@@ -3,7 +3,8 @@
     <Checkbox
       :type="type"
       :checked="checked"
-      :disabled="disabled"
+      :disabled="isDisabled"
+      :state="state"
       @change="handleChange"
     />
     <div class="label">{{ label }}</div>
@@ -18,6 +19,7 @@ interface Props {
   type?: "checkbox" | "radio";
   checked?: boolean;
   disabled?: boolean;
+  state?: "default" | "hover" | "disabled";
   label?: string;
 }
 
@@ -29,10 +31,13 @@ const props = withDefaults(defineProps<Props>(), {
   type: "checkbox",
   checked: false,
   disabled: false,
+  state: "default",
   label: "Label",
 });
 
 const emit = defineEmits<Emits>();
+
+const isDisabled = computed(() => props.disabled || props.state === "disabled");
 
 const handleChange = (value: boolean) => {
   emit("change", value);
@@ -40,8 +45,9 @@ const handleChange = (value: boolean) => {
 
 const wrapperClasses = computed(() => ({
   "checkbox-with-label": true,
-  "checkbox-with-label--disabled": props.disabled,
+  "checkbox-with-label--disabled": isDisabled.value,
   "checkbox-with-label--checked": props.checked,
+  "checkbox-with-label--hover": props.state === "hover",
 }));
 </script>
 
@@ -52,21 +58,17 @@ const wrapperClasses = computed(() => ({
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #e6e1f3;
-  background: transparent;
-  transition: border-color 0.15s ease;
   cursor: pointer;
-
-  &--checked {
-    border-color: #0cba4a;
-  }
 
   &--disabled {
     cursor: not-allowed;
     opacity: 0.6;
   }
+}
+
+.checkbox-with-label--hover:not(.checkbox-with-label--disabled) .label,
+.checkbox-with-label:not(.checkbox-with-label--disabled):hover .label {
+  color: #ffffff;
 }
 
 .label {
@@ -81,5 +83,6 @@ const wrapperClasses = computed(() => ({
   font-weight: 400;
   line-height: 140%;
   user-select: none;
+  transition: color 0.15s ease;
 }
 </style>
