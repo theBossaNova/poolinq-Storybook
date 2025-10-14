@@ -120,47 +120,52 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
 </script>
 
 <template>
-  <div :class="wrapperClasses">
-    <div class="text-select-header">
-      <input
-        v-model="internalValue"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        class="text-select-input"
-        type="text"
-        autocomplete="off"
-        spellcheck="false"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-      />
-      <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+  <div class="text-select-container">
+    <div :class="wrapperClasses">
+      <div class="text-select-header">
+        <input
+          v-model="internalValue"
+          :placeholder="placeholder"
+          :disabled="disabled"
+          class="text-select-input"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+        />
+        <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.6666 4.77337L11.7266 3.83337L7.99992 7.56004L4.27325 3.83337L3.33325 4.77337L7.05992 8.50004L3.33325 12.2267L4.27325 13.1667L7.99992 9.44004L11.7266 13.1667L12.6666 12.2267L8.93992 8.50004L12.6666 4.77337Z"
+              :fill="state === 'filled' || state === 'focused' ? '#495057' : '#E6E1F3'"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        v-if="isDropdownOpen && filteredSuggestions.length > 0"
+        class="text-select-dropdown"
+      >
+        <div
+          v-for="suggestion in filteredSuggestions"
+          :key="suggestion.value"
+          class="text-select-dropdown-item"
+          @click="selectSuggestion(suggestion)"
         >
-          <path
-            d="M12.6667 4.27337L11.7267 3.33337L8.00004 7.06004L4.27337 3.33337L3.33337 4.27337L7.06004 8.00004L3.33337 11.7267L4.27337 12.6667L8.00004 8.94004L11.7267 12.6667L12.6667 11.7267L8.94004 8.00004L12.6667 4.27337Z"
-            :fill="state === 'filled' ? '#495057' : '#E6E1F3'"
-          />
-        </svg>
+          {{ suggestion.label }}
+        </div>
       </div>
     </div>
-    <div
-      v-if="isDropdownOpen && filteredSuggestions.length > 0"
-      class="text-select-dropdown"
-    >
-      <div
-        v-for="suggestion in filteredSuggestions"
-        :key="suggestion.value"
-        class="text-select-dropdown-item"
-        @click="selectSuggestion(suggestion)"
-      >
-        {{ suggestion.label }}
-      </div>
+    <div v-if="helperText" :class="['text-select-helper', `text-select-helper--${state}`]">
+      {{ helperText }}
     </div>
   </div>
 </template>
