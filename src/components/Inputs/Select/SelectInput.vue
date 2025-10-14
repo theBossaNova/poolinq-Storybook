@@ -15,31 +15,48 @@ interface Props {
   helperText?: string;
   state?: SelectState;
   disabled?: boolean;
+  showMenu?: boolean;
 }
 
 interface Emits {
   (event: "update:modelValue", value: string | number): void;
   (event: "change", value: string | number): void;
+  (event: "update:showMenu", value: boolean): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   placeholder: "Placeholder",
   state: "empty",
   disabled: false,
+  showMenu: false,
 });
 
 const emit = defineEmits<Emits>();
 
-const isOpen = ref(false);
+const isOpen = ref(!!props.showMenu);
+
+// keep in sync with external prop
+watch(
+  () => props.showMenu,
+  (val) => {
+    isOpen.value = !!val;
+  }
+);
+
+// notify parent when internal open state changes
+watch(isOpen, (val) => {
+  emit("update:showMenu", val);
+});
 
 const selectedItem = computed(() => {
-  if (!props.modelValue) return null;
+  if (props.modelValue === undefined || props.modelValue === null) return null;
   return props.items.find((item) => item.value === props.modelValue) || null;
 });
 
 const displayText = computed(() => {
-  return selectedItem.value ? selectedItem.value.label : props.placeholder;
+  return selectedItem.value ? selectedItem.label : props.placeholder;
 });
+
 
 const wrapperClasses = computed(() => [
   "select-wrapper",
