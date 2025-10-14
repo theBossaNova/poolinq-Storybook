@@ -31,9 +31,10 @@ const handleChange = (value: string) => {
 
 <template>
   <TextInputVariant
-    variant="default"
+    variant="empty"
     :model-value="props.modelValue"
     :placeholder="props.placeholder"
+    helper-text="Helper Text"
     :autofocus="props.autofocus"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
