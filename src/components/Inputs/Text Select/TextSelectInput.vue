@@ -69,6 +69,7 @@ const filteredSuggestions = computed(() => {
 const wrapperClasses = computed(() => [
   "text-select-wrapper",
   `text-select-wrapper--${props.state}`,
+  `text-select-size-${props.size}`,
   {
     "text-select-wrapper--open": isDropdownOpen.value,
     "text-select-wrapper--disabled": props.disabled,
