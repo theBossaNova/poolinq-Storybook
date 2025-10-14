@@ -204,8 +204,15 @@ $select-helper: #495057;
   flex-direction: column;
   gap: 8px;
   padding: 8px;
-  border-top: 1px solid $select-border-default;
+  border: 1px solid $select-border-default;
+  border-top: none;
   border-radius: 0 0 6px 6px;
+  background: transparent;
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: -1px;
+  z-index: 10;
 }
 
 .select-dropdown-item {
@@ -240,6 +247,10 @@ $select-helper: #495057;
 .select-wrapper--warning {
   border-color: $select-border-warning;
   box-shadow: 0 0 0 2px #514520;
+
+  .select-dropdown {
+    border-color: $select-border-warning;
+  }
 }
 
 .select-wrapper--warning .select-text,
@@ -250,6 +261,10 @@ $select-helper: #495057;
 .select-wrapper--error {
   border-color: $select-border-error;
   box-shadow: 0 0 0 2px #514520;
+
+  .select-dropdown {
+    border-color: $select-border-error;
+  }
 }
 
 .select-wrapper--error .select-text,
