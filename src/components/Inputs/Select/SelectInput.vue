@@ -142,9 +142,10 @@ $select-helper: #495057;
 .select-container {
   display: inline-flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   max-width: 257px;
   width: 100%;
+  position: relative;
 }
 
 .select-wrapper {
