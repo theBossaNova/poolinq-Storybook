@@ -50,6 +50,7 @@ const handleChange = (value: string | number) => {
     :placeholder="props.placeholder"
     :model-value="internalValue"
     state="selected"
+    :size="props.size"
     :show-menu="true"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
