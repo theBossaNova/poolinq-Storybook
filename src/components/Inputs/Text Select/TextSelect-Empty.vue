@@ -45,6 +45,7 @@ const handleChange = (value: string) => {
     model-value=""
     state="empty"
     :show-menu="false"
+    :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
