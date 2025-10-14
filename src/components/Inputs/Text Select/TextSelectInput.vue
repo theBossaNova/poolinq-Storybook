@@ -174,6 +174,7 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
 </template>
 
 <style scoped lang="scss">
+$text-select-background: #222325;
 $text-select-border-default: #363a3e;
 $text-select-border-focused: #9798a5;
 $text-select-border-warning: #ffc107;
@@ -205,6 +206,7 @@ $text-select-helper: #495057;
   width: 100%;
   border-radius: 6px;
   border: 1px solid $text-select-border-default;
+  background-color: transparent;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
@@ -256,9 +258,10 @@ $text-select-helper: #495057;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25) inset;
 }
 
+/* Warning / Error outer ring to match Figma */
 .text-select-wrapper--warning {
   border-color: $text-select-border-warning;
-  box-shadow: 0 0 3px 0 $text-select-border-warning;
+  box-shadow: 0 0 0 2px #514520;
 }
 
 .text-select-wrapper--warning .text-select-input,
@@ -268,7 +271,7 @@ $text-select-helper: #495057;
 
 .text-select-wrapper--error {
   border-color: $text-select-border-error;
-  box-shadow: 0 0 3px 0 $text-select-border-error;
+  box-shadow: 0 0 0 2px #514520;
 }
 
 .text-select-wrapper--error .text-select-input,
@@ -278,16 +281,17 @@ $text-select-helper: #495057;
 
 .text-select-clear {
   display: flex;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  border-radius: 50%;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.9;
   }
 
   svg {
@@ -300,8 +304,10 @@ $text-select-helper: #495057;
   flex-direction: column;
   gap: 8px;
   padding: 8px;
-  border-top: 1px solid $text-select-border-default;
+  border: 1px solid $text-select-border-default;
+  border-top: none;
   border-radius: 0 0 6px 6px;
+  background: #121212;
 }
 
 .text-select-dropdown-item {
@@ -319,10 +325,7 @@ $text-select-helper: #495057;
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
+  padding: 4px 0;
 }
 
 .text-select-wrapper--open {
@@ -347,7 +350,7 @@ $text-select-helper: #495057;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
-  margin-top: 0;
+  margin-top: 6px;
 }
 
 .text-select-helper--warning {
@@ -383,4 +386,11 @@ $text-select-helper: #495057;
     font-size: 9px;
   }
 }
+
+/* Size classes */
+.text-select-size-256 { max-width: 256px; width: 256px; }
+.text-select-size-160 { max-width: 160px; width: 160px; }
+.text-select-size-100 { max-width: 100px; width: 100px; }
+.text-select-size-80  { max-width: 80px; width: 80px; }
+.text-select-size-64  { max-width: 64px; width: 64px; }
 </style>
