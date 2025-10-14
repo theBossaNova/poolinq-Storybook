@@ -2,6 +2,7 @@ import type { Component } from "vue";
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
+import SelectInput from "../components/Inputs/Select/SelectInput.vue";
 import SelectClosed from "../components/Inputs/Select/Select-Closed.vue";
 import SelectOpened from "../components/Inputs/Select/Select-Opened.vue";
 import SelectSelected from "../components/Inputs/Select/Select-Selected.vue";
@@ -129,3 +130,33 @@ export const Error: Story = createVariantStory(SelectError, {
   name: "Error",
   initialValue: "item2",
 });
+
+export const Interactive: Story = {
+  name: "Interactive Playground",
+  args: {
+    placeholder: "Select an option",
+    items: defaultItems,
+    modelValue: undefined,
+    helperText: "",
+    state: "empty",
+  },
+  render: (args) => ({
+    components: { SelectInput },
+    setup() {
+      const [, updateArgs] = useArgs();
+      const handleUpdate = (value: string | number) => {
+        updateArgs({ modelValue: value });
+      };
+
+      return { args, handleUpdate };
+    },
+    template: `
+      <div class="select-story-wrapper">
+        <SelectInput
+          v-bind="args"
+          @update:modelValue="handleUpdate"
+        />
+      </div>
+    `,
+  }),
+};
