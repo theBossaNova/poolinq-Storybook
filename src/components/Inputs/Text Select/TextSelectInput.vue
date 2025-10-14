@@ -191,6 +191,13 @@ $text-select-helper: #495057;
   width: 100%;
 }
 
+/* Size classes */
+.text-select-size-256 { max-width: 256px; width: 256px; }
+.text-select-size-160 { max-width: 160px; width: 160px; }
+.text-select-size-100 { max-width: 100px; width: 100px; }
+.text-select-size-80  { max-width: 80px; width: 80px; }
+.text-select-size-64  { max-width: 64px; width: 64px; }
+
 .text-select-wrapper {
   position: relative;
   display: inline-flex;
