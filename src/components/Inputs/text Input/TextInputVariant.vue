@@ -2,8 +2,8 @@
 import { computed, ref, watch } from "vue";
 
 type TextInputState =
-  | "default"
-  | "typing"
+  | "empty"
+  | "focused"
   | "filled"
   | "warning"
   | "error"
@@ -13,6 +13,7 @@ interface Props {
   variant: TextInputState;
   modelValue?: string;
   placeholder?: string;
+  helperText?: string;
   autofocus?: boolean;
 }
 
@@ -24,6 +25,7 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   modelValue: "",
   placeholder: "Placeholder",
+  helperText: "Helper Text",
   autofocus: false,
 });
 
@@ -42,10 +44,19 @@ watch(
 
 const isDisabled = computed(() => props.variant === "disabled");
 
+const containerClasses = computed(() => [
+  "text-input-container",
+]);
+
 const wrapperClasses = computed(() => [
   "text-input-wrapper",
   `text-input-wrapper--${props.variant}`,
   { "text-input-wrapper--disabled": isDisabled.value },
+]);
+
+const helperClasses = computed(() => [
+  "text-input-helper",
+  `text-input-helper--${props.variant}`,
 ]);
 
 const handleInput = (event: Event) => {
@@ -58,18 +69,23 @@ const handleInput = (event: Event) => {
 </script>
 
 <template>
-  <div :class="wrapperClasses">
-    <input
-      v-model="internalValue"
-      :placeholder="placeholder"
-      :disabled="isDisabled"
-      :autofocus="autofocus"
-      class="text-input-field"
-      type="text"
-      autocomplete="off"
-      spellcheck="false"
-      @input="handleInput"
-    />
+  <div :class="containerClasses">
+    <div :class="wrapperClasses">
+      <input
+        v-model="internalValue"
+        :placeholder="placeholder"
+        :disabled="isDisabled"
+        :autofocus="autofocus"
+        class="text-input-field"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        @input="handleInput"
+      />
+    </div>
+    <div v-if="helperText" :class="helperClasses">
+      {{ helperText }}
+    </div>
   </div>
 </template>
 
