@@ -43,6 +43,7 @@ const handleChange = (value: string | number) => {
     :items="props.items"
     :placeholder="props.placeholder"
     state="empty"
+    :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
