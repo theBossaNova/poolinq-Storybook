@@ -12,6 +12,7 @@ interface Props {
   suggestions?: SuggestionItem[];
   modelValue?: string;
   placeholder?: string;
+  helperText?: string;
   state?: TextSelectState;
   showMenu?: boolean;
   disabled?: boolean;
