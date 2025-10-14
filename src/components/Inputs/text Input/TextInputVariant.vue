@@ -15,6 +15,7 @@ interface Props {
   placeholder?: string;
   helperText?: string;
   autofocus?: boolean;
+  size?: "256" | "160" | "100" | "80" | "64";
 }
 
 interface Emits {
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: "Placeholder",
   helperText: "Helper Text",
   autofocus: false,
+  size: "256",
 });
 
 const emit = defineEmits<Emits>();
