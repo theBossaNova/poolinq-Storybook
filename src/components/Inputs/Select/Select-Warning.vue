@@ -51,6 +51,7 @@ const handleChange = (value: string | number) => {
     :model-value="internalValue"
     state="warning"
     helper-text="Warning message"
+    :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
