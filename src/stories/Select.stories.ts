@@ -37,6 +37,7 @@ const meta: Meta<typeof SelectClosed> = {
   args: {
     placeholder: "Placeholder",
     items: defaultItems,
+    showMenu: false,
   },
   argTypes: {
     placeholder: {
