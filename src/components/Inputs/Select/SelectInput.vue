@@ -224,7 +224,7 @@ $select-icon-color: #0cba4a;
   color: $select-text-selected;
 }
 
-.select-wrapper:not(.select-wrapper--open) .select-dropdown-item:not(.select-dropdown-item--selected) {
+.select-dropdown-item:not(.select-dropdown-item--selected) {
   color: $select-text-placeholder;
 }
 
