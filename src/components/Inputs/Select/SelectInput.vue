@@ -12,6 +12,7 @@ interface Props {
   items: SelectItem[];
   modelValue?: string | number;
   placeholder?: string;
+  helperText?: string;
   state?: SelectState;
   disabled?: boolean;
 }
