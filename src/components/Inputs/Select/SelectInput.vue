@@ -63,6 +63,7 @@ const displayText = computed(() => {
 const wrapperClasses = computed(() => [
   "select-wrapper",
   `select-wrapper--${props.state}`,
+  `select-size-${props.size}`,
   {
     "select-wrapper--open": isOpen.value,
     "select-wrapper--disabled": props.disabled,
