@@ -76,52 +76,57 @@ const isItemSelected = (item: SelectItem) => {
 </script>
 
 <template>
-  <div :class="wrapperClasses">
-    <div class="select-header" @click="toggleDropdown">
-      <div :class="textClasses">
-        {{ displayText }}
+  <div class="select-container">
+    <div :class="wrapperClasses">
+      <div class="select-header" @click="toggleDropdown">
+        <div :class="textClasses">
+          {{ displayText }}
+        </div>
+        <div class="select-icon">
+          <svg
+            v-if="isOpen"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.66659 4.69604L8.83825 5.5L4.99992 1.77459L1.16159 5.5L0.333252 4.69604L4.99992 0.166666L9.66659 4.69604Z"
+              :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#9798A5'"
+            />
+          </svg>
+          <svg
+            v-else
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.99992 5.80396L3.82825 5L7.66658 8.72541L11.5049 5L12.3333 5.80396L7.66658 10.3333L2.99992 5.80396Z"
+              :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#9798A5'"
+            />
+          </svg>
+        </div>
       </div>
-      <div class="select-icon">
-        <svg
-          v-if="isOpen"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <div v-if="isOpen" class="select-dropdown">
+        <div
+          v-for="item in items"
+          :key="item.value"
+          :class="[
+            'select-dropdown-item',
+            { 'select-dropdown-item--selected': isItemSelected(item) },
+          ]"
+          @click="selectItem(item)"
         >
-          <path
-            d="M3 9.69604L3.82833 10.5L7.66667 6.77459L11.505 10.5L12.3333 9.69604L7.66667 5.16667L3 9.69604Z"
-            fill="#0CBA4A"
-          />
-        </svg>
-        <svg
-          v-else
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3.00004 6.30396L3.82837 5.5L7.66671 9.22541L11.505 5.5L12.3334 6.30396L7.66671 10.8333L3.00004 6.30396Z"
-            fill="#0CBA4A"
-          />
-        </svg>
+          {{ item.label }}
+        </div>
       </div>
     </div>
-    <div v-if="isOpen" class="select-dropdown">
-      <div
-        v-for="item in items"
-        :key="item.value"
-        :class="[
-          'select-dropdown-item',
-          { 'select-dropdown-item--selected': isItemSelected(item) },
-        ]"
-        @click="selectItem(item)"
-      >
-        {{ item.label }}
-      </div>
+    <div v-if="helperText" :class="['select-helper', `select-helper--${state}`]">
+      {{ helperText }}
     </div>
   </div>
 </template>
