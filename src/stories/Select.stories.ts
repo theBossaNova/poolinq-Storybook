@@ -58,6 +58,10 @@ const meta: Meta<typeof SelectClosed> = {
       control: { type: "select" },
       options: ["empty", "selected", "warning", "error"],
     },
+    showMenu: {
+      control: { type: "boolean" },
+      name: "Open (showMenu)",
+    },
   },
   parameters: {
     backgrounds: { default: "dark" },
