@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-type TextSelectState = "empty" | "filled" | "warning" | "error";
+type TextSelectState = "empty" | "focused" | "filled" | "warning" | "error";
 
 interface SuggestionItem {
   label: string;
