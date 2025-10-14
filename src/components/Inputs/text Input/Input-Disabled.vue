@@ -34,6 +34,7 @@ const handleChange = (value: string) => {
     variant="disabled"
     :model-value="props.modelValue"
     :placeholder="props.placeholder"
+    helper-text="Helper Text"
     :autofocus="props.autofocus"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
