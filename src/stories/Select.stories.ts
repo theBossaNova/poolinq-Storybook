@@ -154,6 +154,8 @@ export const Interactive: Story = {
     modelValue: "",
     helperText: "",
     state: "selected",
+    size: "256",
+    showMenu: false,
   },
   render: (args) => ({
     components: { SelectInput },
