@@ -20,6 +20,8 @@ type SelectArgs = {
   placeholder: string;
   items: SelectItem[];
   modelValue?: string | number;
+  helperText?: string;
+  state?: "empty" | "selected" | "warning" | "error";
 };
 
 const defaultItems: SelectItem[] = [
@@ -45,6 +47,14 @@ const meta: Meta<typeof SelectClosed> = {
     modelValue: {
       control: { type: "text" },
       name: "Selected Value",
+    },
+    helperText: {
+      control: { type: "text" },
+      name: "Helper Text",
+    },
+    state: {
+      control: { type: "select" },
+      options: ["empty", "selected", "warning", "error"],
     },
   },
   parameters: {

@@ -239,7 +239,7 @@ $select-helper: #495057;
 
 .select-wrapper--warning {
   border-color: $select-border-warning;
-  box-shadow: 0 0 3px 0 $select-border-warning;
+  box-shadow: 0 0 0 2px #514520;
 }
 
 .select-wrapper--warning .select-text,
@@ -249,7 +249,7 @@ $select-helper: #495057;
 
 .select-wrapper--error {
   border-color: $select-border-error;
-  box-shadow: 0 0 3px 0 $select-border-error;
+  box-shadow: 0 0 0 2px #514520;
 }
 
 .select-wrapper--error .select-text,
