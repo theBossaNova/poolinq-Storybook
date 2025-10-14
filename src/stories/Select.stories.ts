@@ -87,6 +87,7 @@ const createVariantStory = (
     initialValue?: string | number;
     placeholder?: string;
     items?: SelectItem[];
+    size?: "256" | "160" | "100" | "80" | "64";
   }
 ): Story => ({
   name: options.name,
@@ -94,6 +95,7 @@ const createVariantStory = (
     placeholder: options.placeholder ?? "Placeholder",
     items: options.items ?? defaultItems,
     modelValue: options.initialValue,
+    size: options.size ?? "256",
   },
   render: (args) => ({
     components: { VariantComponent: component },
