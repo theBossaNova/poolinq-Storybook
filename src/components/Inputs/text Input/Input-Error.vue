@@ -38,6 +38,7 @@ const handleChange = (value: string) => {
     :placeholder="props.placeholder"
     helper-text="Error message"
     :autofocus="props.autofocus"
+    :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
