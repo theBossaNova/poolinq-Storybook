@@ -351,4 +351,11 @@ $select-helper: #495057;
     font-size: 9px;
   }
 }
+
+/* Size classes */
+.select-size-256 { max-width: 256px; width: 256px; }
+.select-size-160 { max-width: 160px; width: 160px; }
+.select-size-100 { max-width: 100px; width: 100px; }
+.select-size-80  { max-width: 80px; width: 80px; }
+.select-size-64  { max-width: 64px; width: 64px; }
 </style>
