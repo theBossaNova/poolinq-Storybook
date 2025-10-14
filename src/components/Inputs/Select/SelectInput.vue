@@ -132,33 +132,37 @@ const isItemSelected = (item: SelectItem) => {
 </template>
 
 <style scoped lang="scss">
-$select-background: #222325;
-$select-text-placeholder: #9798a5;
-$select-text-selected: #e6e1f3;
 $select-border-default: #363a3e;
-$select-border-selected: #4a4c53;
-$select-border-warning: #f6c343;
-$select-border-error: #ff5a5f;
-$select-icon-color: #0cba4a;
+$select-border-warning: #ffc107;
+$select-border-error: #dc3545;
+$select-text-placeholder: #9798a5;
+$select-text: #e6e1f3;
+$select-helper: #495057;
+
+.select-container {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 257px;
+  width: 100%;
+}
 
 .select-wrapper {
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  max-width: 257px;
   width: 100%;
   border-radius: 6px;
-  background-color: $select-background;
   border: 1px solid $select-border-default;
-  transition: border-color 0.2s ease;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25) inset;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
 .select-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px 7px;
+  padding: 8px;
   cursor: pointer;
   user-select: none;
 }
@@ -167,7 +171,7 @@ $select-icon-color: #0cba4a;
   flex: 1;
   font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 18px;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -179,7 +183,7 @@ $select-icon-color: #0cba4a;
 }
 
 .select-text--selected {
-  color: $select-text-selected;
+  color: $select-text;
 }
 
 .select-icon {
@@ -199,10 +203,9 @@ $select-icon-color: #0cba4a;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 0 16px 7px;
-  margin-top: -1px;
+  padding: 8px;
+  border-top: 1px solid $select-border-default;
   border-radius: 0 0 6px 6px;
-  background-color: $select-background;
 }
 
 .select-dropdown-item {
@@ -214,7 +217,7 @@ $select-icon-color: #0cba4a;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
-  color: $select-text-selected;
+  color: $select-text;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -227,23 +230,31 @@ $select-icon-color: #0cba4a;
 }
 
 .select-dropdown-item--selected {
-  color: $select-text-selected;
+  color: $select-text;
 }
 
 .select-dropdown-item:not(.select-dropdown-item--selected) {
   color: $select-text-placeholder;
 }
 
-.select-wrapper--selected {
-  border-color: $select-border-selected;
-}
-
 .select-wrapper--warning {
   border-color: $select-border-warning;
+  box-shadow: 0 0 3px 0 $select-border-warning;
+}
+
+.select-wrapper--warning .select-text,
+.select-wrapper--warning .select-text--placeholder {
+  color: $select-border-warning;
 }
 
 .select-wrapper--error {
   border-color: $select-border-error;
+  box-shadow: 0 0 3px 0 $select-border-error;
+}
+
+.select-wrapper--error .select-text,
+.select-wrapper--error .select-text--placeholder {
+  color: $select-border-error;
 }
 
 .select-wrapper--open {
@@ -259,13 +270,32 @@ $select-icon-color: #0cba4a;
   }
 }
 
+.select-helper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $select-helper;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 300;
+}
+
+.select-helper--warning {
+  color: $select-border-warning;
+}
+
+.select-helper--error {
+  color: $select-border-error;
+}
+
 @media (max-width: 480px) {
-  .select-wrapper {
+  .select-container {
     max-width: 100%;
   }
 
   .select-header {
-    padding: 8px 12px 7px;
+    padding: 8px;
   }
 
   .select-text {
@@ -273,11 +303,15 @@ $select-icon-color: #0cba4a;
   }
 
   .select-dropdown {
-    padding: 0 12px 7px;
+    padding: 8px;
   }
 
   .select-dropdown-item {
     font-size: 11px;
+  }
+
+  .select-helper {
+    font-size: 9px;
   }
 }
 </style>
