@@ -78,6 +78,7 @@ const textClasses = computed(() => [
 const toggleDropdown = () => {
   if (!props.disabled) {
     isOpen.value = !isOpen.value;
+    // emit handled by watch(isOpen)
   }
 };
 
