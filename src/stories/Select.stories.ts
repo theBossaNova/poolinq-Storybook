@@ -141,9 +141,9 @@ export const Interactive: Story = {
   args: {
     placeholder: "Select an option",
     items: defaultItems,
-    modelValue: undefined,
+    modelValue: "",
     helperText: "",
-    state: "empty",
+    state: "selected",
   },
   render: (args) => ({
     components: { SelectInput },
