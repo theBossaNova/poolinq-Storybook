@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import SelectInput from "./SelectInput.vue";
 
 interface SelectItem {
@@ -31,13 +31,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>();
 
 const internalValue = ref(props.modelValue);
-const selectRef = ref<InstanceType<typeof SelectInput> | null>(null);
-
-onMounted(() => {
-  if (selectRef.value) {
-    (selectRef.value as any).isOpen = true;
-  }
-});
 
 const handleModelUpdate = (value: string | number) => {
   internalValue.value = value;
@@ -51,11 +44,11 @@ const handleChange = (value: string | number) => {
 
 <template>
   <SelectInput
-    ref="selectRef"
     :items="props.items"
     :placeholder="props.placeholder"
     :model-value="internalValue"
     state="selected"
+    :show-menu="true"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
