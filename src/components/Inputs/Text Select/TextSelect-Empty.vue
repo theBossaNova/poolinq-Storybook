@@ -9,6 +9,7 @@ interface SuggestionItem {
 interface Props {
   suggestions?: SuggestionItem[];
   placeholder?: string;
+  size?: "256" | "160" | "100" | "80" | "64";
 }
 
 interface Emits {
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
     { label: "Lorem ipsum", value: "lorem2" },
   ],
   placeholder: "Placeholder",
+  size: "256",
 });
 
 const emit = defineEmits<Emits>();
