@@ -48,6 +48,7 @@ const isDisabled = computed(() => props.variant === "disabled");
 
 const containerClasses = computed(() => [
   "text-input-container",
+  `text-input-size-${props.size}`,
 ]);
 
 const wrapperClasses = computed(() => [
