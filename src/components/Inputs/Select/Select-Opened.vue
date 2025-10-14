@@ -9,6 +9,7 @@ interface SelectItem {
 interface Props {
   items?: SelectItem[];
   placeholder?: string;
+  size?: "256" | "160" | "100" | "80" | "64";
 }
 
 interface Emits {
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
     { label: "Item 3", value: "item3" },
   ],
   placeholder: "Placeholder",
+  size: "256",
 });
 
 const emit = defineEmits<Emits>();
