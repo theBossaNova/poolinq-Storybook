@@ -11,6 +11,7 @@ interface Props {
   suggestions?: SuggestionItem[];
   placeholder?: string;
   modelValue?: string;
+  size?: "256" | "160" | "100" | "80" | "64";
 }
 
 interface Emits {
@@ -26,6 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
   ],
   placeholder: "Placeholder",
   modelValue: "Input",
+  size: "256",
 });
 
 const emit = defineEmits<Emits>();
