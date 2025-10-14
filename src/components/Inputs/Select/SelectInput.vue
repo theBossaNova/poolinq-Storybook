@@ -54,7 +54,7 @@ const selectedItem = computed(() => {
 });
 
 const displayText = computed(() => {
-  return selectedItem.value ? selectedItem.label : props.placeholder;
+  return selectedItem.value ? selectedItem.value.label : props.placeholder;
 });
 
 
