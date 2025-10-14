@@ -113,6 +113,13 @@ $text-input-helper: #495057;
   width: 100%;
 }
 
+/* Size classes */
+.text-input-size-256 { max-width: 256px; width: 256px; }
+.text-input-size-160 { max-width: 160px; width: 160px; }
+.text-input-size-100 { max-width: 100px; width: 100px; }
+.text-input-size-80  { max-width: 80px; width: 80px; }
+.text-input-size-64  { max-width: 64px; width: 64px; }
+
 .text-input-wrapper {
   display: flex;
   align-items: center;
