@@ -171,24 +171,31 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
 </template>
 
 <style scoped lang="scss">
-$text-select-background: #222325;
-$text-select-text-placeholder: #9798a5;
-$text-select-text: #e6e1f3;
 $text-select-border-default: #363a3e;
-$text-select-border-filled: #4a4c53;
-$text-select-border-warning: #f6c343;
-$text-select-border-error: #ff5a5f;
+$text-select-border-focused: #9798a5;
+$text-select-border-warning: #ffc107;
+$text-select-border-error: #dc3545;
+$text-select-text: #e6e1f3;
+$text-select-placeholder-default: #495057;
+$text-select-placeholder: #9798a5;
+$text-select-helper: #495057;
+
+.text-select-container {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 257px;
+  width: 100%;
+}
 
 .text-select-wrapper {
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  max-width: 257px;
   width: 100%;
   border-radius: 6px;
-  background-color: $text-select-background;
   border: 1px solid $text-select-border-default;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
@@ -196,7 +203,7 @@ $text-select-border-error: #ff5a5f;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px 7px;
+  padding: 8px;
   position: relative;
 }
 
@@ -217,8 +224,46 @@ $text-select-border-error: #ff5a5f;
 }
 
 .text-select-input::placeholder {
-  color: $text-select-text-placeholder;
+  color: $text-select-placeholder-default;
   opacity: 1;
+}
+
+.text-select-wrapper--empty .text-select-input::placeholder {
+  color: $text-select-placeholder-default;
+}
+
+.text-select-wrapper--focused {
+  border-color: $text-select-border-focused;
+  box-shadow: 0 0 3px 0 #fff;
+}
+
+.text-select-wrapper--focused .text-select-input::placeholder {
+  color: $text-select-placeholder;
+}
+
+.text-select-wrapper--filled {
+  border-color: $text-select-border-default;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25) inset;
+}
+
+.text-select-wrapper--warning {
+  border-color: $text-select-border-warning;
+  box-shadow: 0 0 3px 0 $text-select-border-warning;
+}
+
+.text-select-wrapper--warning .text-select-input,
+.text-select-wrapper--warning .text-select-input::placeholder {
+  color: $text-select-border-warning;
+}
+
+.text-select-wrapper--error {
+  border-color: $text-select-border-error;
+  box-shadow: 0 0 3px 0 $text-select-border-error;
+}
+
+.text-select-wrapper--error .text-select-input,
+.text-select-wrapper--error .text-select-input::placeholder {
+  color: $text-select-border-error;
 }
 
 .text-select-clear {
@@ -244,10 +289,9 @@ $text-select-border-error: #ff5a5f;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 0 16px 7px;
-  margin-top: -1px;
+  padding: 8px;
+  border-top: 1px solid $text-select-border-default;
   border-radius: 0 0 6px 6px;
-  background-color: $text-select-background;
 }
 
 .text-select-dropdown-item {
@@ -271,18 +315,6 @@ $text-select-border-error: #ff5a5f;
   }
 }
 
-.text-select-wrapper--filled {
-  border-color: $text-select-border-filled;
-}
-
-.text-select-wrapper--warning {
-  border-color: $text-select-border-warning;
-}
-
-.text-select-wrapper--error {
-  border-color: $text-select-border-error;
-}
-
 .text-select-wrapper--open {
   border-radius: 6px 6px 0 0;
 }
@@ -296,13 +328,33 @@ $text-select-border-error: #ff5a5f;
   }
 }
 
+.text-select-helper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: $text-select-helper;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+.text-select-helper--warning {
+  color: $text-select-border-warning;
+}
+
+.text-select-helper--error {
+  color: $text-select-border-error;
+}
+
 @media (max-width: 480px) {
-  .text-select-wrapper {
+  .text-select-container {
     max-width: 100%;
   }
 
   .text-select-header {
-    padding: 8px 12px 7px;
+    padding: 8px;
   }
 
   .text-select-input {
@@ -310,11 +362,15 @@ $text-select-border-error: #ff5a5f;
   }
 
   .text-select-dropdown {
-    padding: 0 12px 7px;
+    padding: 8px;
   }
 
   .text-select-dropdown-item {
     font-size: 11px;
+  }
+
+  .text-select-helper {
+    font-size: 9px;
   }
 }
 </style>
