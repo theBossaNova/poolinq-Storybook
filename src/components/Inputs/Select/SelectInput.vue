@@ -16,6 +16,7 @@ interface Props {
   state?: SelectState;
   disabled?: boolean;
   showMenu?: boolean;
+  size?: "256" | "160" | "100" | "80" | "64";
 }
 
 interface Emits {
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   state: "empty",
   disabled: false,
   showMenu: false,
+  size: "256",
 });
 
 const emit = defineEmits<Emits>();
