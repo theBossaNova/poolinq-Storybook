@@ -23,6 +23,8 @@ type SelectArgs = {
   modelValue?: string | number;
   helperText?: string;
   state?: "empty" | "selected" | "warning" | "error";
+  showMenu?: boolean;
+  size?: "256" | "160" | "100" | "80" | "64";
 };
 
 const defaultItems: SelectItem[] = [
@@ -38,6 +40,7 @@ const meta: Meta<typeof SelectClosed> = {
     placeholder: "Placeholder",
     items: defaultItems,
     showMenu: false,
+    size: "256",
   },
   argTypes: {
     placeholder: {
@@ -61,6 +64,11 @@ const meta: Meta<typeof SelectClosed> = {
     showMenu: {
       control: { type: "boolean" },
       name: "Open (showMenu)",
+    },
+    size: {
+      control: { type: "select" },
+      options: ["256", "160", "100", "80", "64"],
+      name: "Size (px)",
     },
   },
   parameters: {
