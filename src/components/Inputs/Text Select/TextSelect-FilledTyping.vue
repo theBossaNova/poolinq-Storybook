@@ -60,6 +60,7 @@ const handleChange = (value: string) => {
     :model-value="internalValue"
     state="filled"
     :show-menu="true"
+    :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
