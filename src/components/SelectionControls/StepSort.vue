@@ -23,16 +23,48 @@ const emit = defineEmits<Emits>();
 const containerClasses = computed(() => [
   "step-sort",
   `step-sort--${props.variant}`,
+  { "step-sort--disabled": props.disabled },
+]);
+
+const isTopDisabled = computed(
+  () => props.disabled || props.variant === "disabled-top"
+);
+const isBottomDisabled = computed(
+  () => props.disabled || props.variant === "disabled-bottom"
+);
+
+const topSegmentClasses = computed(() => [
+  "step-sort__segment",
+  "step-sort__segment--up",
+  { "step-sort__segment--disabled": isTopDisabled.value },
+]);
+
+const bottomSegmentClasses = computed(() => [
+  "step-sort__segment",
+  "step-sort__segment--down",
+  { "step-sort__segment--disabled": isBottomDisabled.value },
+]);
+
+const topPathClasses = computed(() => [
+  "step-sort__icon-path",
+  "step-sort__icon-path--up",
+  { "step-sort__icon-path--disabled": isTopDisabled.value },
+]);
+
+const bottomPathClasses = computed(() => [
+  "step-sort__icon-path",
+  "step-sort__icon-path--down",
+  { "step-sort__icon-path--disabled": isBottomDisabled.value },
 ]);
 
 const handleIncrement = () => {
-  if (!props.disabled && props.variant !== "disabled-top") {
+  if (!isTopDisabled.value) {
     emit("increment");
   }
 };
 
 const handleDecrement = () => {
-  if (!props.disabled && props.variant !== "disabled-bottom") {
+  if (!isBottomDisabled.value) {
     emit("decrement");
   }
 };
@@ -40,8 +72,14 @@ const handleDecrement = () => {
 
 <template>
   <div :class="containerClasses">
-    <div class="step-sort-up" @click="handleIncrement">
+    <button
+      type="button"
+      :class="topSegmentClasses"
+      :disabled="isTopDisabled"
+      @click="handleIncrement"
+    >
       <svg
+        class="step-sort__icon"
         width="12"
         height="8"
         viewBox="0 0 12 8"
@@ -50,14 +88,20 @@ const handleDecrement = () => {
       >
         <path
           d="M9 5.50024L6 2.50024L3 5.50024"
-          :stroke="variant === 'disabled-top' ? '#363A3E' : variant === 'hover-top' ? 'white' : '#9798A5'"
+          :class="topPathClasses"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
       </svg>
-    </div>
-    <div class="step-sort-down" @click="handleDecrement">
+    </button>
+    <button
+      type="button"
+      :class="bottomSegmentClasses"
+      :disabled="isBottomDisabled"
+      @click="handleDecrement"
+    >
       <svg
+        class="step-sort__icon"
         width="12"
         height="8"
         viewBox="0 0 12 8"
@@ -66,12 +110,12 @@ const handleDecrement = () => {
       >
         <path
           d="M3 2.50024L6 5.50024L9 2.50024"
-          :stroke="variant === 'disabled-bottom' ? '#363A3E' : variant === 'hover-bottom' ? 'white' : '#9798A5'"
+          :class="bottomPathClasses"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
       </svg>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -81,70 +125,69 @@ const handleDecrement = () => {
   width: 24px;
   height: 24px;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-  flex-shrink: 0;
   border-radius: 6px;
+  overflow: hidden;
 }
 
-.step-sort-up,
-.step-sort-down {
+.step-sort__segment {
   display: flex;
-  width: 12px;
-  height: 8px;
+  flex: 1 0 0;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
   transition: background-color 0.2s ease;
-
-  svg {
-    display: block;
-  }
 }
 
-.step-sort--hover-top .step-sort-up {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 0;
-  align-self: stretch;
-  border-radius: 6px 6px 0 0;
-  background: #363a3e;
+.step-sort__segment:focus {
+  outline: none;
 }
 
-.step-sort--hover-bottom .step-sort-down {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1 0 0;
-  align-self: stretch;
-  border-radius: 0 0 6px 6px;
-  background: #363a3e;
-}
-
-.step-sort--disabled-top .step-sort-up,
-.step-sort--disabled-bottom .step-sort-down {
+.step-sort__segment--disabled {
   cursor: not-allowed;
-  opacity: 0.5;
 }
 
-.step-sort--default .step-sort-up:hover {
+.step-sort__icon {
+  display: block;
+}
+
+.step-sort__icon-path {
+  stroke: #9798a5;
+}
+
+.step-sort__icon-path--disabled {
+  stroke: #363a3e;
+}
+
+.step-sort--hover-top .step-sort__segment--up,
+.step-sort--hover-bottom .step-sort__segment--down {
   background: #363a3e;
+}
+
+.step-sort--hover-top .step-sort__segment--up .step-sort__icon-path,
+.step-sort--hover-bottom .step-sort__segment--down .step-sort__icon-path {
+  stroke: #fff;
+}
+
+.step-sort:not(.step-sort--disabled)
+  .step-sort__segment:not(.step-sort__segment--disabled):hover {
+  background: #363a3e;
+}
+
+.step-sort:not(.step-sort--disabled)
+  .step-sort__segment:not(.step-sort__segment--disabled):hover
+  .step-sort__icon-path {
+  stroke: #fff;
+}
+
+.step-sort__segment--up {
   border-radius: 6px 6px 0 0;
-
-  path {
-    stroke: white;
-  }
 }
 
-.step-sort--default .step-sort-down:hover {
-  background: #363a3e;
+.step-sort__segment--down {
   border-radius: 0 0 6px 6px;
-
-  path {
-    stroke: white;
-  }
 }
 </style>
