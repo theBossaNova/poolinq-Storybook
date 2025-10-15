@@ -347,7 +347,7 @@ const listItems = [
 
 .collapsed-footer {
   display: flex;
-  padding: 25px 24px;
+  padding: 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
