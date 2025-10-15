@@ -97,8 +97,7 @@ export const Interactive: Story = {
         updateArgs({ state: 'default' });
       };
 
-      const handleFilesSelected = (files: FileList) => {
-        console.log('Files selected:', Array.from(files).map(f => f.name));
+      const handleFilesSelected = () => {
         updateArgs({ state: 'default' });
       };
 
