@@ -316,6 +316,7 @@ $select-helper: #495057;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
+  margin-top: 4px;
 }
 
 .select-helper--warning {
