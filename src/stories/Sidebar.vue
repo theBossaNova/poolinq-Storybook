@@ -465,6 +465,7 @@ const listItems = [
   padding: 24px;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
   background: #1b1b1c;
   box-shadow: 0 0 16px 0 rgba(27, 27, 28, 0.4), 0 0 1px 0 rgba(27, 27, 28, 0.2);
 }
