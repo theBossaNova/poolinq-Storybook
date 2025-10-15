@@ -104,6 +104,14 @@ const iconColor = computed(() => {
       return '#495057';
   }
 });
+
+const clampedProgress = computed(() => {
+  const value = Number.isFinite(props.progress) ? Number(props.progress) : 0;
+  return Math.min(100, Math.max(0, value));
+});
+
+const progressWidth = computed(() => `${clampedProgress.value}%`);
+const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
 </script>
 
 <style lang="scss" scoped>
