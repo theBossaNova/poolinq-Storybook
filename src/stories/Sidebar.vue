@@ -313,6 +313,7 @@ const listItems = [
   align-items: center;
   gap: 4px;
   width: 100%;
+  margin-top: 8px;
 }
 
 .collapsed-nav-button {
