@@ -53,7 +53,7 @@ export const Uploading: Story = {
       return { args, handleCancel };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--item">
         <UploadStates 
           v-bind="args"
           @cancel="handleCancel"
@@ -76,7 +76,7 @@ export const Success: Story = {
       return { args };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--item">
         <UploadStates v-bind="args" />
       </div>
     `,
@@ -96,7 +96,7 @@ export const Pending: Story = {
       return { args };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--item">
         <UploadStates v-bind="args" />
       </div>
     `,
@@ -124,7 +124,7 @@ export const Error: Story = {
       return { args, handleRetry, handleCancel };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--item">
         <UploadStates 
           v-bind="args"
           @retry="handleRetry"
