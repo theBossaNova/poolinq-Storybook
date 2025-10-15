@@ -28,7 +28,7 @@
             variant="empty"
             type="password"
             placeholder=""
-            size="256"
+            size="full"
             :helper-text="null"
             @keydown.enter="handleLogin"
           />
