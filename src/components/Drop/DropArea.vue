@@ -9,27 +9,25 @@
     <div class="drop-area__content">
       <div class="drop-area__icon">
         <svg width="117" height="100" viewBox="0 0 117 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M109.5 100H7.5C3.35786 100 0 96.6421 0 92.5V25C0 20.8579 3.35786 17.5 7.5 17.5H41.25L50 7.5H75L83.75 17.5H109.5C113.642 17.5 117 20.8579 117 25V92.5C117 96.6421 113.642 100 109.5 100Z" :fill="state === 'dragOver' ? '#0CBA4A' : '#064D21'"/>
-          <path d="M41.25 17.5H7.5C3.35786 17.5 0 20.8579 0 25V17.5C0 13.3579 3.35786 10 7.5 10H33.75L41.25 17.5Z" :fill="state === 'dragOver' ? '#064D21' : '#9AE5B7'"/>
+          <path d="M109.5 100H7.5C3.35786 100 0 96.6421 0 92.5V25C0 20.8579 3.35786 17.5 7.5 17.5H41.25L50 7.5H75L83.75 17.5H109.5C113.642 17.5 117 20.8579 117 25V92.5C117 96.6421 113.642 100 109.5 100Z" :fill="state === 'dragOver' ? '#0CBA4A' : '#0E5F2D'"/>
+          <path d="M41.25 17.5H7.5C3.35786 17.5 0 20.8579 0 25V17.5C0 13.3579 3.35786 10 7.5 10H33.75L41.25 17.5Z" :fill="state === 'dragOver' ? '#084722' : '#69D091'"/>
         </svg>
       </div>
       <p class="drop-area__text">{{ dragText }}</p>
     </div>
-    <button 
-      class="drop-area__button"
-      type="button"
-      @click="onSelectFiles"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 16V6.8L7.4 10.4L6 9L12 3L18 9L16.6 10.4L13 6.8V16H11Z" fill="white"/>
-        <path d="M4.24609 21V18.75H19.7538V21H4.24609Z" fill="white"/>
-      </svg>
-      <span>{{ buttonText }}</span>
-    </button>
-    <input 
+    <div class="drop-area__button-wrapper">
+      <BasicButton
+        class="drop-area__button"
+        :primary="true"
+        size="large"
+        :label="buttonText"
+        @click="onSelectFiles"
+      />
+    </div>
+    <input
       ref="fileInput"
-      type="file" 
-      class="drop-area__input" 
+      type="file"
+      class="drop-area__input"
       multiple
       @change="onFileSelect"
     >
