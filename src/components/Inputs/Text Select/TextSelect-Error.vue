@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import TextSelectInput from "./TextSelectInput.vue";
 
 interface SuggestionItem {
