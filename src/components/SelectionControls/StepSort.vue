@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-type StepSortVariant = "default" | "disabled-top" | "disabled-bottom" | "hover-top" | "hover-bottom";
+type StepSortVariant =
+  | "default"
+  | "disabled-top"
+  | "disabled-bottom"
+  | "hover-top"
+  | "hover-bottom";
 
 interface Props {
   variant?: StepSortVariant;
