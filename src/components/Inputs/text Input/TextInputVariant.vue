@@ -108,6 +108,9 @@ const onEnter = () => {
         autocomplete="off"
         spellcheck="false"
         @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @keydown.enter.prevent="onEnter"
       />
     </div>
     <div v-if="helperText" :class="helperClasses">
