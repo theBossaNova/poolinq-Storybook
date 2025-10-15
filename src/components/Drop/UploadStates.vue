@@ -20,7 +20,7 @@
         <div class="upload-state__actions">
           <!-- Uploading state -->
           <template v-if="status === 'uploading'">
-            <span class="upload-state__progress-text">{{ progress }}%</span>
+            <span class="upload-state__progress-text">{{ progressLabel }}</span>
             <button class="upload-state__action-btn" @click="$emit('cancel')" aria-label="Cancel upload">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.33317 11.8334L0.166504 10.6667L4.83317 6.00008L0.166504 1.33341L1.33317 0.166748L5.99984 4.83341L10.6665 0.166748L11.8332 1.33341L7.1665 6.00008L11.8332 10.6667L10.6665 11.8334L5.99984 7.16675L1.33317 11.8334Z" fill="#495057"/>
@@ -66,10 +66,7 @@
 
       <!-- Progress bar for uploading and error states -->
       <div v-if="status === 'uploading' || status === 'error'" class="upload-state__progress-bar">
-        <div 
-          class="upload-state__progress-fill" 
-          :style="{ width: `${progress}%` }"
-        ></div>
+        <div class="upload-state__progress-fill"></div>
       </div>
     </div>
   </div>
