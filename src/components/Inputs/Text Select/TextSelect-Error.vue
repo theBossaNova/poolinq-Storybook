@@ -11,6 +11,7 @@ interface Props {
   suggestions?: SuggestionItem[];
   placeholder?: string;
   modelValue?: string;
+  helperText?: string;
   size?: "256" | "160" | "100" | "80" | "64";
 }
 
@@ -26,7 +27,8 @@ const props = withDefaults(defineProps<Props>(), {
     { label: "Lorem ipsum", value: "lorem2" },
   ],
   placeholder: "Placeholder",
-  modelValue: "Input",
+  modelValue: "Placeholder",
+  helperText: "Error message",
   size: "256",
 });
 
@@ -55,6 +57,7 @@ const handleChange = (value: string) => {
     :suggestions="props.suggestions"
     :placeholder="props.placeholder"
     :model-value="internalValue"
+    :helper-text="props.helperText"
     state="error"
     :show-menu="false"
     :size="props.size"
