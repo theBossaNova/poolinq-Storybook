@@ -66,14 +66,22 @@ const filteredSuggestions = computed(() => {
   );
 });
 
+const outerWrapperClasses = computed(() => [
+  "text-select-outer",
+  `text-select-size-${props.size}`,
+  {
+    "text-select-outer--focused": props.state === "focused" || isFocused.value,
+    "text-select-outer--warning": props.state === "warning",
+    "text-select-outer--error": props.state === "error",
+  },
+]);
+
 const wrapperClasses = computed(() => [
   "text-select-wrapper",
   `text-select-wrapper--${props.state}`,
-  `text-select-size-${props.size}`,
   {
     "text-select-wrapper--open": isDropdownOpen.value,
     "text-select-wrapper--disabled": props.disabled,
-    "text-select-wrapper--focused": isFocused.value,
   },
 ]);
 
@@ -124,33 +132,35 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
 
 <template>
   <div class="text-select-container">
-    <div :class="wrapperClasses">
-      <div class="text-select-header">
-        <input
-          v-model="internalValue"
-          :placeholder="placeholder"
-          :disabled="disabled"
-          class="text-select-input"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          @input="handleInput"
-          @focus="handleFocus"
-          @blur="handleBlur"
-        />
-        <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.6666 4.77337L11.7266 3.83337L7.99992 7.56004L4.27325 3.83337L3.33325 4.77337L7.05992 8.50004L3.33325 12.2267L4.27325 13.1667L7.99992 9.44004L11.7266 13.1667L12.6666 12.2267L8.93992 8.50004L12.6666 4.77337Z"
-              :fill="state === 'filled' || state === 'focused' ? '#495057' : '#E6E1F3'"
-            />
-          </svg>
+    <div :class="outerWrapperClasses">
+      <div :class="wrapperClasses">
+        <div class="text-select-header">
+          <input
+            v-model="internalValue"
+            :placeholder="placeholder"
+            :disabled="disabled"
+            class="text-select-input"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            @input="handleInput"
+            @focus="handleFocus"
+            @blur="handleBlur"
+          />
+          <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12.6666 4.27337L11.7266 3.33337L7.99992 7.06004L4.27325 3.33337L3.33325 4.27337L7.05992 8.00004L3.33325 11.7267L4.27325 12.6667L7.99992 8.94004L11.7266 12.6667L12.6666 11.7267L8.93992 8.00004L12.6666 4.27337Z"
+                :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#495057'"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <div
@@ -174,15 +184,14 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
 </template>
 
 <style scoped lang="scss">
-$text-select-background: #222325;
 $text-select-border-default: #363a3e;
 $text-select-border-focused: #9798a5;
 $text-select-border-warning: #ffc107;
+$text-select-border-warning-outer: #514520;
 $text-select-border-error: #dc3545;
 $text-select-text: #e6e1f3;
 $text-select-placeholder-default: #495057;
 $text-select-placeholder: #9798a5;
-$text-select-helper: #495057;
 
 .text-select-container {
   display: inline-flex;
@@ -192,7 +201,32 @@ $text-select-helper: #495057;
   width: 100%;
 }
 
-/* Size classes */
+.text-select-outer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.text-select-outer--focused {
+  border-radius: 6px;
+  border: 2px solid $text-select-border-default;
+  padding: 0;
+}
+
+.text-select-outer--warning {
+  border-radius: 6px;
+  border: 2px solid $text-select-border-warning-outer;
+  padding: 0;
+}
+
+.text-select-outer--error {
+  border-radius: 6px;
+  border: 2px solid $text-select-border-warning-outer;
+  padding: 0;
+}
+
 .text-select-size-256 { max-width: 256px; width: 256px; }
 .text-select-size-160 { max-width: 160px; width: 160px; }
 .text-select-size-100 { max-width: 100px; width: 100px; }
@@ -201,14 +235,36 @@ $text-select-helper: #495057;
 
 .text-select-wrapper {
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   width: 100%;
   border-radius: 6px;
-  border: 1px solid $text-select-border-default;
   background-color: transparent;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
+}
+
+.text-select-wrapper--empty,
+.text-select-wrapper--filled,
+.text-select-wrapper--warning,
+.text-select-wrapper--error {
+  border: 1px solid $text-select-border-default;
+}
+
+.text-select-wrapper--focused {
+  border: 1px solid $text-select-border-focused;
+}
+
+.text-select-wrapper--filled {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25) inset;
+}
+
+.text-select-wrapper--warning {
+  border-color: $text-select-border-warning;
+}
+
+.text-select-wrapper--error {
+  border-color: $text-select-border-error;
 }
 
 .text-select-header {
@@ -225,9 +281,9 @@ $text-select-helper: #495057;
   outline: none;
   background: transparent;
   color: $text-select-text;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 140%;
   font-weight: 400;
   padding: 0;
   margin: 0;
@@ -240,38 +296,13 @@ $text-select-helper: #495057;
   opacity: 1;
 }
 
-.text-select-wrapper--empty .text-select-input::placeholder {
-  color: $text-select-placeholder-default;
-}
-
-.text-select-wrapper--focused {
-  border-color: $text-select-border-focused;
-  box-shadow: 0 0 3px 0 #fff;
-}
-
 .text-select-wrapper--focused .text-select-input::placeholder {
   color: $text-select-placeholder;
-}
-
-.text-select-wrapper--filled {
-  border-color: $text-select-border-default;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25) inset;
-}
-
-/* Warning / Error outer ring to match Figma */
-.text-select-wrapper--warning {
-  border-color: $text-select-border-warning;
-  box-shadow: 0 0 0 2px #514520;
 }
 
 .text-select-wrapper--warning .text-select-input,
 .text-select-wrapper--warning .text-select-input::placeholder {
   color: $text-select-border-warning;
-}
-
-.text-select-wrapper--error {
-  border-color: $text-select-border-error;
-  box-shadow: 0 0 0 2px #514520;
 }
 
 .text-select-wrapper--error .text-select-input,
@@ -281,17 +312,16 @@ $text-select-helper: #495057;
 
 .text-select-clear {
   display: flex;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  border-radius: 50%;
 
   &:hover {
-    opacity: 0.9;
+    opacity: 0.8;
   }
 
   svg {
@@ -307,25 +337,27 @@ $text-select-helper: #495057;
   border: 1px solid $text-select-border-default;
   border-top: none;
   border-radius: 0 0 6px 6px;
-  background: #121212;
+  background: transparent;
 }
 
 .text-select-dropdown-item {
   display: flex;
-  height: 16px;
   flex-direction: column;
   justify-content: center;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 140%;
   color: $text-select-text;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: opacity 0.2s ease;
-  padding: 4px 0;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .text-select-wrapper--open {
@@ -345,8 +377,8 @@ $text-select-helper: #495057;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: $text-select-helper;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: $text-select-placeholder-default;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
@@ -386,11 +418,4 @@ $text-select-helper: #495057;
     font-size: 9px;
   }
 }
-
-/* Size classes */
-.text-select-size-256 { max-width: 256px; width: 256px; }
-.text-select-size-160 { max-width: 160px; width: 160px; }
-.text-select-size-100 { max-width: 100px; width: 100px; }
-.text-select-size-80  { max-width: 80px; width: 80px; }
-.text-select-size-64  { max-width: 64px; width: 64px; }
 </style>
