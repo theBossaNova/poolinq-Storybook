@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 import { useArgs } from '@storybook/preview-api';
 import DropArea from '../components/Drop/DropArea.vue';
 
+import './drop.story.scss';
+
 const meta: Meta<typeof DropArea> = {
   title: 'Drop/Drop Area',
   component: DropArea,
