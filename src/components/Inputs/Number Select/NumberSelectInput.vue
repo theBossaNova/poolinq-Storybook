@@ -132,10 +132,27 @@ const handleBlur = () => {
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  const value = parseFloat(target.value) || 0;
-  internalValue.value = Math.max(props.min, Math.min(value, props.max));
+  const rawValue = target.value.trim();
+
+  if (rawValue === "") {
+    internalValue.value = props.min;
+    emit("update:modelValue", internalValue.value);
+    emit("change", internalValue.value);
+    target.value = `${internalValue.value}`;
+    return;
+  }
+
+  const parsedValue = Number(rawValue);
+  if (Number.isNaN(parsedValue)) {
+    target.value = `${internalValue.value}`;
+    return;
+  }
+
+  const clampedValue = Math.max(props.min, Math.min(parsedValue, props.max));
+  internalValue.value = clampedValue;
   emit("update:modelValue", internalValue.value);
   emit("change", internalValue.value);
+  target.value = `${internalValue.value}`;
 };
 </script>
 
