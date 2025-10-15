@@ -15,7 +15,7 @@ interface Props {
   placeholder?: string;
   helperText?: string;
   autofocus?: boolean;
-  size?: "256" | "160" | "100" | "80" | "64";
+  size?: "full" | "256" | "160" | "100" | "80" | "64";
   type?: "text" | "password" | "email";
 }
 
