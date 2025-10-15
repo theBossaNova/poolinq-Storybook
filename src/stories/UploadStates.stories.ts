@@ -151,7 +151,7 @@ export const AllStates: Story = {
       return { handleRetry, handleCancel };
     },
     template: `
-      <div style="padding: 32px; display: flex; flex-direction: column; gap: 16px; min-width: 600px;">
+      <div class="drop-story-collection">
         <UploadStates 
           status="uploading" 
           filename="document_uploading.pdf" 
