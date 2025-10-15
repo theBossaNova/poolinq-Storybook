@@ -28,127 +28,40 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  name: "Default",
-  args: {
-    variant: "default",
+type StepSortVariantOption =
+  | "default"
+  | "disabled-top"
+  | "disabled-bottom"
+  | "hover-top"
+  | "hover-bottom";
+
+const renderComponent: Story["render"] = (args) => ({
+  components: { StepSort },
+  setup() {
+    return { args };
   },
-  render: (args) => ({
-    components: { StepSort },
-    setup() {
-      const handleIncrement = () => console.log("Increment");
-      const handleDecrement = () => console.log("Decrement");
+  template: `
+    <div class="step-sort-story-surface">
+      <StepSort v-bind="args" />
+    </div>
+  `,
+});
 
-      return { args, handleIncrement, handleDecrement };
-    },
-    template: `
-      <div class="step-sort-story-surface">
-        <StepSort
-          v-bind="args"
-          @increment="handleIncrement"
-          @decrement="handleDecrement"
-        />
-      </div>
-    `,
-  }),
-};
+const createStory = (variant: StepSortVariantOption): Story => ({
+  args: { variant },
+  render: renderComponent,
+});
 
-export const DisabledTop: Story = {
-  name: "Disabled Top",
-  args: {
-    variant: "disabled-top",
-  },
-  render: (args) => ({
-    components: { StepSort },
-    setup() {
-      const handleIncrement = () => console.log("Increment");
-      const handleDecrement = () => console.log("Decrement");
+export const Default: Story = createStory("default");
 
-      return { args, handleIncrement, handleDecrement };
-    },
-    template: `
-      <div class="step-sort-story-surface">
-        <StepSort
-          v-bind="args"
-          @increment="handleIncrement"
-          @decrement="handleDecrement"
-        />
-      </div>
-    `,
-  }),
-};
+export const DisabledTop: Story = createStory("disabled-top");
+DisabledTop.storyName = "Disabled Top";
 
-export const DisabledBottom: Story = {
-  name: "Disabled Bottom",
-  args: {
-    variant: "disabled-bottom",
-  },
-  render: (args) => ({
-    components: { StepSort },
-    setup() {
-      const handleIncrement = () => console.log("Increment");
-      const handleDecrement = () => console.log("Decrement");
+export const DisabledBottom: Story = createStory("disabled-bottom");
+DisabledBottom.storyName = "Disabled Bottom";
 
-      return { args, handleIncrement, handleDecrement };
-    },
-    template: `
-      <div class="step-sort-story-surface">
-        <StepSort
-          v-bind="args"
-          @increment="handleIncrement"
-          @decrement="handleDecrement"
-        />
-      </div>
-    `,
-  }),
-};
+export const HoverTop: Story = createStory("hover-top");
+HoverTop.storyName = "Hover Top";
 
-export const HoverTop: Story = {
-  name: "Hover Top",
-  args: {
-    variant: "hover-top",
-  },
-  render: (args) => ({
-    components: { StepSort },
-    setup() {
-      const handleIncrement = () => console.log("Increment");
-      const handleDecrement = () => console.log("Decrement");
-
-      return { args, handleIncrement, handleDecrement };
-    },
-    template: `
-      <div class="step-sort-story-surface">
-        <StepSort
-          v-bind="args"
-          @increment="handleIncrement"
-          @decrement="handleDecrement"
-        />
-      </div>
-    `,
-  }),
-};
-
-export const HoverBottom: Story = {
-  name: "Hover Bottom",
-  args: {
-    variant: "hover-bottom",
-  },
-  render: (args) => ({
-    components: { StepSort },
-    setup() {
-      const handleIncrement = () => console.log("Increment");
-      const handleDecrement = () => console.log("Decrement");
-
-      return { args, handleIncrement, handleDecrement };
-    },
-    template: `
-      <div class="step-sort-story-surface">
-        <StepSort
-          v-bind="args"
-          @increment="handleIncrement"
-          @decrement="handleDecrement"
-        />
-      </div>
-    `,
-  }),
-};
+export const HoverBottom: Story = createStory("hover-bottom");
+HoverBottom.storyName = "Hover Bottom";
