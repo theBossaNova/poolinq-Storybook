@@ -34,6 +34,7 @@ const meta: Meta<typeof TextSelectEmpty> = {
   args: {
     placeholder: "Placeholder",
     suggestions: defaultSuggestions,
+    size: "256",
   },
   argTypes: {
     placeholder: {
@@ -45,6 +46,11 @@ const meta: Meta<typeof TextSelectEmpty> = {
     modelValue: {
       control: { type: "text" },
       name: "Value",
+    },
+    size: {
+      control: { type: "select" },
+      options: ["256", "160", "100", "80", "64"],
+      name: "Size (px)",
     },
   },
   parameters: {
