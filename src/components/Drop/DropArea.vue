@@ -151,7 +151,7 @@ const onFileSelect = (e: Event) => {
     display: none;
   }
 
-  :deep(.storybook-button.drop-area__button) {
+  :deep(.drop-area__button.storybook-button) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -189,7 +189,7 @@ const onFileSelect = (e: Event) => {
     gap: 20px;
     min-height: 260px;
 
-    :deep(.storybook-button.drop-area__button) {
+    :deep(.drop-area__button.storybook-button) {
       padding: 12px 24px 12px 52px;
       font-size: 13px;
     }
