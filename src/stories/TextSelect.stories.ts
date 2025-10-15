@@ -20,6 +20,8 @@ type TextSelectArgs = {
   placeholder: string;
   suggestions: SuggestionItem[];
   modelValue?: string;
+  helperText?: string;
+  size: "256" | "160" | "100" | "80" | "64";
 };
 
 const defaultSuggestions: SuggestionItem[] = [
@@ -39,18 +41,27 @@ const meta: Meta<typeof TextSelectEmpty> = {
   argTypes: {
     placeholder: {
       control: { type: "text" },
+      description: "Placeholder text shown in the input",
     },
     suggestions: {
       control: { type: "object" },
+      description: "Array of suggestion items for the dropdown",
     },
     modelValue: {
       control: { type: "text" },
       name: "Value",
+      description: "Current value of the input",
+    },
+    helperText: {
+      control: { type: "text" },
+      name: "Helper Text",
+      description: "Helper/error/warning message shown below the input",
     },
     size: {
       control: { type: "select" },
       options: ["256", "160", "100", "80", "64"],
       name: "Size (px)",
+      description: "Width of the input in pixels",
     },
   },
   parameters: {
@@ -69,6 +80,7 @@ const createVariantStory = (
     initialValue?: string;
     placeholder?: string;
     suggestions?: SuggestionItem[];
+    helperText?: string;
   }
 ): Story => ({
   name: options.name,
@@ -76,6 +88,7 @@ const createVariantStory = (
     placeholder: options.placeholder ?? "Placeholder",
     suggestions: options.suggestions ?? defaultSuggestions,
     modelValue: options.initialValue,
+    helperText: options.helperText,
   },
   render: (args) => ({
     components: { VariantComponent: component },
@@ -123,10 +136,12 @@ export const FilledTyping: Story = createVariantStory(TextSelectFilledTyping, {
 
 export const Warning: Story = createVariantStory(TextSelectWarning, {
   name: "Warning",
-  initialValue: "Input",
+  initialValue: "Placeholder",
+  helperText: "Warning message",
 });
 
 export const Error: Story = createVariantStory(TextSelectError, {
   name: "Error",
-  initialValue: "Input",
+  initialValue: "Placeholder",
+  helperText: "Error message",
 });
