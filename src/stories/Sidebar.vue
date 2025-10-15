@@ -1,9 +1,8 @@
 <template>
   <aside :class="['sidebar', { 'sidebar--collapsed': collapsed }]">
-    <div class="logo-section">
-      <div class="logo">
+    <div class="sidebar-rail">
+      <div class="rail-logo">
         <svg
-          v-if="collapsed"
           width="28"
           height="15"
           viewBox="0 0 28 15"
@@ -13,116 +12,155 @@
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M19.8016 11.0503H14.2986C15.1199 9.92695 15.5993 8.57648 15.5993 7.12182C15.5993 4.94212 17.49 3.16898 19.8016 3.16898C22.1387 3.16898 24.0028 4.94212 24.0028 7.12182C24.0028 9.27591 22.1387 11.0503 19.8016 11.0503ZM7.79973 11.0503C5.48914 11.0503 3.59875 9.27591 3.59875 7.12182C3.59875 4.94212 5.48914 3.16898 7.79973 3.16898H13.3064C12.4827 4.29851 12.0018 5.65665 12.0018 7.12182C12.0018 9.27591 10.1368 11.0503 7.79973 11.0503ZM19.8016 0C17.3886 0 15.2311 0.994097 13.8001 2.56448C12.3703 0.994097 10.2128 0 7.79976 0C5.09046 0 2.70294 1.25421 1.30465 3.16893C0.480953 4.29845 0 5.6566 0 7.12176C0 11.0503 3.49374 14.2182 7.79976 14.2182C10.2128 14.2182 12.3703 13.2241 13.8001 11.6586C15.2311 13.2241 17.3886 14.2182 19.8016 14.2182C22.5133 14.2182 24.9024 12.9627 26.2993 11.0503C27.1206 9.9269 27.6 8.57643 27.6 7.12176C27.6 3.16893 24.1076 0 19.8016 0V0Z"
+            d="M19.8016 11.0503H14.2986C15.1199 9.92695 15.5993 8.57648 15.5993 7.12182C15.5993 4.94212 17.49 3.16898 19.8016 3.16898C22.1387 3.16898 24.0028 4.94212 24.0028 7.12182C24.0028 9.27591 22.1387 11.0503 19.8016 11.0503ZM7.79973 11.0503C5.48914 11.0503 3.59875 9.27591 3.59875 7.12182C3.59875 4.94212 5.48914 3.16898 7.79973 3.16898H13.3064C12.4827 4.29851 12.0018 5.65665 12.0018 7.12182C12.0018 9.27591 10.1368 11.0503 7.79973 11.0503ZM19.8016 0C17.3886 0 15.2311 0.994097 13.8001 2.56448C12.3703 0.994097 10.2128 0 7.79976 0C5.09046 0 2.70294 1.25421 1.30465 3.16893C0.480953 4.29845 0 5.6566 0 7.12176C0 11.0503 3.49374 14.2182 7.79976 14.2182C10.2128 14.2182 12.3703 13.2241 13.8001 11.6586C15.2311 13.2241 17.3886 14.2182 19.8016 14.2182C22.5133 14.2182 24.9024 12.9627 26.2993 11.0503C27.1206 9.9269 27.6 8.57643 27.6 7.12176C27.6 3.16893 24.1076 0 19.8016 0Z"
             fill="#00C164"
-          />
-        </svg>
-        <svg
-          v-else
-          width="92"
-          height="25"
-          viewBox="0 0 92 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M7.75905 12.4119C6.36404 12.4119 5.12749 11.9625 4.25889 11.1961V5.43636C5.15274 4.66977 6.39063 4.19493 7.75905 4.19493C10.2066 4.19493 12.0491 5.96485 12.0491 8.31611C12.0491 10.7469 10.2066 12.4119 7.75905 12.4119ZM8.41708 0.890991C6.91678 0.890991 5.44333 1.31379 4.25889 2.00136V1.15577H0.600006V20.1274H4.25889V14.631C5.44333 15.3186 6.89019 15.7147 8.41708 15.7147C12.3915 15.7147 15.6546 12.729 15.6546 8.31606C15.6546 3.8244 12.3915 0.890991 8.41708 0.890991V0.890991Z"
-            fill="#00C164"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0.272736 20.1091H3.61819V0.872742H0.272736V20.1091Z"
-            fill="#00C164"
-            transform="translate(48, -5)"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0.963654 15.1092H4.30911V0.890991H0.963654V15.1092Z"
-            fill="#00C164"
-            transform="translate(53, 0)"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M8.01964 0.890991C6.59398 0.890991 5.29696 1.30238 4.25954 2.02336V1.14863H0.654541V15.1092H4.25954V5.21086C5.06301 4.51715 6.10016 4.10576 7.37125 4.10576C9.36801 4.10576 10.4311 5.15891 10.4311 7.31924V15.1092H14.0364V7.31924C14.0364 2.79393 12.1433 0.890991 8.01964 0.890991"
-            fill="#00C164"
-            transform="translate(60, 0)"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M11.9414 11.1961C11.046 11.9625 9.80964 12.4119 8.41461 12.4119C5.96698 12.4119 4.15106 10.7469 4.15106 8.31611C4.15106 5.96485 5.96698 4.19493 8.41461 4.19493C9.80964 4.19493 11.021 4.66977 11.9414 5.43636V11.1961ZM11.9413 1.15577V2.00136C10.7569 1.31379 9.25681 0.890991 7.75622 0.890991C3.78195 0.890991 0.545471 3.8244 0.545471 8.31606C0.545471 12.729 3.78195 15.7147 7.75622 15.7147C9.30999 15.7147 10.7303 15.3186 11.9413 14.631V20.1274H15.6V1.15577H11.9413V1.15577Z"
-            fill="#00C164"
-            transform="translate(76, 0)"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M20.1289 11.9413H14.6259C15.4472 10.8179 15.9266 9.46747 15.9266 8.01281C15.9266 5.83311 17.8172 4.05997 20.1289 4.05997C22.466 4.05997 24.3301 5.83311 24.3301 8.01281C24.3301 10.1669 22.466 11.9413 20.1289 11.9413ZM8.127 11.9413C5.81641 11.9413 3.92602 10.1669 3.92602 8.01281C3.92602 5.83311 5.81641 4.05997 8.127 4.05997H13.6337C12.81 5.1895 12.329 6.54765 12.329 8.01281C12.329 10.1669 10.4641 11.9413 8.127 11.9413ZM20.1288 0.890991C17.7158 0.890991 15.5583 1.88509 14.1274 3.45547C12.6975 1.88509 10.54 0.890991 8.12703 0.890991C5.41773 0.890991 3.03021 2.1452 1.63192 4.05992C0.808223 5.18945 0.327271 6.54759 0.327271 8.01275C0.327271 11.9413 3.82101 15.1092 8.12703 15.1092C10.54 15.1092 12.6975 14.1151 14.1274 12.5496C15.5583 14.1151 17.7158 15.1092 20.1288 15.1092C22.8405 15.1092 25.2296 13.8537 26.6266 11.9413C27.4479 10.8179 27.9273 9.46742 27.9273 8.01275C27.9273 4.05992 24.4349 0.890991 20.1288 0.890991V0.890991Z"
-            fill="#00C164"
-            transform="translate(16, 0)"
           />
         </svg>
       </div>
-    </div>
 
-    <div class="container">
-      <div class="navigation-items">
+      <div class="rail-navigation">
         <button
           v-for="item in navItems"
-          :key="item.id"
+          :key="`rail-${item.id}`"
           :class="[
-            'navigation-item',
-            { 'navigation-item--active': item.active },
+            'rail-button',
+            { 'rail-button--active': item.active },
           ]"
-        >
-          <div class="nav-icon" v-html="item.icon"></div>
-          <div v-if="!collapsed" class="nav-label">{{ item.label }}</div>
+          v-html="item.icon"
+        ></button>
+      </div>
+
+      <div class="rail-lists">
+        <button
+          v-for="list in listItems"
+          :key="`rail-list-${list.id}`"
+          class="rail-button"
+          v-html="list.icon"
+        ></button>
+      </div>
+
+      <div class="rail-footer">
+        <button class="rail-button rail-button--add">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8V16M8 12H16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+              stroke="#0CBA4A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </button>
-      </div>
-
-      <div v-if="!collapsed" class="lists-section">
-        <div class="section-title">Listen</div>
-        <div class="lists-items">
-          <button v-for="list in listItems" :key="list.id" class="list-item">
-            <div class="list-icon" v-html="list.icon"></div>
-            <div class="list-label">{{ list.label }}</div>
-          </button>
-        </div>
-      </div>
-
-      <div v-else class="lists-section-collapsed">
-        <div class="lists-items-collapsed">
-          <button v-for="list in listItems" :key="list.id" class="list-item-collapsed">
-            <div class="list-icon" v-html="list.icon"></div>
-          </button>
-        </div>
       </div>
     </div>
 
-    <div class="footer-section">
-      <button class="add-button">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 8V16M8 12H16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
-            stroke="#0CBA4A"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <div v-if="!collapsed" class="add-label">Liste erstellen</div>
-      </button>
+    <div v-if="!collapsed" class="sidebar-panel">
+      <div class="panel-header">
+        <div class="panel-logo">
+          <svg
+            width="92"
+            height="25"
+            viewBox="0 0 92 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M7.75905 12.4119C6.36404 12.4119 5.12749 11.9625 4.25889 11.1961V5.43636C5.15274 4.66977 6.39063 4.19493 7.75905 4.19493C10.2066 4.19493 12.0491 5.96485 12.0491 8.31611C12.0491 10.7469 10.2066 12.4119 7.75905 12.4119ZM8.41708 0.890991C6.91678 0.890991 5.44333 1.31379 4.25889 2.00136V1.15577H0.600006V20.1274H4.25889V14.631C5.44333 15.3186 6.89019 15.7147 8.41708 15.7147C12.3915 15.7147 15.6546 12.729 15.6546 8.31606C15.6546 3.8244 12.3915 0.890991 8.41708 0.890991Z"
+              fill="#00C164"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.272736 20.1091H3.61819V0.872742H0.272736V20.1091Z"
+              fill="#00C164"
+              transform="translate(48, -5)"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.963654 15.1092H4.30911V0.890991H0.963654V15.1092Z"
+              fill="#00C164"
+              transform="translate(53, 0)"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M8.01964 0.890991C6.59398 0.890991 5.29696 1.30238 4.25954 2.02336V1.14863H0.654541V15.1092H4.25954V5.21086C5.06301 4.51715 6.10016 4.10576 7.37125 4.10576C9.36801 4.10576 10.4311 5.15891 10.4311 7.31924V15.1092H14.0364V7.31924C14.0364 2.79393 12.1433 0.890991 8.01964 0.890991"
+              fill="#00C164"
+              transform="translate(60, 0)"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.9414 11.1961C11.046 11.9625 9.80964 12.4119 8.41461 12.4119C5.96698 12.4119 4.15106 10.7469 4.15106 8.31611C4.15106 5.96485 5.96698 4.19493 8.41461 4.19493C9.80964 4.19493 11.021 4.66977 11.9414 5.43636V11.1961ZM11.9413 1.15577V2.00136C10.7569 1.31379 9.25681 0.890991 7.75622 0.890991C3.78195 0.890991 0.545471 3.8244 0.545471 8.31606C0.545471 12.729 3.78195 15.7147 7.75622 15.7147C9.30999 15.7147 10.7303 15.3186 11.9413 14.631V20.1274H15.6V1.15577H11.9413Z"
+              fill="#00C164"
+              transform="translate(76, 0)"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M20.1289 11.9413H14.6259C15.4472 10.8179 15.9266 9.46747 15.9266 8.01281C15.9266 5.83311 17.8172 4.05997 20.1289 4.05997C22.466 4.05997 24.3301 5.83311 24.3301 8.01281C24.3301 10.1669 22.466 11.9413 20.1289 11.9413ZM8.127 11.9413C5.81641 11.9413 3.92602 10.1669 3.92602 8.01281C3.92602 5.83311 5.81641 4.05997 8.127 4.05997H13.6337C12.81 5.1895 12.329 6.54765 12.329 8.01281C12.329 10.1669 10.4641 11.9413 8.127 11.9413ZM20.1288 0.890991C17.7158 0.890991 15.5583 1.88509 14.1274 3.45547C12.6975 1.88509 10.54 0.890991 8.12703 0.890991C5.41773 0.890991 3.03021 2.1452 1.63192 4.05992C0.808223 5.18945 0.327271 6.54759 0.327271 8.01275C0.327271 11.9413 3.82101 15.1092 8.12703 15.1092C10.54 15.1092 12.6975 14.1151 14.1274 12.5496C15.5583 14.1151 17.7158 15.1092 20.1288 15.1092C22.8405 15.1092 25.2296 13.8537 26.6266 11.9413C27.4479 10.8179 27.9273 9.46742 27.9273 8.01275C27.9273 4.05992 24.4349 0.890991 20.1288 0.890991Z"
+              fill="#00C164"
+              transform="translate(16, 0)"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="panel-content">
+        <div class="panel-navigation">
+          <button
+            v-for="item in navItems"
+            :key="item.id"
+            :class="[
+              'navigation-item',
+              { 'navigation-item--active': item.active },
+            ]"
+          >
+            <div class="nav-icon" v-html="item.icon"></div>
+            <div class="nav-label">{{ item.label }}</div>
+          </button>
+        </div>
+
+        <div class="panel-lists">
+          <div class="panel-lists-header">Listen</div>
+          <div class="panel-list-group">
+            <button v-for="list in listItems" :key="list.id" class="list-item">
+              <div class="list-icon" v-html="list.icon"></div>
+              <div class="list-label">{{ list.label }}</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <button class="panel-add-button">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 8V16M8 12H16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+              stroke="#0CBA4A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span>Liste erstellen</span>
+        </button>
+      </div>
     </div>
   </aside>
 </template>
@@ -149,7 +187,7 @@ const navItems = [
     id: "wine",
     label: "Meine Weine",
     active: false,
-    icon: '<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_634_2346" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="24"><rect x="0.600006" width="24" height="24" rx="1" fill="#D9D9D9"/></mask><g mask="url(#mask0_634_2346)"><path d="M19.1472 21H15.0563" stroke="#0CBA4A" stroke-width="2" stroke-linecap="round"/><path d="M17.1017 16.2273V21" stroke="#0CBA4A" stroke-width="2" stroke-linecap="round"/><path d="M19.4473 7L20.2598 10.918C20.4141 11.6622 20.3547 12.4354 20.0889 13.1475L20.0606 13.2217C19.6849 14.2276 18.9156 15.0373 17.9297 15.4629C17.4013 15.6909 16.8018 15.691 16.2735 15.4629C15.2876 15.0373 14.5182 14.2276 14.1426 13.2217L14.1143 13.1475C13.8484 12.4353 13.7901 11.6623 13.9444 10.918L14.7569 7H19.4473Z" stroke="#0CBA4A" stroke-width="2"/><path d="M19.67 11.5C17.17 11 16.67 13 14.67 12C14.587 12.6927 14.979 14.8242 17.17 14.9904C19.3609 15.1567 19.753 12.5391 19.67 11.5Z" fill="#0CBA4A"/><path d="M5.85751 3C5.85751 2.44771 6.30523 2 6.85751 2H7.48251C8.0348 2 8.48251 2.44772 8.48251 3V8.53417C8.48251 8.61394 8.53178 8.68544 8.60633 8.71384L8.72316 8.75834C9.89536 9.2049 10.67 10.329 10.67 11.5833V21C10.67 21.5523 10.2223 22 9.67001 22H4.67001C4.11773 22 3.67001 21.5523 3.67001 21V11.5833C3.67001 10.329 4.44466 9.2049 5.61686 8.75834L5.73369 8.71384C5.80825 8.68544 5.85751 8.61394 5.85751 8.53417V3Z" fill="#0CBA4A"/></g></svg>',
+    icon: '<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_wine" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="24"><rect x="0.600006" width="24" height="24" rx="1" fill="#D9D9D9"/></mask><g mask="url(#mask0_wine)"><path d="M19.1472 21H15.0563" stroke="#0CBA4A" stroke-width="2" stroke-linecap="round"/><path d="M17.1017 16.2273V21" stroke="#0CBA4A" stroke-width="2" stroke-linecap="round"/><path d="M19.4473 7L20.2598 10.918C20.4141 11.6622 20.3547 12.4354 20.0889 13.1475L20.0606 13.2217C19.6849 14.2276 18.9156 15.0373 17.9297 15.4629C17.4013 15.6909 16.8018 15.691 16.2735 15.4629C15.2876 15.0373 14.5182 14.2276 14.1426 13.2217L14.1143 13.1475C13.8484 12.4353 13.7901 11.6623 13.9444 10.918L14.7569 7H19.4473Z" stroke="#0CBA4A" stroke-width="2"/><path d="M19.67 11.5C17.17 11 16.67 13 14.67 12C14.587 12.6927 14.979 14.8242 17.17 14.9904C19.3609 15.1567 19.753 12.5391 19.67 11.5Z" fill="#0CBA4A"/><path d="M5.85751 3C5.85751 2.44771 6.30523 2 6.85751 2H7.48251C8.0348 2 8.48251 2.44772 8.48251 3V8.53417C8.48251 8.61394 8.53178 8.68544 8.60633 8.71384L8.72316 8.75834C9.89536 9.2049 10.67 10.329 10.67 11.5833V21C10.67 21.5523 10.2223 22 9.67001 22H4.67001C4.11773 22 3.67001 21.5523 3.67001 21V11.5833C3.67001 10.329 4.44466 9.2049 5.61686 8.75834L5.73369 8.71384C5.80825 8.68544 5.85751 8.61394 5.85751 8.53417V3Z" fill="#0CBA4A"/></g></svg>',
   },
   {
     id: "insights",
@@ -225,64 +263,116 @@ const listItems = [
 
 .sidebar {
   display: flex;
-  flex-direction: column;
   height: 100vh;
-  width: 200px;
+  width: 312px;
   background: #1b1b1c;
   color: #e6e1f3;
   font-family: "Roboto", -apple-system, Roboto, Helvetica, sans-serif;
   transition: width 0.3s ease;
 
   &--collapsed {
-    width: 60px;
+    width: 68px;
   }
 }
 
-.logo-section {
+.sidebar-rail {
+  display: flex;
+  width: 68px;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+  background: #1b1b1c;
+  border-right: 1px solid #222325;
+  gap: 24px;
+}
+
+.rail-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rail-navigation,
+.rail-lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.rail-lists {
+  gap: 8px;
+}
+
+.rail-button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    background: rgba(34, 35, 37, 0.5);
+  }
+
+  &--active {
+    background: #222325;
+  }
+}
+
+.rail-button--add {
+  width: 44px;
+  height: 44px;
+}
+
+.rail-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sidebar--collapsed .sidebar-panel {
+  display: none;
+}
+
+.sidebar-panel {
+  display: flex;
+  width: 244px;
+  flex-direction: column;
+  background: #1b1b1c;
+}
+
+.panel-header {
   display: flex;
   height: 60px;
   padding: 24px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  flex-shrink: 0;
-  align-self: stretch;
-  border-right: 1px solid #222325;
-  background: #1b1b1c;
-
-  .sidebar--collapsed & {
-    align-items: center;
-    padding: 24px;
-  }
+  align-items: center;
+  border-bottom: 1px solid #222325;
 }
 
-.logo {
+.panel-logo {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-.container {
+.panel-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
   flex: 1 0 0;
-  align-self: stretch;
+  padding: 16px 24px 0;
+  gap: 24px;
 }
 
-.navigation-items {
+.panel-navigation {
   display: flex;
-  padding: 0 24px;
   flex-direction: column;
-  align-items: flex-start;
   gap: 4px;
-  align-self: stretch;
-
-  .sidebar--collapsed & {
-    padding: 0 6px;
-    align-items: center;
-  }
 }
 
 .navigation-item {
@@ -290,7 +380,6 @@ const listItems = [
   padding: 8px 16px;
   align-items: center;
   gap: 16px;
-  align-self: stretch;
   border-radius: 6px;
   background: transparent;
   border: none;
@@ -304,11 +393,6 @@ const listItems = [
   &--active {
     background: #222325;
   }
-
-  .sidebar--collapsed & {
-    justify-content: center;
-    padding: 8px 16px;
-  }
 }
 
 .nav-icon {
@@ -320,87 +404,35 @@ const listItems = [
 .nav-label {
   color: #e6e1f3;
   font-feature-settings: "ss01" on;
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
-.lists-section {
+.panel-lists {
   display: flex;
-  padding: 0 24px;
   flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
+  gap: 12px;
 }
 
-.lists-section-collapsed {
-  display: flex;
-  padding: 0 6px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  align-self: stretch;
-}
-
-.section-title {
-  display: flex;
-  padding-bottom: 8px;
-  align-items: flex-start;
-  gap: 10px;
-  align-self: stretch;
+.panel-lists-header {
   color: #9798a5;
-  text-align: center;
   font-feature-settings: "ss01" on;
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 140%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.lists-items {
+.panel-list-group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 4px;
-  align-self: stretch;
-}
-
-.lists-items-collapsed {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  align-self: stretch;
 }
 
 .list-item {
   display: flex;
   padding: 8px 0;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  align-self: stretch;
-  border-radius: 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s ease;
-
-  &:hover {
-    background: rgba(34, 35, 37, 0.5);
-  }
-}
-
-.list-item-collapsed {
-  display: flex;
-  padding: 8px 0;
-  flex-direction: column;
   align-items: center;
   gap: 8px;
   border-radius: 6px;
@@ -416,61 +448,39 @@ const listItems = [
 
 .list-icon {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .list-label {
-  flex: 1 0 0;
   color: #e6e1f3;
   font-feature-settings: "ss01" on;
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
-  text-align: left;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
-.footer-section {
+.panel-footer {
   display: flex;
-  padding: 25px 24px;
-  flex-direction: column;
+  padding: 24px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  align-self: stretch;
   background: #1b1b1c;
   box-shadow: 0 0 16px 0 rgba(27, 27, 28, 0.4), 0 0 1px 0 rgba(27, 27, 28, 0.2);
-
-  .sidebar--collapsed & {
-    padding: 25px 24px;
-    align-items: center;
-  }
 }
 
-.add-button {
+.panel-add-button {
   display: flex;
   align-items: center;
   gap: 8px;
   background: transparent;
   border: none;
-  cursor: pointer;
   color: #e6e1f3;
+  cursor: pointer;
   transition: opacity 0.2s ease;
 
   &:hover {
     opacity: 0.8;
   }
-}
-
-.add-label {
-  color: #e6e1f3;
-  font-feature-settings: "ss01" on;
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 140%;
 }
 </style>
