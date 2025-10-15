@@ -450,7 +450,7 @@ const listItems = [
   color: #e6e1f3;
   font-feature-settings: "ss01" on;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
 }
