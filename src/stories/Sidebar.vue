@@ -282,7 +282,7 @@ const listItems = [
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 80px;
+  width: 72px;
   border-right: 1px solid #222325;
   background: #1b1b1c;
 }
@@ -301,26 +301,26 @@ const listItems = [
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex: 1 0 0;
   align-self: stretch;
+  padding: 0 6px;
 }
 
 .collapsed-nav-items {
   display: flex;
-  padding: 0 6px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 4px;
-  align-self: stretch;
+  width: 100%;
 }
 
 .collapsed-nav-button {
   display: flex;
-  padding: 8px 16px;
+  width: 100%;
+  padding: 8px 0;
+  justify-content: center;
   align-items: center;
-  gap: 16px;
   border-radius: 6px;
   background: transparent;
   border: none;
@@ -339,10 +339,10 @@ const listItems = [
 .collapsed-list-items {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 4px;
-  align-self: stretch;
+  width: 100%;
+  margin-top: 16px;
 }
 
 .collapsed-footer {
@@ -483,18 +483,15 @@ const listItems = [
 
 .list-item {
   display: flex;
+  width: 100%;
   padding: 8px 0;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
-  align-self: stretch;
   border-radius: 6px;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: background 0.2s ease;
-  flex-direction: row;
-  align-items: center;
 
   &:hover {
     background: rgba(34, 35, 37, 0.5);
@@ -512,7 +509,7 @@ const listItems = [
   color: #e6e1f3;
   font-feature-settings: "ss01" on;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 140%;
 }
 
