@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
-import type { Meta, StoryObj } from "@storybook/vue3";
+import type { Meta as StoryMeta, StoryObj } from "@storybook/vue3";
 
 import StepSort from "../components/SelectionControls/StepSort.vue";
 
