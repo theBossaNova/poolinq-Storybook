@@ -104,7 +104,7 @@ withDefaults(defineProps<Props>(), {
 }
 
 .topbar-title {
-  width: 791px;
+  flex: 1;
   color: #e6e1f3;
   font-feature-settings: "ss01" on;
   font-size: 18px;
@@ -129,6 +129,10 @@ withDefaults(defineProps<Props>(), {
   border: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
+
+  svg {
+    fill: #0cba4a;
+  }
 
   &:hover {
     opacity: 0.8;
@@ -158,6 +162,10 @@ withDefaults(defineProps<Props>(), {
   border: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
+
+  svg {
+    fill: #0cba4a;
+  }
 
   &:hover {
     opacity: 0.8;
