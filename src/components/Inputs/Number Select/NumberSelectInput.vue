@@ -140,28 +140,27 @@ const handleInput = (event: Event) => {
 </script>
 
 <template>
-  <div :class="containerClasses" @click="handleWrapperClick">
+  <div :class="containerClasses">
     <div :class="wrapperClasses">
-      <div class="number-select-input-wrapper">
-        <div :class="priceClasses">
+      <div :class="bodyClasses">
+        <div :class="amountClasses" @click="handleWrapperClick">
           <input
             ref="inputRef"
             v-model="internalValue"
             type="number"
-            class="number-select-input"
-            :class="{ 'number-select-input--hidden': displayState === 'default' }"
             :min="min"
             :max="max"
             :step="step"
             :disabled="disabled"
+            :class="fieldClasses"
             @focus="handleFocus"
             @blur="handleBlur"
             @input="handleInput"
           />
-          <span v-if="displayState === 'default'" class="number-select-value">{{ internalValue }}</span>
-          <span class="number-select-currency">{{ currency }}</span>
+          <span :class="currencyClasses">{{ currency }}</span>
         </div>
         <StepSort
+          class="number-select-stepper"
           :variant="stepSortVariant"
           :disabled="disabled"
           @increment="increment"
@@ -169,9 +168,12 @@ const handleInput = (event: Event) => {
         />
       </div>
     </div>
-    <div v-if="helperText && (state === 'warning' || state === 'error')" :class="helperClasses">
+    <p
+      v-if="helperText && (displayState === 'warning' || displayState === 'error')"
+      :class="helperClasses"
+    >
       {{ helperText }}
-    </div>
+    </p>
   </div>
 </template>
 
