@@ -4,7 +4,7 @@ import StepSort from "../components/SelectionControls/StepSort.vue";
 
 import "./stepSort.story.scss";
 
-const meta: Meta<typeof StepSort> = {
+const meta: StoryMeta<typeof StepSort> = {
   title: "Selection Controls/Step Sort",
   component: StepSort,
   args: {
