@@ -66,7 +66,7 @@
 
       <!-- Progress bar for uploading and error states -->
       <div v-if="status === 'uploading' || status === 'error'" class="upload-state__progress-bar">
-        <div class="upload-state__progress-fill"></div>
+        <div class="upload-state__progress-fill" :style="progressFillStyle"></div>
       </div>
     </div>
   </div>
@@ -111,6 +111,7 @@ const clampedProgress = computed(() => {
 });
 
 const progressWidth = computed(() => `${clampedProgress.value}%`);
+const progressFillStyle = computed(() => ({ width: progressWidth.value }));
 const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
 </script>
 
@@ -265,7 +266,6 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
     border-radius: 4px;
     background: #0cba4a;
     transition: width 0.3s ease;
-    width: v-bind(progressWidth);
 
     .upload-state--error & {
       background: #ffc107;
