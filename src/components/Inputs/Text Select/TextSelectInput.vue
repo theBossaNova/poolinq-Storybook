@@ -71,23 +71,40 @@ const containerClasses = computed(() => [
   `text-select-size-${props.size}`,
 ]);
 
+const displayState = computed(() => {
+  if (props.state === 'warning' || props.state === 'error') return props.state;
+  if (isFocused.value) return 'focused';
+  if (internalValue.value && internalValue.value.length > 0) return 'filled';
+  return 'empty';
+});
+
 const outerWrapperClasses = computed(() => [
   "text-select-outer",
   {
-    "text-select-outer--focused": props.state === "focused" || (isFocused.value && props.state !== "filled"),
-    "text-select-outer--warning": props.state === "warning",
-    "text-select-outer--error": props.state === "error",
+    "text-select-outer--focused": displayState.value === "focused",
+    "text-select-outer--warning": displayState.value === "warning",
+    "text-select-outer--error": displayState.value === "error",
   },
 ]);
 
 const wrapperClasses = computed(() => [
   "text-select-wrapper",
-  `text-select-wrapper--${props.state}`,
+  `text-select-wrapper--${displayState.value}`,
   {
     "text-select-wrapper--open": isDropdownOpen.value,
     "text-select-wrapper--disabled": props.disabled,
   },
 ]);
+
+// handle Enter key to commit the value and close dropdown
+const onEnter = () => {
+  // commit current text as filled
+  emit('update:modelValue', internalValue.value);
+  emit('change', internalValue.value);
+  isDropdownOpen.value = false;
+  isFocused.value = false;
+};
+
 
 const showClearButton = computed(() => {
   return internalValue.value.length > 0 && !props.disabled;
