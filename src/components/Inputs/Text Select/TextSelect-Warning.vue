@@ -34,6 +34,12 @@ const emit = defineEmits<Emits>();
 
 const internalValue = ref(props.modelValue);
 
+watch(() => props.modelValue, (val) => {
+  if (val !== undefined && val !== internalValue.value) {
+    internalValue.value = val as string;
+  }
+});
+
 const handleModelUpdate = (value: string) => {
   internalValue.value = value;
   emit("update:modelValue", value);
