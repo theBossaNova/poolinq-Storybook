@@ -23,6 +23,7 @@ const meta: Meta<typeof InputDefault> = {
   args: {
     placeholder: "Placeholder",
     modelValue: "",
+    size: "256",
   },
   argTypes: {
     placeholder: {
@@ -31,6 +32,11 @@ const meta: Meta<typeof InputDefault> = {
     modelValue: {
       control: { type: "text" },
       name: "Value",
+    },
+    size: {
+      control: { type: "select" },
+      options: ["256", "160", "100", "80", "64"],
+      name: "Size (px)",
     },
     autofocus: {
       control: { type: "boolean" },
