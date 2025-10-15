@@ -35,6 +35,7 @@ const emit = defineEmits<Emits>();
 
 const internalValue = ref(props.modelValue);
 const isFocused = ref(false);
+const inputRef = ref<HTMLInputElement | null>(null);
 
 watch(
   () => props.modelValue,
@@ -44,6 +45,12 @@ watch(
     }
   }
 );
+
+const handleWrapperClick = () => {
+  if (!props.disabled && inputRef.value) {
+    inputRef.value.focus();
+  }
+};
 
 const displayState = computed(() => {
   if (props.state === "warning" || props.state === "error") return props.state;
@@ -114,15 +121,16 @@ const handleInput = (event: Event) => {
 </script>
 
 <template>
-  <div :class="containerClasses">
+  <div :class="containerClasses" @click="handleWrapperClick">
     <div :class="wrapperClasses">
       <div class="number-select-input-wrapper">
         <div :class="priceClasses">
           <input
-            v-if="displayState === 'focused'"
+            ref="inputRef"
             v-model="internalValue"
             type="number"
             class="number-select-input"
+            :class="{ 'number-select-input--hidden': displayState === 'default' }"
             :min="min"
             :max="max"
             :step="step"
@@ -131,7 +139,7 @@ const handleInput = (event: Event) => {
             @blur="handleBlur"
             @input="handleInput"
           />
-          <span v-else class="number-select-value">{{ internalValue }}</span>
+          <span v-if="displayState === 'default'" class="number-select-value">{{ internalValue }}</span>
           <span class="number-select-currency">{{ currency }}</span>
         </div>
         <StepSort
@@ -292,6 +300,10 @@ $number-select-bg-error: #514520;
 
   &[type="number"] {
     -moz-appearance: textfield;
+  }
+
+  &.number-select-input--hidden {
+    display: none;
   }
 }
 
