@@ -169,6 +169,7 @@ $text-input-helper: #495057;
 .text-input-wrapper--filled {
   border-color: $text-input-border-default;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25) inset;
+  background-color: $text-input-background;
 }
 
 .text-input-wrapper--warning {
