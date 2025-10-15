@@ -214,7 +214,7 @@ $text-input-helper: #495057;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
-  margin-top: 0;
+  margin-top: 4px;
 }
 
 .text-input-helper--warning {
