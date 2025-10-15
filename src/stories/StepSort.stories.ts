@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
+import type { Meta, StoryObj } from "@storybook/vue3";
+
 import StepSort from "../components/SelectionControls/StepSort.vue";
 
 import "./stepSort.story.scss";
@@ -13,7 +15,13 @@ const meta: Meta<typeof StepSort> = {
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["default", "disabled-top", "disabled-bottom", "hover-top", "hover-bottom"],
+      options: [
+        "default",
+        "disabled-top",
+        "disabled-bottom",
+        "hover-top",
+        "hover-bottom",
+      ],
     },
     disabled: {
       control: { type: "boolean" },
