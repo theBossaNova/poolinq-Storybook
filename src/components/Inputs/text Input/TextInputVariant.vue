@@ -148,6 +148,10 @@ $text-input-helper: #495057;
 }
 
 /* Size classes */
+.text-input-size-full {
+  max-width: 100%;
+  width: 100%;
+}
 .text-input-size-256 {
   max-width: 256px;
   width: 256px;
