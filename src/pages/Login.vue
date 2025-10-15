@@ -26,6 +26,7 @@
           <TextInputVariant
             v-model="password"
             variant="empty"
+            type="password"
             placeholder=""
             size="256"
             :helper-text="null"

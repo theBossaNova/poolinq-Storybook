@@ -16,6 +16,7 @@ interface Props {
   helperText?: string;
   autofocus?: boolean;
   size?: "256" | "160" | "100" | "80" | "64";
+  type?: "text" | "password" | "email";
 }
 
 interface Emits {
@@ -29,6 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   helperText: "Helper Text",
   autofocus: false,
   size: "256",
+  type: "text",
 });
 
 const emit = defineEmits<Emits>();
@@ -108,8 +110,8 @@ const onEnter = () => {
         :placeholder="placeholder"
         :disabled="isDisabled"
         :autofocus="autofocus"
+        :type="type"
         class="text-input-field"
-        type="text"
         autocomplete="off"
         spellcheck="false"
         @input="handleInput"
