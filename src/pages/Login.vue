@@ -2,8 +2,11 @@
   <div class="login-page">
     <div class="login-container">
       <div class="logo-section">
-        <div class="logo-text">pøølinq</div>
-        <div class="logo-subtitle">DROP</div>
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/73c0f484b4ba3070d421a9008e9908da44811609?width=472"
+          alt="poolinq DROP Logo"
+          class="logo-image"
+        />
       </div>
 
       <div class="form-section">
@@ -115,22 +118,9 @@ const handleLogin = async () => {
   width: 100%;
 }
 
-.logo-text {
-  color: var(--Neutral-White, #fff);
-  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -1.6px;
-}
-
-.logo-subtitle {
-  color: var(--Neutral-White, #fff);
-  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 110%;
-  text-transform: uppercase;
+.logo-image {
+  max-width: 100%;
+  height: auto;
 }
 
 .form-section {
