@@ -66,11 +66,15 @@ const filteredSuggestions = computed(() => {
   );
 });
 
+const containerClasses = computed(() => [
+  "text-select-container",
+  `text-select-size-${props.size}`,
+]);
+
 const outerWrapperClasses = computed(() => [
   "text-select-outer",
-  `text-select-size-${props.size}`,
   {
-    "text-select-outer--focused": props.state === "focused" || isFocused.value,
+    "text-select-outer--focused": props.state === "focused" || (isFocused.value && props.state !== "filled"),
     "text-select-outer--warning": props.state === "warning",
     "text-select-outer--error": props.state === "error",
   },
@@ -131,35 +135,37 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
 </script>
 
 <template>
-  <div class="text-select-container">
-    <div :class="outerWrapperClasses">
-      <div :class="wrapperClasses">
-        <div class="text-select-header">
-          <input
-            v-model="internalValue"
-            :placeholder="placeholder"
-            :disabled="disabled"
-            class="text-select-input"
-            type="text"
-            autocomplete="off"
-            spellcheck="false"
-            @input="handleInput"
-            @focus="handleFocus"
-            @blur="handleBlur"
-          />
-          <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.6666 4.27337L11.7266 3.33337L7.99992 7.06004L4.27325 3.33337L3.33325 4.27337L7.05992 8.00004L3.33325 11.7267L4.27325 12.6667L7.99992 8.94004L11.7266 12.6667L12.6666 11.7267L8.93992 8.00004L12.6666 4.27337Z"
-                :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#495057'"
-              />
-            </svg>
+  <div :class="containerClasses">
+    <div class="text-select-input-container">
+      <div :class="outerWrapperClasses">
+        <div :class="wrapperClasses">
+          <div class="text-select-header">
+            <input
+              v-model="internalValue"
+              :placeholder="placeholder"
+              :disabled="disabled"
+              class="text-select-input"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              @input="handleInput"
+              @focus="handleFocus"
+              @blur="handleBlur"
+            />
+            <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.6666 4.27337L11.7266 3.33337L7.99992 7.06004L4.27325 3.33337L3.33325 4.27337L7.05992 8.00004L3.33325 11.7267L4.27325 12.6667L7.99992 8.94004L11.7266 12.6667L12.6666 11.7267L8.93992 8.00004L12.6666 4.27337Z"
+                  :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#495057'"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -201,6 +207,19 @@ $text-select-placeholder: #9798a5;
   width: 100%;
 }
 
+.text-select-size-256 { max-width: 256px; width: 256px; }
+.text-select-size-160 { max-width: 160px; width: 160px; }
+.text-select-size-100 { max-width: 100px; width: 100px; }
+.text-select-size-80  { max-width: 80px; width: 80px; }
+.text-select-size-64  { max-width: 64px; width: 64px; }
+
+.text-select-input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .text-select-outer {
   position: relative;
   display: flex;
@@ -209,29 +228,24 @@ $text-select-placeholder: #9798a5;
   box-sizing: border-box;
 }
 
-.text-select-outer--focused {
+.text-select-outer--focused,
+.text-select-outer--warning,
+.text-select-outer--error {
   border-radius: 6px;
-  border: 2px solid $text-select-border-default;
   padding: 0;
+}
+
+.text-select-outer--focused {
+  border: 2px solid $text-select-border-default;
 }
 
 .text-select-outer--warning {
-  border-radius: 6px;
   border: 2px solid $text-select-border-warning-outer;
-  padding: 0;
 }
 
 .text-select-outer--error {
-  border-radius: 6px;
   border: 2px solid $text-select-border-warning-outer;
-  padding: 0;
 }
-
-.text-select-size-256 { max-width: 256px; width: 256px; }
-.text-select-size-160 { max-width: 160px; width: 160px; }
-.text-select-size-100 { max-width: 100px; width: 100px; }
-.text-select-size-80  { max-width: 80px; width: 80px; }
-.text-select-size-64  { max-width: 64px; width: 64px; }
 
 .text-select-wrapper {
   position: relative;
@@ -245,9 +259,7 @@ $text-select-placeholder: #9798a5;
 }
 
 .text-select-wrapper--empty,
-.text-select-wrapper--filled,
-.text-select-wrapper--warning,
-.text-select-wrapper--error {
+.text-select-wrapper--filled {
   border: 1px solid $text-select-border-default;
 }
 
@@ -260,11 +272,11 @@ $text-select-placeholder: #9798a5;
 }
 
 .text-select-wrapper--warning {
-  border-color: $text-select-border-warning;
+  border: 1px solid $text-select-border-warning;
 }
 
 .text-select-wrapper--error {
-  border-color: $text-select-border-error;
+  border: 1px solid $text-select-border-error;
 }
 
 .text-select-header {
