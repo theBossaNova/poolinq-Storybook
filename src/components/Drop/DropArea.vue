@@ -93,85 +93,105 @@ const onFileSelect = (e: Event) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 28px;
   padding: 48px 32px;
-  border-radius: 12px;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  background: #F5F5F5;
-  transition: all 0.3s ease;
+  width: min(100%, 680px);
+  border-radius: 16px;
+  border: 2px solid #262626;
+  background: #1b1c1f;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   min-height: 300px;
 
   &--dragover {
-    background: #1A1A1A;
+    background: #101113;
     border-color: #0CBA4A;
+    box-shadow: 0 0 0 2px rgba(12, 186, 74, 0.25);
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
   }
 
   &__icon {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    svg {
+      width: clamp(72px, 25vw, 117px);
+      height: auto;
+    }
   }
 
   &__text {
-    color: #FFF;
+    color: #c7c9cd;
     text-align: center;
     font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 18px;
     margin: 0;
+
+    .drop-area--dragover & {
+      color: #f1f6f3;
+    }
   }
 
-  &__button {
+  &__button-wrapper {
+    width: 100%;
     display: flex;
-    padding: 16px 32px;
     justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 6px;
-    background: #0CBA4A;
-    border: none;
-    color: #FFF;
-    text-align: center;
-    font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: normal;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background: #0AA844;
-    }
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
   }
 
   &__input {
     display: none;
+  }
+
+  :deep(.storybook-button.drop-area__button) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 32px 16px 56px;
+    background-color: #0CBA4A;
+    font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 8px;
+    position: relative;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #0aa844;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 24px;
+      width: 24px;
+      height: 24px;
+      background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2724%27%20height%3D%2724%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%3E%3Cpath%20d%3D%27M11%2016V6.8L7.4%2010.4L6%209L12%203L18%209L16.6%2010.4L13%206.8V16H11Z%27%20fill%3D%27white%27/%3E%3Cpath%20d%3D%27M4.24609%2021V18.75H19.7538V21H4.24609Z%27%20fill%3D%27white%27/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 }
 
 @media (max-width: 768px) {
   .drop-area {
     padding: 32px 24px;
-    min-height: 250px;
+    gap: 20px;
+    min-height: 260px;
 
-    &__button {
-      padding: 12px 24px;
-      font-size: 12px;
+    :deep(.storybook-button.drop-area__button) {
+      padding: 12px 24px 12px 52px;
+      font-size: 13px;
     }
   }
 }
