@@ -126,7 +126,7 @@ $text-input-helper: #495057;
   width: 100%;
   border-radius: 6px;
   padding: 8px;
-  background-color: $text-input-background;
+  background-color: transparent;
   border: 1px solid $text-input-border-default;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
