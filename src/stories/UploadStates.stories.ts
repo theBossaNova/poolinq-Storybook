@@ -133,13 +133,8 @@ export const AllStates: Story = {
   render: () => ({
     components: { UploadStates },
     setup() {
-      const handleRetry = () => {
-        console.log('Retrying upload');
-      };
-
-      const handleCancel = () => {
-        console.log('Upload cancelled');
-      };
+      const handleRetry = () => undefined;
+      const handleCancel = () => undefined;
 
       return { handleRetry, handleCancel };
     },
