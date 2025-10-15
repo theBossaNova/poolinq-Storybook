@@ -42,3 +42,33 @@ const CollapsedLayoutTemplate: Story = () => ({
 });
 
 export const CollapsedSidebar = CollapsedLayoutTemplate.bind({});
+
+const ComparisonTemplate: Story = () => ({
+  components: { Sidebar, Topbar },
+  template: `
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 100vh; font-family: 'Roboto', sans-serif; background: #222325; padding: 24px; box-sizing: border-box;">
+      <div style="display: flex; flex-direction: column; border: 1px solid #222325; box-shadow: 0 0 16px rgba(27, 27, 28, 0.4);">
+        <div style="padding-bottom: 12px; color: #9798A5; font-size: 14px; text-transform: uppercase;">Desktop Sidebar collapsed</div>
+        <div style="display: flex; flex: 1; background: #222325;">
+          <sidebar :collapsed="true" />
+          <div style="flex: 1; display: flex; flex-direction: column;">
+            <topbar />
+            <div style="flex: 1; background: #222325;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; border: 1px solid #222325; box-shadow: 0 0 16px rgba(27, 27, 28, 0.4);">
+        <div style="padding-bottom: 12px; color: #9798A5; font-size: 14px; text-transform: uppercase;">Desktop Sidebar extended</div>
+        <div style="display: flex; flex: 1; background: #222325;">
+          <sidebar :collapsed="false" />
+          <div style="flex: 1; display: flex; flex-direction: column;">
+            <topbar />
+            <div style="flex: 1; background: #222325;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+});
+
+export const SidebarComparison = ComparisonTemplate.bind({});
