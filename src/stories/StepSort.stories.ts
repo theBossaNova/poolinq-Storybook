@@ -63,13 +63,9 @@ const createStory = (variant: StepSortVariantOption): Story => ({
 export const Default: Story = createStory("default");
 
 export const DisabledTop: Story = createStory("disabled-top");
-DisabledTop.storyName = "Disabled Top";
 
 export const DisabledBottom: Story = createStory("disabled-bottom");
-DisabledBottom.storyName = "Disabled Bottom";
 
 export const HoverTop: Story = createStory("hover-top");
-HoverTop.storyName = "Hover Top";
 
 export const HoverBottom: Story = createStory("hover-bottom");
-HoverBottom.storyName = "Hover Bottom";
