@@ -46,6 +46,15 @@ watch(
 
 const isDisabled = computed(() => props.variant === "disabled");
 
+const isFocused = ref(false);
+
+const displayVariant = computed(() => {
+  if (props.variant === 'warning' || props.variant === 'error' || props.variant === 'disabled') return props.variant;
+  if (isFocused.value) return 'focused';
+  if (internalValue.value && internalValue.value.length > 0) return 'filled';
+  return 'empty';
+});
+
 const containerClasses = computed(() => [
   "text-input-container",
   `text-input-size-${props.size}`,
@@ -53,13 +62,13 @@ const containerClasses = computed(() => [
 
 const wrapperClasses = computed(() => [
   "text-input-wrapper",
-  `text-input-wrapper--${props.variant}`,
+  `text-input-wrapper--${displayVariant.value}`,
   { "text-input-wrapper--disabled": isDisabled.value },
 ]);
 
 const helperClasses = computed(() => [
   "text-input-helper",
-  `text-input-helper--${props.variant}`,
+  `text-input-helper--${displayVariant.value}`,
 ]);
 
 const handleInput = (event: Event) => {
@@ -68,6 +77,21 @@ const handleInput = (event: Event) => {
   internalValue.value = value;
   emit("update:modelValue", value);
   emit("change", value);
+};
+
+const handleFocus = () => {
+  isFocused.value = true;
+};
+
+const handleBlur = () => {
+  isFocused.value = false;
+};
+
+const onEnter = () => {
+  // commit value and move to filled state
+  emit('update:modelValue', internalValue.value);
+  emit('change', internalValue.value);
+  isFocused.value = false;
 };
 </script>
 
