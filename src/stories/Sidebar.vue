@@ -422,7 +422,6 @@ const listItems = [
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
 }
 
 .panel-list-group {
