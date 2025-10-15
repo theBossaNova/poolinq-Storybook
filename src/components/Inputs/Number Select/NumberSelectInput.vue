@@ -272,7 +272,10 @@ $number-select-highlight-warning: #514520;
   cursor: text;
 }
 
-.number-select-amount--focused,
+.number-select-amount--focused {
+  color: $number-select-text-focused;
+}
+
 .number-select-amount--filled,
 .number-select-amount--warning,
 .number-select-amount--error {
