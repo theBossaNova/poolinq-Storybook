@@ -111,13 +111,8 @@ export const Error: Story = {
   render: (args) => ({
     components: { UploadStates },
     setup() {
-      const handleRetry = () => {
-        console.log('Retrying upload');
-      };
-
-      const handleCancel = () => {
-        console.log('Upload cancelled');
-      };
+      const handleRetry = () => undefined;
+      const handleCancel = () => undefined;
 
       return { args, handleRetry, handleCancel };
     },
