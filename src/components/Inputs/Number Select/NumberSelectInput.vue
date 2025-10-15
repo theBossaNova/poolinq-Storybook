@@ -180,51 +180,37 @@ $number-select-bg-error: #514520;
 .number-select-wrapper {
   display: flex;
   width: 100%;
-  border-radius: 6px;
   box-sizing: border-box;
+}
+
+.number-select-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.number-select-wrapper--default .number-select-input-wrapper,
+.number-select-wrapper--filled .number-select-input-wrapper {
+  justify-content: center;
+  gap: 8px;
+}
+
+.number-select-wrapper--focused .number-select-input-wrapper {
+  width: 100%;
+  min-height: 31px;
+  padding: 8px 8px 7px 16px;
+  border-radius: 6px;
+  border: 1px solid $number-select-border-focused;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.number-select-wrapper--default {
-  .number-select-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-}
-
-.number-select-wrapper--focused {
-  .number-select-input-wrapper {
-    display: flex;
-    width: 100%;
-    min-height: 31px;
-    padding: 8px 8px 7px 16px;
-    align-items: center;
-    gap: 8px;
-    border-radius: 6px;
-    border: 1px solid $number-select-border-focused;
-  }
-}
-
-.number-select-wrapper--filled {
-  .number-select-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-}
-
-.number-select-wrapper--warning,
-.number-select-wrapper--error {
-  .number-select-input-wrapper {
-    display: flex;
-    width: 100%;
-    min-height: 31px;
-    padding: 8px 8px 7px 16px;
-    align-items: center;
-    gap: 8px;
-    border-radius: 6px;
-  }
+.number-select-wrapper--warning .number-select-input-wrapper,
+.number-select-wrapper--error .number-select-input-wrapper {
+  width: 100%;
+  min-height: 31px;
+  padding: 8px 8px 7px 16px;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .number-select-wrapper--warning .number-select-input-wrapper {
@@ -235,12 +221,6 @@ $number-select-bg-error: #514520;
 .number-select-wrapper--error .number-select-input-wrapper {
   border: 1px solid $number-select-border-error;
   box-shadow: 0 0 0 2px $number-select-bg-error;
-}
-
-.number-select-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 3px;
 }
 
 .number-select-price {
