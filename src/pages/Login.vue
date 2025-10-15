@@ -16,7 +16,7 @@
             v-model="username"
             variant="empty"
             placeholder=""
-            size="256"
+            size="full"
             :helper-text="null"
           />
         </div>
