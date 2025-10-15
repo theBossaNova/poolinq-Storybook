@@ -8,6 +8,8 @@ import NumberSelectFilled from "../components/Inputs/Number Select/NumberSelect-
 import NumberSelectWarning from "../components/Inputs/Number Select/NumberSelect-Warning.vue";
 import NumberSelectError from "../components/Inputs/Number Select/NumberSelect-Error.vue";
 
+import "./numberSelect.story.scss";
+
 type NumberSelectArgs = {
   modelValue: number;
   currency: string;
@@ -77,7 +79,7 @@ const createVariantStory = (
       return { args, handleUpdate };
     },
     template: `
-      <div style="padding: 20px;">
+      <div class="number-select-story-surface">
         <VariantComponent
           v-bind="args"
           @update:modelValue="handleUpdate"
