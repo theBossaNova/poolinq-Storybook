@@ -1,10 +1,10 @@
-import type { Meta as StoryMeta, StoryObj } from "@storybook/vue3";
+import type { Meta, StoryObj } from "@storybook/vue3";
 
 import StepSort from "../components/SelectionControls/StepSort.vue";
 
 import "./stepSort.story.scss";
 
-const meta: StoryMeta<typeof StepSort> = {
+const meta: Meta<typeof StepSort> = {
   title: "Selection Controls/Step Sort",
   component: StepSort,
   args: {
