@@ -52,7 +52,7 @@ export const Default: Story = {
       return { args, handleFilesSelected };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--area">
         <DropArea 
           v-bind="args"
           @files-selected="handleFilesSelected"
@@ -77,7 +77,7 @@ export const DragOver: Story = {
       return { args, handleFilesSelected };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--area">
         <DropArea 
           v-bind="args"
           @files-selected="handleFilesSelected"
@@ -120,7 +120,7 @@ export const Interactive: Story = {
       };
     },
     template: `
-      <div style="padding: 32px; min-width: 600px;">
+      <div class="drop-story-stage drop-story-stage--area">
         <DropArea 
           v-bind="args"
           @drag-over="handleDragOver"
