@@ -36,11 +36,14 @@ const emit = defineEmits<Emits>();
 const internalValue = ref(props.modelValue);
 const selectRef = ref<InstanceType<typeof TextSelectInput> | null>(null);
 
-watch(() => props.modelValue, (val) => {
-  if (val !== undefined && val !== internalValue.value) {
-    internalValue.value = val as string;
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (val !== undefined && val !== internalValue.value) {
+      internalValue.value = val as string;
+    }
   }
-});
+);
 
 onMounted(() => {
   if (selectRef.value) {

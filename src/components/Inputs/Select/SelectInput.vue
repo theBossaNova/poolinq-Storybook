@@ -59,7 +59,6 @@ const displayText = computed(() => {
   return selectedItem.value ? selectedItem.value.label : props.placeholder;
 });
 
-
 const wrapperClasses = computed(() => [
   "select-wrapper",
   `select-wrapper--${props.state}`,
@@ -114,7 +113,9 @@ const isItemSelected = (item: SelectItem) => {
           >
             <path
               d="M9.66659 4.69604L8.83825 5.5L4.99992 1.77459L1.16159 5.5L0.333252 4.69604L4.99992 0.166666L9.66659 4.69604Z"
-              :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#9798A5'"
+              :fill="
+                state === 'warning' || state === 'error' ? '#E6E1F3' : '#9798A5'
+              "
             />
           </svg>
           <svg
@@ -127,7 +128,9 @@ const isItemSelected = (item: SelectItem) => {
           >
             <path
               d="M2.99992 5.80396L3.82825 5L7.66658 8.72541L11.5049 5L12.3333 5.80396L7.66658 10.3333L2.99992 5.80396Z"
-              :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#9798A5'"
+              :fill="
+                state === 'warning' || state === 'error' ? '#E6E1F3' : '#9798A5'
+              "
             />
           </svg>
         </div>
@@ -146,7 +149,10 @@ const isItemSelected = (item: SelectItem) => {
         </div>
       </div>
     </div>
-    <div v-if="helperText" :class="['select-helper', `select-helper--${state}`]">
+    <div
+      v-if="helperText"
+      :class="['select-helper', `select-helper--${state}`]"
+    >
       {{ helperText }}
     </div>
   </div>
@@ -191,7 +197,8 @@ $select-helper: #495057;
 
 .select-text {
   flex: 1;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
@@ -242,7 +249,8 @@ $select-helper: #495057;
   height: 16px;
   flex-direction: column;
   justify-content: center;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.4;
@@ -312,7 +320,8 @@ $select-helper: #495057;
   align-items: center;
   gap: 10px;
   color: $select-helper;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
@@ -354,9 +363,24 @@ $select-helper: #495057;
 }
 
 /* Size classes */
-.select-size-256 { max-width: 256px; width: 256px; }
-.select-size-160 { max-width: 160px; width: 160px; }
-.select-size-100 { max-width: 100px; width: 100px; }
-.select-size-80  { max-width: 80px; width: 80px; }
-.select-size-64  { max-width: 64px; width: 64px; }
+.select-size-256 {
+  max-width: 256px;
+  width: 256px;
+}
+.select-size-160 {
+  max-width: 160px;
+  width: 160px;
+}
+.select-size-100 {
+  max-width: 100px;
+  width: 100px;
+}
+.select-size-80 {
+  max-width: 80px;
+  width: 80px;
+}
+.select-size-64 {
+  max-width: 64px;
+  width: 64px;
+}
 </style>

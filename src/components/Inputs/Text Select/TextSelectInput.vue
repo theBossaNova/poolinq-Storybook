@@ -72,10 +72,10 @@ const containerClasses = computed(() => [
 ]);
 
 const displayState = computed(() => {
-  if (props.state === 'warning' || props.state === 'error') return props.state;
-  if (isFocused.value) return 'focused';
-  if (internalValue.value && internalValue.value.length > 0) return 'filled';
-  return 'empty';
+  if (props.state === "warning" || props.state === "error") return props.state;
+  if (isFocused.value) return "focused";
+  if (internalValue.value && internalValue.value.length > 0) return "filled";
+  return "empty";
 });
 
 const outerWrapperClasses = computed(() => [
@@ -99,12 +99,11 @@ const wrapperClasses = computed(() => [
 // handle Enter key to commit the value and close dropdown
 const onEnter = () => {
   // commit current text as filled
-  emit('update:modelValue', internalValue.value);
-  emit('change', internalValue.value);
+  emit("update:modelValue", internalValue.value);
+  emit("change", internalValue.value);
   isDropdownOpen.value = false;
   isFocused.value = false;
 };
-
 
 const showClearButton = computed(() => {
   return internalValue.value.length > 0 && !props.disabled;
@@ -170,7 +169,11 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
               @blur="handleBlur"
               @keydown.enter.prevent="onEnter"
             />
-            <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
+            <div
+              v-if="showClearButton"
+              class="text-select-clear"
+              @click="clearInput"
+            >
               <svg
                 width="16"
                 height="16"
@@ -180,7 +183,11 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
               >
                 <path
                   d="M12.6666 4.27337L11.7266 3.33337L7.99992 7.06004L4.27325 3.33337L3.33325 4.27337L7.05992 8.00004L3.33325 11.7267L4.27325 12.6667L7.99992 8.94004L11.7266 12.6667L12.6666 11.7267L8.93992 8.00004L12.6666 4.27337Z"
-                  :fill="state === 'warning' || state === 'error' ? '#E6E1F3' : '#495057'"
+                  :fill="
+                    state === 'warning' || state === 'error'
+                      ? '#E6E1F3'
+                      : '#495057'
+                  "
                 />
               </svg>
             </div>
@@ -201,7 +208,10 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
         </div>
       </div>
     </div>
-    <div v-if="helperText" :class="['text-select-helper', `text-select-helper--${state}`]">
+    <div
+      v-if="helperText"
+      :class="['text-select-helper', `text-select-helper--${state}`]"
+    >
       {{ helperText }}
     </div>
   </div>
@@ -225,11 +235,26 @@ $text-select-placeholder: #9798a5;
   width: 100%;
 }
 
-.text-select-size-256 { max-width: 256px; width: 256px; }
-.text-select-size-160 { max-width: 160px; width: 160px; }
-.text-select-size-100 { max-width: 100px; width: 100px; }
-.text-select-size-80  { max-width: 80px; width: 80px; }
-.text-select-size-64  { max-width: 64px; width: 64px; }
+.text-select-size-256 {
+  max-width: 256px;
+  width: 256px;
+}
+.text-select-size-160 {
+  max-width: 160px;
+  width: 160px;
+}
+.text-select-size-100 {
+  max-width: 100px;
+  width: 100px;
+}
+.text-select-size-80 {
+  max-width: 80px;
+  width: 80px;
+}
+.text-select-size-64 {
+  max-width: 64px;
+  width: 64px;
+}
 
 .text-select-input-container {
   position: relative;

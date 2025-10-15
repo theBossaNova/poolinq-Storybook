@@ -49,10 +49,15 @@ const isDisabled = computed(() => props.variant === "disabled");
 const isFocused = ref(false);
 
 const displayVariant = computed(() => {
-  if (props.variant === 'warning' || props.variant === 'error' || props.variant === 'disabled') return props.variant;
-  if (isFocused.value) return 'focused';
-  if (internalValue.value && internalValue.value.length > 0) return 'filled';
-  return 'empty';
+  if (
+    props.variant === "warning" ||
+    props.variant === "error" ||
+    props.variant === "disabled"
+  )
+    return props.variant;
+  if (isFocused.value) return "focused";
+  if (internalValue.value && internalValue.value.length > 0) return "filled";
+  return "empty";
 });
 
 const containerClasses = computed(() => [
@@ -89,8 +94,8 @@ const handleBlur = () => {
 
 const onEnter = () => {
   // commit value and move to filled state
-  emit('update:modelValue', internalValue.value);
-  emit('change', internalValue.value);
+  emit("update:modelValue", internalValue.value);
+  emit("change", internalValue.value);
   isFocused.value = false;
 };
 </script>
@@ -141,11 +146,26 @@ $text-input-helper: #495057;
 }
 
 /* Size classes */
-.text-input-size-256 { max-width: 256px; width: 256px; }
-.text-input-size-160 { max-width: 160px; width: 160px; }
-.text-input-size-100 { max-width: 100px; width: 100px; }
-.text-input-size-80  { max-width: 80px; width: 80px; }
-.text-input-size-64  { max-width: 64px; width: 64px; }
+.text-input-size-256 {
+  max-width: 256px;
+  width: 256px;
+}
+.text-input-size-160 {
+  max-width: 160px;
+  width: 160px;
+}
+.text-input-size-100 {
+  max-width: 100px;
+  width: 100px;
+}
+.text-input-size-80 {
+  max-width: 80px;
+  width: 80px;
+}
+.text-input-size-64 {
+  max-width: 64px;
+  width: 64px;
+}
 
 .text-input-wrapper {
   display: flex;
@@ -165,7 +185,8 @@ $text-input-helper: #495057;
   outline: none;
   background: transparent;
   color: $text-input-text;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
@@ -237,7 +258,8 @@ $text-input-helper: #495057;
   align-items: center;
   gap: 10px;
   color: $text-input-helper;
-  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "overpass", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
