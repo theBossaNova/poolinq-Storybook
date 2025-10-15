@@ -89,6 +89,7 @@ const handleDecrement = () => {
         <path
           d="M9 5.50024L6 2.50024L3 5.50024"
           :class="topPathClasses"
+          fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
@@ -111,6 +112,7 @@ const handleDecrement = () => {
         <path
           d="M3 2.50024L6 5.50024L9 2.50024"
           :class="bottomPathClasses"
+          fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
