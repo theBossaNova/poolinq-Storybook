@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import StepSort from "../components/SelectionControls/StepSort.vue";
 
+import "./stepSort.story.scss";
+
 const meta: Meta<typeof StepSort> = {
   title: "Selection Controls/Step Sort",
   component: StepSort,
@@ -40,7 +42,7 @@ export const Default: Story = {
       return { args, handleIncrement, handleDecrement };
     },
     template: `
-      <div style="padding: 20px;">
+      <div class="step-sort-story-surface">
         <StepSort
           v-bind="args"
           @increment="handleIncrement"
@@ -65,7 +67,7 @@ export const DisabledTop: Story = {
       return { args, handleIncrement, handleDecrement };
     },
     template: `
-      <div style="padding: 20px;">
+      <div class="step-sort-story-surface">
         <StepSort
           v-bind="args"
           @increment="handleIncrement"
@@ -90,7 +92,7 @@ export const DisabledBottom: Story = {
       return { args, handleIncrement, handleDecrement };
     },
     template: `
-      <div style="padding: 20px;">
+      <div class="step-sort-story-surface">
         <StepSort
           v-bind="args"
           @increment="handleIncrement"
@@ -115,7 +117,7 @@ export const HoverTop: Story = {
       return { args, handleIncrement, handleDecrement };
     },
     template: `
-      <div style="padding: 20px;">
+      <div class="step-sort-story-surface">
         <StepSort
           v-bind="args"
           @increment="handleIncrement"
@@ -140,7 +142,7 @@ export const HoverBottom: Story = {
       return { args, handleIncrement, handleDecrement };
     },
     template: `
-      <div style="padding: 20px;">
+      <div class="step-sort-story-surface">
         <StepSort
           v-bind="args"
           @increment="handleIncrement"
