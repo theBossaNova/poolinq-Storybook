@@ -62,10 +62,10 @@ const classes = computed(() => ({
 
 .storybook-button--primary {
   color: #fff;
-  background-color: #10b981;
+  background-color: #0CBA4A;
 
   &:hover:not(:disabled) {
-    background-color: #059669;
+    background-color: #0AA43F;
   }
 }
 
