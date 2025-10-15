@@ -118,14 +118,31 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
 .upload-state {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  border-radius: 8px;
-  background: #1A1A1A;
-  transition: background-color 0.2s ease;
+  gap: 18px;
+  padding: 20px 28px;
+  width: min(100%, 720px);
+  border-radius: 14px;
+  border: 1px solid #26282d;
+  background: #151618;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &--uploading {
+    border-color: rgba(12, 186, 74, 0.4);
+  }
+
+  &--success {
+    border-color: rgba(12, 186, 74, 0.55);
+  }
+
+  &--error {
+    border-color: rgba(255, 193, 7, 0.5);
+  }
 
   &--pending {
-    background: #F5F5F5;
+    background: #f7f7f8;
+    border-color: #d4d6db;
+    box-shadow: none;
   }
 
   &__icon {
@@ -140,7 +157,7 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     flex: 1;
     min-width: 0;
   }
@@ -149,11 +166,11 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
   }
 
   &__filename {
-    color: #FFF;
+    color: #e7eaef;
     font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -172,18 +189,22 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
   &__actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     flex-shrink: 0;
   }
 
   &__progress-text {
-    color: #0CBA4A;
+    color: #0cba4a;
     font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
-    min-width: 40px;
+    min-width: 44px;
     text-align: right;
+
+    .upload-state--error & {
+      color: #ffc107;
+    }
   }
 
   &__action-btn {
@@ -219,7 +240,7 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
     }
 
     span {
-      color: #FFC107;
+      color: #ffc107;
       font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
       font-size: 12px;
       font-weight: 400;
@@ -229,38 +250,44 @@ const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
 
   &__progress-bar {
     height: 6px;
-    border-radius: 3px;
-    background: rgba(12, 186, 74, 0.25);
+    border-radius: 4px;
+    background: rgba(12, 186, 74, 0.2);
     overflow: hidden;
     position: relative;
 
     .upload-state--error & {
-      background: #3C3623;
+      background: rgba(255, 193, 7, 0.18);
     }
   }
 
   &__progress-fill {
     height: 100%;
-    border-radius: 3px;
-    background: #0CBA4A;
+    border-radius: 4px;
+    background: #0cba4a;
     transition: width 0.3s ease;
+    width: v-bind(progressWidth);
 
     .upload-state--error & {
-      background: #FFC107;
+      background: #ffc107;
     }
   }
 }
 
 @media (max-width: 768px) {
   .upload-state {
-    padding: 12px 16px;
+    padding: 16px 18px;
+    gap: 12px;
+
+    &__header {
+      gap: 12px;
+    }
 
     &__filename {
       font-size: 13px;
     }
 
     &__actions {
-      gap: 8px;
+      gap: 10px;
     }
   }
 }
