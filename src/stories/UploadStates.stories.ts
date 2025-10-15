@@ -46,9 +46,7 @@ export const Uploading: Story = {
   render: (args) => ({
     components: { UploadStates },
     setup() {
-      const handleCancel = () => {
-        console.log('Upload cancelled');
-      };
+      const handleCancel = () => undefined;
 
       return { args, handleCancel };
     },
