@@ -350,7 +350,7 @@ $text-select-helper: #495057;
   font-size: 10px;
   line-height: 14px;
   font-weight: 300;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .text-select-helper--warning {
