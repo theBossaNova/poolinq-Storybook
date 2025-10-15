@@ -54,14 +54,16 @@ const handleWrapperClick = () => {
 
 const displayState = computed(() => {
   if (props.state === "warning" || props.state === "error") return props.state;
+  if (props.state === "focused") return "focused";
+  if (props.state === "filled") return "filled";
   if (isFocused.value) return "focused";
-  if (internalValue.value > 0) return "filled";
+  if (internalValue.value > props.min) return "filled";
   return "default";
 });
 
 const containerClasses = computed(() => [
   "number-select-container",
-  `number-select--${displayState.value}`,
+  { "number-select-container--disabled": props.disabled },
 ]);
 
 const wrapperClasses = computed(() => [
@@ -69,9 +71,26 @@ const wrapperClasses = computed(() => [
   `number-select-wrapper--${displayState.value}`,
 ]);
 
-const priceClasses = computed(() => [
-  "number-select-price",
-  `number-select-price--${displayState.value}`,
+const bodyClasses = computed(() => [
+  "number-select-body",
+  `number-select-body--${displayState.value}`,
+  { "number-select-body--disabled": props.disabled },
+]);
+
+const amountClasses = computed(() => [
+  "number-select-amount",
+  `number-select-amount--${displayState.value}`,
+]);
+
+const fieldClasses = computed(() => [
+  "number-select-field",
+  `number-select-field--${displayState.value}`,
+  { "number-select-field--disabled": props.disabled },
+]);
+
+const currencyClasses = computed(() => [
+  "number-select-currency",
+  `number-select-currency--${displayState.value}`,
 ]);
 
 const helperClasses = computed(() => [
