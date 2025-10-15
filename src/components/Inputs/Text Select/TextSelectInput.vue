@@ -168,6 +168,7 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
               @input="handleInput"
               @focus="handleFocus"
               @blur="handleBlur"
+              @keydown.enter.prevent="onEnter"
             />
             <div v-if="showClearButton" class="text-select-clear" @click="clearInput">
               <svg
