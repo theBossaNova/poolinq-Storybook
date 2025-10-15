@@ -9,6 +9,7 @@ interface SuggestionItem {
 interface Props {
   suggestions?: SuggestionItem[];
   placeholder?: string;
+  helperText?: string;
   size?: "256" | "160" | "100" | "80" | "64";
 }
 
@@ -42,6 +43,7 @@ const handleChange = (value: string) => {
   <TextSelectInput
     :suggestions="props.suggestions"
     :placeholder="props.placeholder"
+    :helper-text="props.helperText"
     model-value=""
     state="empty"
     :show-menu="false"
