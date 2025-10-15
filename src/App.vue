@@ -1,67 +1,36 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-import HelloWorld from "./components/HelloWorld.vue";
-import LocaleSelect from "./components/LocaleSelect.vue";
-import links from "@/data/links.json";
-
-const { t } = useI18n();
-
-const getImgURL = (src: string) => {
-  return new URL(`./assets/svg/${src}.svg`, import.meta.url).href;
-};
+// Main app component with router view
 </script>
 
 <template>
-  <locale-select></locale-select>
-  <a
-    v-for="{ alt, src, href } in links"
-    :key="alt"
-    class="logo-link"
-    :href="href"
-  >
-    <img class="logo" :alt="alt" :src="getImgURL(src)" />
-  </a>
-  <HelloWorld :msg="t('welcome')" />
+  <router-view />
 </template>
 
 <style lang="scss">
-@use "@/styles/functions/color" as *;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --Neutral-Grey-400: #1B1B1C;
+  --Neutral-Grey-300: #222325;
+  --Neutral-Grey-100: #E6E1F3;
+  --Neutral-Grey-250: #363A3E;
+  --Primary-500: #0CBA4A;
+  --Neutral-White: #FFF;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 body {
-  background-color: color(light);
-  color: color(dark);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: color(dark);
-    color: color(light);
-  }
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', -apple-system, Roboto, Helvetica, sans-serif;
+  background-color: var(--Neutral-Grey-400);
+  color: var(--Neutral-White);
 }
 
 #app {
-  text-align: center;
-  margin-top: 60px;
-}
-</style>
-
-<style lang="scss" scoped>
-@use "@/styles/functions/color" as *;
-
-.logo {
-  height: 56px;
-  width: 56px;
-}
-
-.logo-link {
-  background: darken(color(light), 35%);
-  border-radius: 50%;
-  padding: 8px;
-
-  @media (prefers-color-scheme: dark) {
-    background: darken(color(dark), 5%);
-  }
-
-  & + .logo-link {
-    margin-left: 16px;
-  }
+  min-height: 100vh;
 }
 </style>
