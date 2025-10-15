@@ -346,6 +346,7 @@ $number-select-highlight-warning: #514520;
   font-size: 10px;
   font-weight: 300;
   line-height: 14px;
+  margin: 0;
 }
 
 .number-select-helper--warning {
