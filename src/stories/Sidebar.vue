@@ -302,6 +302,7 @@ const listItems = [
 
 .rail-lists {
   gap: 8px;
+  margin-top: 16px;
 }
 
 .rail-button {
