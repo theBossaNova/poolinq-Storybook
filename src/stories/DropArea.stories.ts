@@ -45,17 +45,12 @@ export const Default: Story = {
   render: (args) => ({
     components: { DropArea },
     setup() {
-      const handleFilesSelected = (files: FileList) => {
-        console.log('Files selected:', Array.from(files).map(f => f.name));
-      };
-
-      return { args, handleFilesSelected };
+      return { args };
     },
     template: `
       <div class="drop-story-stage drop-story-stage--area">
-        <DropArea 
+        <DropArea
           v-bind="args"
-          @files-selected="handleFilesSelected"
         />
       </div>
     `,
