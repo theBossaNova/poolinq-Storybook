@@ -404,6 +404,26 @@ const listItems = [
   width: 92px;
   height: auto;
   flex-shrink: 0;
+
+  svg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    height: auto;
+    flex-grow: 0;
+  }
+
+  path {
+    display: inline;
+    height: auto;
+    width: auto;
+
+    &:nth-child(2) {
+      align-self: stretch;
+      flex-grow: 0;
+    }
+  }
 }
 
 .expanded-container {
