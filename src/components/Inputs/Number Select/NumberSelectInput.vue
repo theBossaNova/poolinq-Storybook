@@ -208,13 +208,22 @@ $number-select-outline-warning: #514520;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  padding: 8px;
+  border: 1px solid #363a3e;
+  border-radius: 6px;
   cursor: text;
 }
 
+.number-select-wrapper--default {
+  border: 1px solid #363a3e;
+}
+
+.number-select-wrapper--filled {
+  border: 1px solid #363a3e;
+}
+
 .number-select-wrapper--focused {
-  padding: 8px;
   border: 1px solid $number-select-border-focused;
-  border-radius: 6px;
   box-shadow: 0 0 3px 0 #fff;
 }
 
