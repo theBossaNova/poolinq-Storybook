@@ -30,6 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: "Placeholder",
   modelValue: "Placeholder",
   helperText: "Warning message",
+  showSearchIcon: false,
   size: "256",
 });
 

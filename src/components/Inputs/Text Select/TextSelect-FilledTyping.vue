@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   ],
   placeholder: "Placeholder",
   modelValue: "Input",
+  showSearchIcon: false,
   size: "256",
 });
 

@@ -27,6 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
     { label: "Lorem ipsum", value: "lorem2" },
   ],
   placeholder: "Placeholder",
+  showSearchIcon: false,
   size: "256",
 });
 
