@@ -27,7 +27,7 @@ defineEmits<{
     :min="min"
     :max="max"
     :step="step"
-    size="default"
+    size="large"
     @update:model-value="$emit('update:modelValue', $event)"
     @change="$emit('change', $event)"
   />
