@@ -1,6 +1,30 @@
 <template>
   <header class="topbar">
-    <div class="topbar-title">{{ title }}</div>
+    <button v-if="showMenuButton" class="menu-button">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 17 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_menu)">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M0.5 2.835C0.5 2.37384 0.873842 2 1.335 2H15.335C15.7962 2 16.17 2.37384 16.17 2.835C16.17 3.29616 15.7962 3.67 15.335 3.67H1.335C0.873842 3.67 0.5 3.29616 0.5 2.835ZM0.5 8.085C0.5 7.62384 0.873842 7.25 1.335 7.25H15.335C15.7962 7.25 16.17 7.62384 16.17 8.085C16.17 8.54616 15.7962 8.92 15.335 8.92H1.335C0.873842 8.92 0.5 8.54616 0.5 8.085ZM0.5 13.335C0.5 12.8738 0.873842 12.5 1.335 12.5H15.335C15.7962 12.5 16.17 12.8738 16.17 13.335C16.17 13.7962 15.7962 14.17 15.335 14.17H1.335C0.873842 14.17 0.5 13.7962 0.5 13.335Z"
+            fill="#0CBA4A"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_menu">
+            <rect width="16" height="16" fill="white" transform="translate(0.5)" />
+          </clipPath>
+        </defs>
+      </svg>
+    </button>
+
+    <h1 class="topbar-title">{{ title }}</h1>
 
     <div class="topbar-actions">
       <button class="topbar-action">
@@ -81,11 +105,13 @@ import { defineProps, withDefaults } from "vue";
 interface Props {
   title?: string;
   actionLabel?: string;
+  showMenuButton?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
   title: "Inventur",
   actionLabel: "Restaurant",
+  showMenuButton: false,
 });
 </script>
 
@@ -97,14 +123,33 @@ withDefaults(defineProps<Props>(), {
   padding: 24px;
   justify-content: space-between;
   align-items: center;
-  flex: 1 0 0;
   border-bottom: 1px solid #222325;
   background: #1b1b1c;
   font-family: "Roboto", -apple-system, Roboto, Helvetica, sans-serif;
 }
 
+.menu-button {
+  display: flex;
+  width: 31px;
+  height: 31px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-right: 16px;
+
+  &:hover {
+    background: #222325;
+  }
+}
+
 .topbar-title {
   flex: 1;
+  margin: 0;
   color: #e6e1f3;
   font-feature-settings: "ss01" on;
   font-size: 18px;
@@ -128,11 +173,8 @@ withDefaults(defineProps<Props>(), {
   background: transparent;
   border: none;
   cursor: pointer;
+  color: #e6e1f3;
   transition: opacity 0.2s ease;
-
-  svg {
-    fill: #0cba4a;
-  }
 
   &:hover {
     opacity: 0.8;
@@ -144,7 +186,7 @@ withDefaults(defineProps<Props>(), {
   font-feature-settings: "ss01" on;
   font-size: 14px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 140%;
 }
 
@@ -162,10 +204,6 @@ withDefaults(defineProps<Props>(), {
   border: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
-
-  svg {
-    fill: #0cba4a;
-  }
 
   &:hover {
     opacity: 0.8;
