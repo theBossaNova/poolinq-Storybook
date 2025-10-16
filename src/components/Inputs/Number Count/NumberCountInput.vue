@@ -234,6 +234,7 @@ $number-count-icon-disabled: #363a3e;
   display: inline-flex;
   align-items: center;
   border-radius: 6px;
+  border: 1px solid $number-count-border;
 }
 
 .number-count--disabled {
