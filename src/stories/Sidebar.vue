@@ -1,22 +1,22 @@
 <template>
-  <aside 
-    class="sidebar" 
-    :class="{ 
+  <aside
+    class="sidebar"
+    :class="{
       'sidebar--expanded': isExpanded,
-      'sidebar--mobile-open': isMobileOpen
+      'sidebar--mobile-open': isMobileOpen,
     }"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
     <!-- Logo Section -->
     <div class="logo-section">
-      <img 
+      <img
         v-if="!isExpanded && !isMobileOpen"
         src="https://api.builder.io/api/v1/image/assets/TEMP/02e424ad8b4a95732684081e54a714bb1bf2782d?width=56"
         alt="poolinq logo"
         class="logo-collapsed"
       />
-      <img 
+      <img
         v-else
         src="https://api.builder.io/api/v1/image/assets/TEMP/35bf63eaf3f5281f23f20ac5b102cda5536f0885?width=186"
         alt="poolinq logo"
@@ -35,7 +35,9 @@
           @click="handleCloseMobileSidebar"
         >
           <div class="nav-icon" v-html="item.icon"></div>
-          <div v-if="isExpanded || isMobileOpen" class="nav-label">{{ item.label }}</div>
+          <div v-if="isExpanded || isMobileOpen" class="nav-label">
+            {{ item.label }}
+          </div>
         </button>
       </div>
 
@@ -50,7 +52,9 @@
             @click="handleCloseMobileSidebar"
           >
             <div class="list-icon" v-html="list.icon"></div>
-            <div v-if="isExpanded || isMobileOpen" class="list-label">{{ list.label }}</div>
+            <div v-if="isExpanded || isMobileOpen" class="list-label">
+              {{ list.label }}
+            </div>
           </button>
         </div>
       </div>
@@ -96,13 +100,13 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const emit = defineEmits<{
-  'update:mobileOpen': [value: boolean];
+  "update:mobileOpen": [value: boolean];
 }>();
 
 const isExpanded = ref(!props.collapsed);
 const isMobileOpen = computed({
   get: () => props.mobileOpen,
-  set: (value) => emit('update:mobileOpen', value),
+  set: (value) => emit("update:mobileOpen", value),
 });
 
 const handleMouseEnter = () => {
@@ -119,7 +123,7 @@ const handleMouseLeave = () => {
 
 const handleCloseMobileSidebar = () => {
   if (props.isMobile) {
-    emit('update:mobileOpen', false);
+    emit("update:mobileOpen", false);
   }
 };
 

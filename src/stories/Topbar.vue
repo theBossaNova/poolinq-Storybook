@@ -18,7 +18,12 @@
         </g>
         <defs>
           <clipPath id="clip0_menu">
-            <rect width="16" height="16" fill="white" transform="translate(0.5)" />
+            <rect
+              width="16"
+              height="16"
+              fill="white"
+              transform="translate(0.5)"
+            />
           </clipPath>
         </defs>
       </svg>
