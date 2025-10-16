@@ -130,16 +130,15 @@ const handleDecrement = () => {
 .step-sort {
   display: flex;
   width: 24px;
-  height: 24px;
   flex-direction: column;
+  gap: 2px;
   border-radius: 6px;
-  overflow: hidden;
 }
 
 .step-sort__segment {
   display: flex;
-  flex: 1 0 0;
   width: 100%;
+  height: 11px;
   justify-content: center;
   align-items: center;
   background: transparent;
