@@ -34,23 +34,26 @@ const DefaultLayoutTemplate: Story = () => {
 export const DefaultLayout = DefaultLayoutTemplate.bind({});
 
 const MobileLayoutTemplate: Story = () => {
-  const mobileOpen = ref(false);
-
-  const toggleMobileSidebar = () => {
-    mobileOpen.value = !mobileOpen.value;
-  };
-
   return {
     components: { Sidebar, Topbar },
-    setup() {
-      return { mobileOpen, toggleMobileSidebar };
+    data() {
+      return {
+        mobileOpen: false,
+      };
+    },
+    methods: {
+      toggleMobileSidebar() {
+        this.mobileOpen = !this.mobileOpen;
+      },
     },
     template: `
       <div style="display: flex; flex-direction: column; height: 100vh; font-family: 'Roboto', sans-serif; background: #222325; position: relative;">
         <div style="display: flex; position: relative; z-index: 50;">
           <button 
             @click="toggleMobileSidebar"
-            style="position: absolute; top: 24px; left: 24px; z-index: 101; width: 31px; height: 31px; padding: 8px; border-radius: 6px; background: transparent; border: none; cursor: pointer;"
+            style="position: absolute; top: 24px; left: 24px; z-index: 101; width: 31px; height: 31px; padding: 8px; border-radius: 6px; background: transparent; border: none; cursor: pointer; transition: background 0.2s ease;"
+            @mouseenter="$event.target.style.background = '#222325'"
+            @mouseleave="$event.target.style.background = 'transparent'"
           >
             <svg width="16" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_menu)">
@@ -65,11 +68,23 @@ const MobileLayoutTemplate: Story = () => {
           </button>
           <topbar show-menu-button />
         </div>
-        <sidebar v-model:mobile-open="mobileOpen" is-mobile :mobile-open="mobileOpen" />
-        <main style="flex: 1; padding: 24px; padding-top: 80px; background: #222325; color: #E6E1F3; overflow-y: auto;">
+        <sidebar 
+          v-model:mobile-open="mobileOpen" 
+          is-mobile 
+          :mobile-open="mobileOpen" 
+        />
+        <main 
+          v-if="!mobileOpen"
+          style="flex: 1; padding: 24px; padding-top: 80px; background: #222325; color: #E6E1F3; overflow-y: auto; position: relative; z-index: 10;"
+        >
           <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 400;">Mobile Layout</h2>
-          <p style="margin: 0; color: #9798A5;">Click the menu button to toggle the sidebar on mobile view.</p>
+          <p style="margin: 0; color: #9798A5;">Click the menu icon to toggle the sidebar on mobile view.</p>
         </main>
+        <div 
+          v-if="mobileOpen"
+          @click="mobileOpen = false"
+          style="position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 500;"
+        ></div>
       </div>
     `,
   };
