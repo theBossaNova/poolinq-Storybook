@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import NumberCountDefault from "../components/Inputs/Number Count/NumberCount-Default.vue";
 import NumberCountSmall from "../components/Inputs/Number Count/NumberCount-Small.vue";
 import NumberCountLarge from "../components/Inputs/Number Count/NumberCount-Large.vue";
 import NumberCountMinDefault from "../components/Inputs/Number Count/NumberCount-MinDefault.vue";
@@ -17,9 +16,9 @@ type NumberCountArgs = {
   step: number;
 };
 
-const meta: Meta<typeof NumberCountDefault> = {
+const meta: Meta<typeof NumberCountLarge> = {
   title: "Inputs/Number Count",
-  component: NumberCountDefault,
+  component: NumberCountLarge,
   args: {
     modelValue: 0,
     min: 0,
@@ -84,11 +83,6 @@ const createStory = (
       </div>
     `,
   }),
-});
-
-export const Default: Story = createStory(NumberCountDefault, {
-  name: "Default",
-  initialValue: 5,
 });
 
 export const Small: Story = createStory(NumberCountSmall, {

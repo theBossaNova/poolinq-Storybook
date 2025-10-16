@@ -5,16 +5,12 @@
     <section class="variant-section">
       <h2 class="section-title">SIZES</h2>
       <div class="variant-row">
-        <span class="row-label">Large</span>
-        <NumberCountLarge :model-value="5" :max="10" />
-      </div>
-      <div class="variant-row">
-        <span class="row-label">Default</span>
-        <NumberCountDefault :model-value="5" :max="10" />
-      </div>
-      <div class="variant-row">
         <span class="row-label">Small</span>
         <NumberCountSmall :model-value="5" :max="10" />
+      </div>
+      <div class="variant-row">
+        <span class="row-label">Large</span>
+        <NumberCountLarge :model-value="5" :max="10" />
       </div>
     </section>
 
@@ -37,7 +33,6 @@
 </template>
 
 <script setup lang="ts">
-import NumberCountDefault from "../components/Inputs/Number Count/NumberCount-Default.vue";
 import NumberCountSmall from "../components/Inputs/Number Count/NumberCount-Small.vue";
 import NumberCountLarge from "../components/Inputs/Number Count/NumberCount-Large.vue";
 import NumberCountMinDefault from "../components/Inputs/Number Count/NumberCount-MinDefault.vue";
