@@ -174,7 +174,9 @@ const handleInput = (event: Event) => {
       />
     </div>
     <p
-      v-if="helperText && (displayState === 'warning' || displayState === 'error')"
+      v-if="
+        helperText && (displayState === 'warning' || displayState === 'error')
+      "
       :class="helperClasses"
     >
       {{ helperText }}
