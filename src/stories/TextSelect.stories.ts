@@ -21,6 +21,7 @@ type TextSelectArgs = {
   suggestions: SuggestionItem[];
   modelValue?: string;
   helperText?: string;
+  showSearchIcon?: boolean;
   size: "256" | "160" | "100" | "80" | "64";
 };
 
@@ -57,6 +58,11 @@ const meta: Meta<typeof TextSelectEmpty> = {
       name: "Helper Text",
       description: "Helper/error/warning message shown below the input",
     },
+    showSearchIcon: {
+      control: { type: "boolean" },
+      name: "Show Search Icon",
+      description: "Show search icon in empty state",
+    },
     size: {
       control: { type: "select" },
       options: ["256", "160", "100", "80", "64"],
@@ -81,6 +87,7 @@ const createVariantStory = (
     placeholder?: string;
     suggestions?: SuggestionItem[];
     helperText?: string;
+    showSearchIcon?: boolean;
   }
 ): Story => ({
   name: options.name,
@@ -89,6 +96,7 @@ const createVariantStory = (
     suggestions: options.suggestions ?? defaultSuggestions,
     modelValue: options.initialValue,
     helperText: options.helperText,
+    showSearchIcon: options.showSearchIcon ?? false,
   },
   render: (args) => ({
     components: { VariantComponent: component },
@@ -144,4 +152,9 @@ export const Error: Story = createVariantStory(TextSelectError, {
   name: "Error",
   initialValue: "Placeholder",
   helperText: "Error message",
+});
+
+export const WithSearchIcon: Story = createVariantStory(TextSelectEmpty, {
+  name: "With Search Icon",
+  showSearchIcon: true,
 });
