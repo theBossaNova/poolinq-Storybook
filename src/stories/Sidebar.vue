@@ -1,7 +1,10 @@
 <template>
-  <aside 
-    class="sidebar" 
-    :class="{ 'sidebar--expanded': isExpanded }"
+  <aside
+    class="sidebar"
+    :class="{
+      'sidebar--expanded': isExpanded,
+      'sidebar--mobile-open': isMobileOpen
+    }"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
@@ -76,24 +79,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, withDefaults } from "vue";
+import { ref, defineProps, withDefaults, computed } from "vue";
 
 interface Props {
   collapsed?: boolean;
+  mobileOpen?: boolean;
+  isMobile?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   collapsed: true,
+  mobileOpen: false,
+  isMobile: false,
 });
 
+const emit = defineEmits<{
+  'update:mobileOpen': [value: boolean];
+}>();
+
 const isExpanded = ref(!props.collapsed);
+const isMobileOpen = computed({
+  get: () => props.mobileOpen,
+  set: (value) => emit('update:mobileOpen', value),
+});
 
 const handleMouseEnter = () => {
-  isExpanded.value = true;
+  if (!props.isMobile) {
+    isExpanded.value = true;
+  }
 };
 
 const handleMouseLeave = () => {
-  isExpanded.value = false;
+  if (!props.isMobile) {
+    isExpanded.value = false;
+  }
 };
 
 const navItems = [
@@ -128,6 +147,12 @@ const navItems = [
     icon: '<svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.03846 20V10.7143L0 5.98701V14.1948C0 14.5498 0.0833333 14.8745 0.25 15.1688C0.416667 15.4632 0.653846 15.697 0.961538 15.8701L8.03846 20ZM9.96154 20L17.0385 15.8831C17.3462 15.71 17.5833 15.474 17.75 15.1753C17.9167 14.8766 18 14.5498 18 14.1948V6.01299L9.96154 10.7013V20ZM13.9487 6.14286L17.0256 4.35065L9.96154 0.25974C9.65385 0.0865801 9.33333 0 9 0C8.66667 0 8.34615 0.0865801 8.03846 0.25974L5.97436 1.45455L13.9487 6.14286ZM9 9.03896L12.0256 7.27273L4.0641 2.57143L1.01282 4.35065L9 9.03896Z" fill="#0CBA4A"/></svg>',
   },
 ];
+
+const handleCloseMobileSidebar = () => {
+  if (props.isMobile) {
+    emit('update:mobileOpen', false);
+  }
+};
 
 const listItems = [
   {
