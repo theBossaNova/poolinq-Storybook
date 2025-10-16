@@ -71,21 +71,14 @@ const wrapperClasses = computed(() => [
   `number-select-wrapper--${displayState.value}`,
 ]);
 
-const bodyClasses = computed(() => [
-  "number-select-body",
-  `number-select-body--${displayState.value}`,
-  { "number-select-body--disabled": props.disabled },
+const priceClasses = computed(() => [
+  "number-select-price",
+  `number-select-price--${displayState.value}`,
 ]);
 
-const amountClasses = computed(() => [
-  "number-select-amount",
-  `number-select-amount--${displayState.value}`,
-]);
-
-const fieldClasses = computed(() => [
-  "number-select-field",
-  `number-select-field--${displayState.value}`,
-  { "number-select-field--disabled": props.disabled },
+const valueClasses = computed(() => [
+  "number-select-value",
+  `number-select-value--${displayState.value}`,
 ]);
 
 const currencyClasses = computed(() => [
@@ -138,13 +131,11 @@ const handleInput = (event: Event) => {
     internalValue.value = props.min;
     emit("update:modelValue", internalValue.value);
     emit("change", internalValue.value);
-    target.value = `${internalValue.value}`;
     return;
   }
 
   const parsedValue = Number(rawValue);
   if (Number.isNaN(parsedValue)) {
-    target.value = `${internalValue.value}`;
     return;
   }
 
@@ -152,38 +143,35 @@ const handleInput = (event: Event) => {
   internalValue.value = clampedValue;
   emit("update:modelValue", internalValue.value);
   emit("change", internalValue.value);
-  target.value = `${internalValue.value}`;
 };
 </script>
 
 <template>
   <div :class="containerClasses">
-    <div :class="wrapperClasses">
-      <div :class="bodyClasses">
-        <div :class="amountClasses" @click="handleWrapperClick">
-          <input
-            ref="inputRef"
-            v-model="internalValue"
-            type="number"
-            :min="min"
-            :max="max"
-            :step="step"
-            :disabled="disabled"
-            :class="fieldClasses"
-            @focus="handleFocus"
-            @blur="handleBlur"
-            @input="handleInput"
-          />
-          <span :class="currencyClasses">{{ currency }}</span>
-        </div>
-        <StepSort
-          class="number-select-stepper"
-          :variant="stepSortVariant"
+    <div :class="wrapperClasses" @click="handleWrapperClick">
+      <div :class="priceClasses">
+        <input
+          ref="inputRef"
+          v-model="internalValue"
+          type="number"
+          :min="min"
+          :max="max"
+          :step="step"
           :disabled="disabled"
-          @increment="increment"
-          @decrement="decrement"
+          :class="valueClasses"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @input="handleInput"
         />
+        <span :class="currencyClasses">{{ currency }}</span>
       </div>
+      <StepSort
+        class="number-select-stepper"
+        :variant="stepSortVariant"
+        :disabled="disabled"
+        @increment="increment"
+        @decrement="decrement"
+      />
     </div>
     <p
       v-if="helperText && (displayState === 'warning' || displayState === 'error')"
@@ -195,7 +183,6 @@ const handleInput = (event: Event) => {
 </template>
 
 <style scoped lang="scss">
-$number-select-border-default: #363a3e;
 $number-select-border-focused: #9798a5;
 $number-select-border-warning: #ffc107;
 $number-select-border-error: #dc3545;
@@ -204,13 +191,12 @@ $number-select-text-focused: #fff;
 $number-select-text-filled: #e6e1f3;
 $number-select-helper-warning: #ffc107;
 $number-select-helper-error: #dc3545;
-$number-select-highlight-warning: #514520;
+$number-select-outline-warning: #514520;
 
 .number-select-container {
   display: inline-flex;
   flex-direction: column;
-  gap: 6px;
-  width: 100px;
+  gap: 10px;
 }
 
 .number-select-container--disabled {
@@ -218,73 +204,47 @@ $number-select-highlight-warning: #514520;
 }
 
 .number-select-wrapper {
-  width: 100%;
-}
-
-.number-select-body {
   display: flex;
-  width: 100%;
+  justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 8px 8px 7px 16px;
-  border: 1px solid $number-select-border-default;
-  border-radius: 6px;
-  background: #222325;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  cursor: text;
 }
 
-.number-select-body--focused {
-  border-color: $number-select-border-focused;
+.number-select-wrapper--focused {
+  padding: 8px;
+  border: 1px solid $number-select-border-focused;
+  border-radius: 6px;
   box-shadow: 0 0 3px 0 #fff;
 }
 
-.number-select-body--filled {
-  border-color: $number-select-border-default;
-  box-shadow: inset 0 0 6px 0 rgba(0, 0, 0, 0.25);
+.number-select-wrapper--warning {
+  padding: 8px;
+  border: 1px solid $number-select-border-warning;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px $number-select-outline-warning;
 }
 
-.number-select-body--warning {
-  border-color: $number-select-border-warning;
-  box-shadow: 0 0 0 2px $number-select-highlight-warning;
+.number-select-wrapper--error {
+  padding: 8px;
+  border: 1px solid $number-select-border-error;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px $number-select-outline-warning;
 }
 
-.number-select-body--error {
-  border-color: $number-select-border-error;
-  box-shadow: 0 0 0 2px $number-select-highlight-warning;
-}
-
-.number-select-body--disabled {
-  cursor: not-allowed;
-}
-
-.number-select-amount {
+.number-select-price {
   display: flex;
-  flex: 1 1 auto;
   align-items: center;
-  justify-content: flex-end;
-  gap: 3px;
+  gap: 2px;
   font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 140%;
-  color: $number-select-text-default;
-  cursor: text;
 }
 
-.number-select-amount--focused {
-  color: $number-select-text-focused;
-}
-
-.number-select-amount--filled,
-.number-select-amount--warning,
-.number-select-amount--error {
-  color: $number-select-text-filled;
-}
-
-.number-select-field {
-  flex: 1 1 auto;
-  min-width: 0;
+.number-select-value {
+  width: 36px;
+  text-align: right;
   border: none;
   outline: none;
   background: transparent;
@@ -292,7 +252,6 @@ $number-select-highlight-warning: #514520;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
-  text-align: right;
   color: $number-select-text-default;
   caret-color: $number-select-text-focused;
   padding: 0;
@@ -309,26 +268,26 @@ $number-select-highlight-warning: #514520;
   }
 }
 
-.number-select-field--focused {
+.number-select-value--focused {
   color: $number-select-text-focused;
+  width: 35px;
 }
 
-.number-select-field--filled,
-.number-select-field--warning,
-.number-select-field--error {
+.number-select-value--filled,
+.number-select-value--warning,
+.number-select-value--error {
   color: $number-select-text-filled;
 }
 
-.number-select-field--disabled {
-  cursor: not-allowed;
-}
-
 .number-select-currency {
-  flex-shrink: 0;
+  width: 6px;
   color: $number-select-text-default;
 }
 
-.number-select-currency--focused,
+.number-select-currency--focused {
+  color: $number-select-text-default;
+}
+
 .number-select-currency--filled,
 .number-select-currency--warning,
 .number-select-currency--error {
@@ -342,6 +301,7 @@ $number-select-highlight-warning: #514520;
 .number-select-helper {
   display: flex;
   justify-content: center;
+  align-items: center;
   font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 10px;
   font-weight: 300;
@@ -355,27 +315,5 @@ $number-select-highlight-warning: #514520;
 
 .number-select-helper--error {
   color: $number-select-helper-error;
-}
-
-@media (max-width: 480px) {
-  .number-select-container {
-    width: 100%;
-  }
-
-  .number-select-body {
-    padding: 8px 8px 7px 12px;
-  }
-
-  .number-select-amount {
-    font-size: 11px;
-  }
-
-  .number-select-currency {
-    font-size: 11px;
-  }
-
-  .number-select-helper {
-    font-size: 9px;
-  }
 }
 </style>
