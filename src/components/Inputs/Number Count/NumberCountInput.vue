@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-type NumberCountSize = "default" | "small" | "large";
+type NumberCountSize = "small" | "large";
 type NumberCountType = "both" | "min" | "max";
 
 interface Props {
@@ -20,7 +20,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
-  size: "default",
+  size: "large",
   min: 0,
   max: 999999,
   step: 1,
@@ -267,21 +267,15 @@ $number-count-icon-disabled: #363a3e;
   border-radius: 0 6px 6px 0;
 }
 
-.number-count--large .number-count__button {
+.number-count--small .number-count__button {
   padding: 8px;
   flex: 1 0 0;
 }
 
-.number-count--default .number-count__button {
+.number-count--large .number-count__button {
   width: 31px;
   height: 31px;
   padding: 8px;
-}
-
-.number-count--small .number-count__button {
-  flex: 1 0 0;
-  align-self: stretch;
-  height: 20px;
 }
 
 .number-count__value {
@@ -297,30 +291,24 @@ $number-count-icon-disabled: #363a3e;
   font-feature-settings: "ss01" on;
 }
 
-.number-count__value--large {
+.number-count__value--small {
   padding: 0 8px;
   width: 47px;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  border-left: 1px solid $number-count-border;
+  border-right: 1px solid $number-count-border;
 }
 
-.number-count__value--default {
+.number-count__value--large {
   padding: 8px;
   width: 46px;
   font-size: 12px;
   font-weight: 400;
   line-height: 140%;
-}
-
-.number-count__value--small {
-  width: 50px;
-  padding: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  flex-shrink: 0;
-  align-self: stretch;
+  border-left: 1px solid $number-count-border;
+  border-right: 1px solid $number-count-border;
 }
 
 .number-count__icon {
@@ -337,11 +325,11 @@ $number-count-icon-disabled: #363a3e;
 }
 
 @media (max-width: 480px) {
-  .number-count--default {
+  .number-count--large {
     width: 100%;
   }
 
-  .number-count__value--default,
+  .number-count__value--small,
   .number-count__value--large {
     flex: 1;
     width: auto;
