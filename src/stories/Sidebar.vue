@@ -1,7 +1,7 @@
 <template>
-  <aside
-    class="sidebar"
-    :class="{
+  <aside 
+    class="sidebar" 
+    :class="{ 
       'sidebar--expanded': isExpanded,
       'sidebar--mobile-open': isMobileOpen
     }"
@@ -11,7 +11,7 @@
     <!-- Logo Section -->
     <div class="logo-section">
       <img 
-        v-if="!isExpanded"
+        v-if="!isExpanded && !isMobileOpen"
         src="https://api.builder.io/api/v1/image/assets/TEMP/02e424ad8b4a95732684081e54a714bb1bf2782d?width=56"
         alt="poolinq logo"
         class="logo-collapsed"
@@ -32,23 +32,25 @@
           v-for="item in navItems"
           :key="item.id"
           :class="['nav-item', { 'nav-item--active': item.active }]"
+          @click="handleCloseMobileSidebar"
         >
           <div class="nav-icon" v-html="item.icon"></div>
-          <div v-if="isExpanded" class="nav-label">{{ item.label }}</div>
+          <div v-if="isExpanded || isMobileOpen" class="nav-label">{{ item.label }}</div>
         </button>
       </div>
 
       <!-- Lists Section -->
       <div class="lists-section">
-        <div v-if="isExpanded" class="lists-header">Listen</div>
+        <div v-if="isExpanded || isMobileOpen" class="lists-header">Listen</div>
         <div class="lists-items">
           <button
             v-for="list in listItems"
             :key="list.id"
             class="list-item"
+            @click="handleCloseMobileSidebar"
           >
             <div class="list-icon" v-html="list.icon"></div>
-            <div v-if="isExpanded" class="list-label">{{ list.label }}</div>
+            <div v-if="isExpanded || isMobileOpen" class="list-label">{{ list.label }}</div>
           </button>
         </div>
       </div>
@@ -72,7 +74,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        <span v-if="isExpanded">Liste erstellen</span>
+        <span v-if="isExpanded || isMobileOpen">Liste erstellen</span>
       </button>
     </div>
   </aside>
@@ -115,6 +117,12 @@ const handleMouseLeave = () => {
   }
 };
 
+const handleCloseMobileSidebar = () => {
+  if (props.isMobile) {
+    emit('update:mobileOpen', false);
+  }
+};
+
 const navItems = [
   {
     id: "dashboard",
@@ -147,12 +155,6 @@ const navItems = [
     icon: '<svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.03846 20V10.7143L0 5.98701V14.1948C0 14.5498 0.0833333 14.8745 0.25 15.1688C0.416667 15.4632 0.653846 15.697 0.961538 15.8701L8.03846 20ZM9.96154 20L17.0385 15.8831C17.3462 15.71 17.5833 15.474 17.75 15.1753C17.9167 14.8766 18 14.5498 18 14.1948V6.01299L9.96154 10.7013V20ZM13.9487 6.14286L17.0256 4.35065L9.96154 0.25974C9.65385 0.0865801 9.33333 0 9 0C8.66667 0 8.34615 0.0865801 8.03846 0.25974L5.97436 1.45455L13.9487 6.14286ZM9 9.03896L12.0256 7.27273L4.0641 2.57143L1.01282 4.35065L9 9.03896Z" fill="#0CBA4A"/></svg>',
   },
 ];
-
-const handleCloseMobileSidebar = () => {
-  if (props.isMobile) {
-    emit('update:mobileOpen', false);
-  }
-};
 
 const listItems = [
   {
@@ -215,9 +217,20 @@ const listItems = [
   font-family: "Roboto", -apple-system, Roboto, Helvetica, sans-serif;
   transition: width 0.2s ease;
   width: 64px;
+  position: relative;
+  z-index: 100;
 
   &.sidebar--expanded {
     width: 244px;
+  }
+
+  &.sidebar--mobile-open {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 244px;
+    height: 100vh;
+    z-index: 999;
   }
 }
 
@@ -232,6 +245,10 @@ const listItems = [
   background: #1b1b1c;
 
   .sidebar--expanded & {
+    align-items: flex-start;
+  }
+
+  .sidebar--mobile-open & {
     align-items: flex-start;
   }
 }
@@ -258,6 +275,10 @@ const listItems = [
   .sidebar--expanded & {
     align-items: flex-start;
   }
+
+  .sidebar--mobile-open & {
+    align-items: flex-start;
+  }
 }
 
 .nav-section {
@@ -267,6 +288,10 @@ const listItems = [
   width: 100%;
 
   .sidebar--expanded & {
+    padding: 0;
+  }
+
+  .sidebar--mobile-open & {
     padding: 0;
   }
 }
@@ -284,6 +309,10 @@ const listItems = [
   justify-content: center;
 
   .sidebar--expanded & {
+    justify-content: flex-start;
+  }
+
+  .sidebar--mobile-open & {
     justify-content: flex-start;
   }
 
@@ -322,6 +351,10 @@ const listItems = [
   .sidebar--expanded & {
     align-items: flex-start;
   }
+
+  .sidebar--mobile-open & {
+    align-items: flex-start;
+  }
 }
 
 .lists-header {
@@ -354,6 +387,10 @@ const listItems = [
   justify-content: center;
 
   .sidebar--expanded & {
+    justify-content: flex-start;
+  }
+
+  .sidebar--mobile-open & {
     justify-content: flex-start;
   }
 
@@ -391,6 +428,10 @@ const listItems = [
   .sidebar--expanded & {
     align-items: flex-start;
   }
+
+  .sidebar--mobile-open & {
+    align-items: flex-start;
+  }
 }
 
 .add-button {
@@ -414,6 +455,20 @@ const listItems = [
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 64px;
+
+    &.sidebar--expanded {
+      width: 64px;
+    }
+
+    &.sidebar--mobile-open {
+      width: 244px;
+    }
   }
 }
 </style>
