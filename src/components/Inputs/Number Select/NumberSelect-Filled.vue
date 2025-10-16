@@ -24,5 +24,5 @@ defineEmits<{
 </script>
 
 <template>
-  <NumberSelectInput v-bind="$props" v-on="$listeners" state="filled" />
+  <NumberSelectInput v-bind="$props" v-bind="$attrs" state="filled" />
 </template>

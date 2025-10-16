@@ -28,7 +28,7 @@ defineEmits<{
 <template>
   <NumberSelectInput
     v-bind="$props"
-    v-on="$listeners"
+    v-bind="$attrs"
     state="warning"
     :helper-text="helperText"
   />
