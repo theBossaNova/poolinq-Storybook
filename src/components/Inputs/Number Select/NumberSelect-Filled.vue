@@ -9,7 +9,7 @@ interface Props {
   step?: number;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   modelValue: 8,
   currency: "€",
   min: 0,
@@ -17,12 +17,29 @@ withDefaults(defineProps<Props>(), {
   step: 1,
 });
 
-defineEmits<{
+const emit = defineEmits<{
   (e: "update:modelValue", value: number): void;
   (e: "change", value: number): void;
 }>();
+
+const handleUpdateModelValue = (value: number) => {
+  emit("update:modelValue", value);
+};
+
+const handleChange = (value: number) => {
+  emit("change", value);
+};
 </script>
 
 <template>
-  <NumberSelectInput v-bind="$props" v-bind="$attrs" state="filled" />
+  <NumberSelectInput
+    :model-value="modelValue"
+    :currency="currency"
+    :min="min"
+    :max="max"
+    :step="step"
+    state="filled"
+    @update:model-value="handleUpdateModelValue"
+    @change="handleChange"
+  />
 </template>
