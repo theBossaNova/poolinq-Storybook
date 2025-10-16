@@ -281,6 +281,7 @@ $number-count-icon-disabled: #363a3e;
 .number-count--small .number-count__button {
   flex: 1 0 0;
   align-self: stretch;
+  height: 20px;
 }
 
 .number-count__value {
