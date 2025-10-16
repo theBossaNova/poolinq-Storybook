@@ -9,7 +9,7 @@ interface Props {
   step?: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   modelValue: 0,
   currency: "€",
   min: 0,

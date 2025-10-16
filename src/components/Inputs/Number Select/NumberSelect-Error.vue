@@ -10,7 +10,7 @@ interface Props {
   helperText?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   modelValue: 8,
   currency: "€",
   min: 0,
