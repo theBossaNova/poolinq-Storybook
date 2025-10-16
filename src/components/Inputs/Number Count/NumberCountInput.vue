@@ -268,7 +268,8 @@ $number-count-icon-disabled: #363a3e;
 }
 
 .number-count--large .number-count__button {
-  padding: 8px 9px;
+  padding: 8px;
+  flex: 1 0 0;
 }
 
 .number-count--default .number-count__button {
@@ -278,8 +279,8 @@ $number-count-icon-disabled: #363a3e;
 }
 
 .number-count--small .number-count__button {
-  width: 20px;
-  height: 20px;
+  flex: 1 0 0;
+  align-self: stretch;
 }
 
 .number-count__value {
@@ -296,7 +297,7 @@ $number-count-icon-disabled: #363a3e;
 }
 
 .number-count__value--large {
-  padding: 8px;
+  padding: 0 8px;
   width: 47px;
   font-size: 14px;
   font-weight: 500;
@@ -314,9 +315,11 @@ $number-count-icon-disabled: #363a3e;
 .number-count__value--small {
   width: 50px;
   padding: 8px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 140%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  flex-shrink: 0;
+  align-self: stretch;
 }
 
 .number-count__icon {
