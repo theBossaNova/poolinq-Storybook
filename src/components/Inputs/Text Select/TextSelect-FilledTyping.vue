@@ -12,6 +12,7 @@ interface Props {
   placeholder?: string;
   modelValue?: string;
   helperText?: string;
+  showSearchIcon?: boolean;
   size?: "256" | "160" | "100" | "80" | "64";
 }
 
@@ -71,6 +72,7 @@ const handleChange = (value: string) => {
     :helper-text="props.helperText"
     state="filled"
     :show-menu="true"
+    :show-search-icon="showSearchIcon"
     :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
