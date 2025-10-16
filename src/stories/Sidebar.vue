@@ -386,19 +386,23 @@ const listItems = [
 
 .expanded-logo-section {
   display: flex;
-  height: 72px;
+  height: auto;
   padding: 24px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  align-self: stretch;
+  align-self: center;
   border-right: 1px solid #222325;
   background: #1b1b1c;
 }
 
 .expanded-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
   width: 92px;
-  height: 24.255px;
+  height: auto;
   flex-shrink: 0;
 }
 
