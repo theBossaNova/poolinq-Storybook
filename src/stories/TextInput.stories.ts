@@ -8,6 +8,9 @@ import InputFilled from "../components/Inputs/text Input/Input-Filled.vue";
 import InputWarning from "../components/Inputs/text Input/Input-Warning.vue";
 import InputError from "../components/Inputs/text Input/Input-Error.vue";
 import InputDisabled from "../components/Inputs/text Input/Input-Disabled.vue";
+import InputSearchIcon from "../components/Inputs/text Input/Input-SearchIcon.vue";
+import InputTypingMenu from "../components/Inputs/text Input/Input-TypingMenu.vue";
+import InputFilledMenu from "../components/Inputs/text Input/Input-FilledMenu.vue";
 
 import "./textInput.story.scss";
 
@@ -144,92 +147,23 @@ export const Disabled: Story = createVariantStory(InputDisabled, {
   initialValue: "Disabled state",
 });
 
-export const WithSearchIcon: Story = {
+export const WithSearchIcon: Story = createVariantStory(InputSearchIcon, {
   name: "With Search Icon",
-  args: {
-    placeholder: "Placeholder",
-    modelValue: "",
-    showSearchIcon: true,
-  },
-  render: (args) => ({
-    components: { TextInputVariant: InputDefault },
-    setup() {
-      const [, updateArgs] = useArgs();
-      const handleUpdate = (value: string) => {
-        updateArgs({ modelValue: value });
-      };
+});
 
-      return { args, handleUpdate };
-    },
-    template: `
-      <div class="text-input-story-wrapper">
-        <TextInputVariant
-          variant="empty"
-          v-bind="args"
-          @update:modelValue="handleUpdate"
-        />
-      </div>
-    `,
-  }),
-};
-
-export const WithMenu: Story = {
+export const WithMenu: Story = createVariantStory(InputTypingMenu, {
   name: "With Menu (Typing)",
-  args: {
-    placeholder: "Placeholder",
-    modelValue: "I",
-    showMenu: true,
-    suggestions: defaultSuggestions,
+  initialValue: "I",
+  extraArgs: {
     autofocus: true,
-  },
-  render: (args) => ({
-    components: { TextInputVariant: InputDefault },
-    setup() {
-      const [, updateArgs] = useArgs();
-      const handleUpdate = (value: string) => {
-        updateArgs({ modelValue: value });
-      };
-
-      return { args, handleUpdate };
-    },
-    template: `
-      <div class="text-input-story-wrapper">
-        <TextInputVariant
-          variant="focused"
-          v-bind="args"
-          @update:modelValue="handleUpdate"
-        />
-      </div>
-    `,
-  }),
-};
-
-export const FilledWithMenu: Story = {
-  name: "Filled With Menu",
-  args: {
-    placeholder: "Placeholder",
-    modelValue: "Input",
-    showMenu: true,
     suggestions: defaultSuggestions,
   },
-  render: (args) => ({
-    components: { TextInputVariant: InputDefault },
-    setup() {
-      const [, updateArgs] = useArgs();
-      const handleUpdate = (value: string) => {
-        updateArgs({ modelValue: value });
-      };
+});
 
-      return { args, handleUpdate };
-    },
-    template: `
-      <div class="text-input-story-wrapper">
-        <TextInputVariant
-          variant="filled"
-          v-bind="args"
-          @update:modelValue="handleUpdate"
-        />
-      </div>
-    `,
-  }),
-};
+export const FilledWithMenu: Story = createVariantStory(InputFilledMenu, {
+  name: "Filled With Menu",
+  initialValue: "Input",
+  extraArgs: {
+    suggestions: defaultSuggestions,
+  },
+});
