@@ -81,7 +81,7 @@ const emit = defineEmits<Emits>();
 const isOpen = ref(false);
 const selections = ref<Set<string>>(new Set());
 
-const computedOptionLabels = computed(() => {
+const optionLabels = computed(() => {
   if (props.optionLabels && props.optionLabels.length > 0) {
     return props.optionLabels.slice(0, props.optionCount || 3);
   }
