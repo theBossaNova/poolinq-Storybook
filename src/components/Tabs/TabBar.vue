@@ -1,6 +1,6 @@
 <template>
   <div :class="tabBarClasses">
-    <template v-for="(item, index) in items" :key="index">
+    <template v-for="(item, index) in computedItems" :key="index">
       <div
         v-if="style === 'filled' && index > 0"
         class="tab-bar__separator"
