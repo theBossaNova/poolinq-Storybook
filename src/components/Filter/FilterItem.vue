@@ -69,6 +69,7 @@ const toggleOpen = () => {
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
+  gap: 8px;
 }
 
 .filter-item__header {
