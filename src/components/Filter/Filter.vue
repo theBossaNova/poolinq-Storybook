@@ -180,6 +180,17 @@ const buttonClasses = computed(() => ({
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+
+  :deep(.filter-item) {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 6px;
+    border: 1px solid #363a3e;
+  }
 }
 
 .filter__button {
