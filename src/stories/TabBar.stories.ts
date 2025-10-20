@@ -37,7 +37,7 @@ const meta: TabBarMeta = {
   args: {
     type: "text",
     style: "underline",
-    items: [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
+    itemCount: 3,
     defaultActiveIndex: 0,
   },
 };
@@ -49,7 +49,7 @@ export const UnderlineTwoItems: Story = {
   args: {
     type: "text",
     style: "underline",
-    items: [{ label: "Item" }, { label: "Item" }],
+    itemCount: 2,
     defaultActiveIndex: 0,
   },
 };
@@ -58,7 +58,7 @@ export const UnderlineThreeItems: Story = {
   args: {
     type: "text",
     style: "underline",
-    items: [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
+    itemCount: 3,
     defaultActiveIndex: 1,
   },
 };
@@ -67,12 +67,7 @@ export const UnderlineFourItems: Story = {
   args: {
     type: "text",
     style: "underline",
-    items: [
-      { label: "Item" },
-      { label: "Item" },
-      { label: "Item" },
-      { label: "Item" },
-    ],
+    itemCount: 4,
     defaultActiveIndex: 2,
   },
 };
@@ -81,7 +76,7 @@ export const FilledTwoItems: Story = {
   args: {
     type: "text",
     style: "filled",
-    items: [{ label: "Item" }, { label: "Item" }],
+    itemCount: 2,
     defaultActiveIndex: 0,
   },
 };
@@ -90,7 +85,7 @@ export const FilledThreeItems: Story = {
   args: {
     type: "text",
     style: "filled",
-    items: [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
+    itemCount: 3,
     defaultActiveIndex: 1,
   },
 };
@@ -99,12 +94,7 @@ export const FilledFourItems: Story = {
   args: {
     type: "text",
     style: "filled",
-    items: [
-      { label: "Item" },
-      { label: "Item" },
-      { label: "Item" },
-      { label: "Item" },
-    ],
+    itemCount: 4,
     defaultActiveIndex: 3,
   },
 };
@@ -113,7 +103,7 @@ export const IconUnderline: Story = {
   args: {
     type: "icon",
     style: "underline",
-    items: [{ icon: true }, { icon: true }],
+    itemCount: 2,
     defaultActiveIndex: 0,
   },
 };
@@ -122,7 +112,7 @@ export const IconFilled: Story = {
   args: {
     type: "icon",
     style: "filled",
-    items: [{ icon: true }, { icon: true }],
+    itemCount: 2,
     defaultActiveIndex: 1,
   },
 };
@@ -131,11 +121,16 @@ export const Interactive: Story = {
   args: {
     type: "text",
     style: "underline",
-    items: [
-      { label: "Dashboard" },
-      { label: "Analytics" },
-      { label: "Reports" },
-    ],
+    itemCount: 3,
+    defaultActiveIndex: 0,
+  },
+};
+
+export const WithItemCountControl: Story = {
+  args: {
+    type: "text",
+    style: "underline",
+    itemCount: 3,
     defaultActiveIndex: 0,
   },
 };
@@ -147,7 +142,7 @@ export const AllStyles: Story = {
   args: {
     type: "text",
     style: "underline",
-    items: [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
+    itemCount: 3,
     defaultActiveIndex: 0,
   },
 };
