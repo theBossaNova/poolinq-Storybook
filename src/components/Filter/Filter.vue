@@ -64,7 +64,10 @@
       </button>
     </div>
 
-    <div v-if="isOpen && currentView === 'subfilter' && activeSubfilter !== null" class="filter__content">
+    <div
+      v-if="isOpen && currentView === 'subfilter' && activeSubfilter !== null"
+      class="filter__content"
+    >
       <div class="filter__subfilter-header">
         <button class="filter__back-button" @click="closeSubfilter">
           <svg
@@ -83,7 +86,9 @@
             />
           </svg>
         </button>
-        <div class="filter__subfilter-title">{{ getSubfilterLabel(activeSubfilter) }}</div>
+        <div class="filter__subfilter-title">
+          {{ getSubfilterLabel(activeSubfilter) }}
+        </div>
       </div>
       <div class="filter__subfilter-content">
         <slot :activeSubfilter="activeSubfilter"></slot>
@@ -185,7 +190,10 @@ const handleGlobalSave = () => {
   emit("save");
 };
 
-const updateSubfilterSelections = (subfilterIndex: number, selections: Set<string>) => {
+const updateSubfilterSelections = (
+  subfilterIndex: number,
+  selections: Set<string>
+) => {
   subfilterSelections.value.set(subfilterIndex, selections);
 };
 
