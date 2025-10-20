@@ -78,38 +78,32 @@ defineExpose({
   width: 100%;
   max-width: 100%;
   gap: 0;
+}
 
-  &--text {
-    :deep(.tab-item) {
-      flex: 1 0 0;
-      min-width: 0;
-    }
-  }
+.tab-bar--text :deep(.tab-item) {
+  flex: 1 0 0;
+  min-width: 0;
+}
 
-  &--icon {
-    :deep(.tab-item) {
-      flex: 0 0 auto;
-    }
-  }
+.tab-bar--icon :deep(.tab-item) {
+  flex: 0 0 auto;
+}
 
-  &--filled {
-    gap: 0;
+.tab-bar--filled {
+  gap: 0;
+}
 
-    :deep(.tab-item) {
-      &--text {
-        flex: 1 0 0;
-      }
+.tab-bar--filled :deep(.tab-item--text) {
+  flex: 1 0 0;
+}
 
-      &--icon {
-        flex: 0 0 auto;
-      }
-    }
-  }
+.tab-bar--filled :deep(.tab-item--icon) {
+  flex: 0 0 auto;
+}
 
-  &--underline {
-    border-bottom: 1px solid #363a3e;
-    gap: 0;
-  }
+.tab-bar--underline {
+  border-bottom: 1px solid #363a3e;
+  gap: 0;
 }
 
 .tab-bar__separator {
