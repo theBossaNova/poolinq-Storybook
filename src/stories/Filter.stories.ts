@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import { ref } from "vue";
 import Filter from "../components/Filter/Filter.vue";
 import FilterItem from "../components/Filter/FilterItem.vue";
-import CheckboxWithLabel from "./CheckboxWithLabel.vue";
 
 const meta = {
   title: "Components/Filter",
@@ -11,8 +10,13 @@ const meta = {
   argTypes: {
     title: {
       control: "text",
-      description: "The title of the filter",
+      description: "Main filter title",
       defaultValue: "Filter",
+    },
+    buttonText: {
+      control: "text",
+      description: "Save button text",
+      defaultValue: "AUSWAHL SPEICHERN",
     },
     defaultOpen: {
       control: "boolean",
@@ -33,38 +37,23 @@ type Story = StoryObj<typeof meta>;
 export const Closed: Story = {
   args: {
     title: "Filter",
+    buttonText: "AUSWAHL SPEICHERN",
     defaultOpen: false,
     subfilterCount: 1,
   },
   render: (args) => ({
-    components: { Filter, FilterItem, CheckboxWithLabel },
+    components: { Filter, FilterItem },
     setup() {
       return { args };
     },
     template: `
       <Filter v-bind="args">
-        <FilterItem label="Filter 1" :index="0">
-          <template #default="{ selections: itemSelections, onSelectionChange }">
-            <CheckboxWithLabel 
-              :checked="itemSelections.has('option-0-1')" 
-              label="Option 1"
-              @change="(checked) => onSelectionChange('option-0-1', checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has('option-0-2')" 
-              label="Option 2"
-              @change="(checked) => onSelectionChange('option-0-2', checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has('option-0-3')" 
-              label="Option 3"
-              @change="(checked) => onSelectionChange('option-0-3', checked)"
-              style="padding: 6px 0;"
-            />
-          </template>
-        </FilterItem>
+        <FilterItem
+          label="Filter 1"
+          :index="0"
+          :optionCount="3"
+          :optionLabels="['Option 1', 'Option 2', 'Option 3']"
+        />
       </Filter>
     `,
   }),
@@ -73,11 +62,12 @@ export const Closed: Story = {
 export const SingleSubfilter: Story = {
   args: {
     title: "Filter",
+    buttonText: "AUSWAHL SPEICHERN",
     defaultOpen: true,
     subfilterCount: 1,
   },
   render: (args) => ({
-    components: { Filter, FilterItem, CheckboxWithLabel },
+    components: { Filter, FilterItem },
     setup() {
       const handleSave = () => {
         alert("Filters saved!");
@@ -87,28 +77,12 @@ export const SingleSubfilter: Story = {
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
-        <FilterItem label="Filter 1" :index="0">
-          <template #default="{ selections: itemSelections, onSelectionChange }">
-            <CheckboxWithLabel 
-              :checked="itemSelections.has('option-0-1')" 
-              label="Option 1"
-              @change="(checked) => onSelectionChange('option-0-1', checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has('option-0-2')" 
-              label="Option 2"
-              @change="(checked) => onSelectionChange('option-0-2', checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has('option-0-3')" 
-              label="Option 3"
-              @change="(checked) => onSelectionChange('option-0-3', checked)"
-              style="padding: 6px 0;"
-            />
-          </template>
-        </FilterItem>
+        <FilterItem
+          label="Filter 1"
+          :index="0"
+          :optionCount="4"
+          :optionLabels="['Option A', 'Option B', 'Option C', 'Option D']"
+        />
       </Filter>
     `,
   }),
@@ -117,52 +91,66 @@ export const SingleSubfilter: Story = {
 export const MultipleSubfilters: Story = {
   args: {
     title: "Filter",
+    buttonText: "AUSWAHL SPEICHERN",
     defaultOpen: true,
     subfilterCount: 4,
   },
   render: (args) => ({
-    components: { Filter, FilterItem, CheckboxWithLabel },
+    components: { Filter, FilterItem },
     setup() {
-      const subfilterCount = ref(args.subfilterCount);
+      const subfilterConfig = ref([
+        {
+          label: "Filter 1",
+          optionCount: 3,
+          optionLabels: ["Option 1", "Option 2", "Option 3"],
+        },
+        {
+          label: "Filter 2",
+          optionCount: 4,
+          optionLabels: ["Option A", "Option B", "Option C", "Option D"],
+        },
+        {
+          label: "Filter 3",
+          optionCount: 2,
+          optionLabels: ["Category 1", "Category 2"],
+        },
+        {
+          label: "Filter 4",
+          optionCount: 5,
+          optionLabels: [
+            "Item 1",
+            "Item 2",
+            "Item 3",
+            "Item 4",
+            "Item 5",
+          ],
+        },
+      ]);
 
       const handleSave = () => {
         alert("Filters saved!");
       };
 
-      const getSubfilterItems = () => {
-        const items = [];
-        for (let i = 0; i < subfilterCount.value; i++) {
-          items.push(i);
-        }
-        return items;
+      const getConfig = (index: number) => {
+        return subfilterConfig.value[index] || {
+          label: `Filter ${index + 1}`,
+          optionCount: 3,
+          optionLabels: ["Option 1", "Option 2", "Option 3"],
+        };
       };
 
-      return { args, subfilterCount, handleSave, getSubfilterItems };
+      return { args, subfilterConfig, handleSave, getConfig };
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
-        <FilterItem v-for="i in getSubfilterItems()" :key="i" :label="'Filter ' + (i + 1)" :index="i">
-          <template #default="{ selections: itemSelections, onSelectionChange }">
-            <CheckboxWithLabel 
-              :checked="itemSelections.has(\`option-\${i}-1\`)" 
-              label="Option 1"
-              @change="(checked) => onSelectionChange(\`option-\${i}-1\`, checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has(\`option-\${i}-2\`)" 
-              label="Option 2"
-              @change="(checked) => onSelectionChange(\`option-\${i}-2\`, checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has(\`option-\${i}-3\`)" 
-              label="Option 3"
-              @change="(checked) => onSelectionChange(\`option-\${i}-3\`, checked)"
-              style="padding: 6px 0;"
-            />
-          </template>
-        </FilterItem>
+        <FilterItem
+          v-for="i in args.subfilterCount"
+          :key="i - 1"
+          :label="getConfig(i - 1).label"
+          :index="i - 1"
+          :optionCount="getConfig(i - 1).optionCount"
+          :optionLabels="getConfig(i - 1).optionLabels"
+        />
       </Filter>
     `,
   }),
@@ -170,89 +158,193 @@ export const MultipleSubfilters: Story = {
 
 export const Interactive: Story = {
   args: {
-    title: "Filter",
+    title: "My Filters",
+    buttonText: "SAVE SELECTION",
     defaultOpen: true,
     subfilterCount: 3,
   },
   render: (args) => ({
-    components: { Filter, FilterItem, CheckboxWithLabel },
+    components: { Filter, FilterItem },
     setup() {
-      const subfilterCount = ref(args.subfilterCount);
-      const savedSelections = ref<Map<number, Set<string>>>(new Map());
+      const subfilterConfig = ref([
+        {
+          label: "Size",
+          optionCount: 4,
+          optionLabels: ["Small", "Medium", "Large", "XL"],
+        },
+        {
+          label: "Color",
+          optionCount: 5,
+          optionLabels: ["Red", "Blue", "Green", "Black", "White"],
+        },
+        {
+          label: "Brand",
+          optionCount: 3,
+          optionLabels: ["Brand A", "Brand B", "Brand C"],
+        },
+      ]);
+
+      const activeCount = ref(0);
 
       const handleSave = () => {
-        const totalCount = Array.from(savedSelections.value.values()).reduce(
-          (sum, set) => sum + set.size,
-          0
-        );
-        alert(
-          `Filters saved! Total active selections: ${totalCount}\n\nSubfilter selections: ${
-            subfilterCount.value > 0
-              ? Array.from({ length: subfilterCount.value })
-                  .map((_, i) => {
-                    const count = savedSelections.value.get(i)?.size || 0;
-                    return `Filter ${i + 1}: ${count} selection(s)`;
-                  })
-                  .join(", ")
-              : "None"
-          }`
-        );
+        alert(`Selections saved! Total active: ${activeCount.value}`);
       };
 
-      const handleSelectionChange = (
-        filterIndex: number,
-        selections: Set<string>
-      ) => {
-        savedSelections.value.set(filterIndex, new Set(selections));
+      const handleSelectionChange = () => {
+        // Count total selections
+        let count = 0;
+        // This would be updated when FilterItem emits selection-change
+        activeCount.value = count;
       };
 
-      const getSubfilterItems = () => {
-        const items = [];
-        for (let i = 0; i < subfilterCount.value; i++) {
-          items.push(i);
-        }
-        return items;
+      const getConfig = (index: number) => {
+        return subfilterConfig.value[index] || {
+          label: `Filter ${index + 1}`,
+          optionCount: 3,
+          optionLabels: ["Option 1", "Option 2", "Option 3"],
+        };
       };
 
       return {
         args,
-        subfilterCount,
+        subfilterConfig,
         handleSave,
         handleSelectionChange,
-        getSubfilterItems,
-        savedSelections,
+        getConfig,
+        activeCount,
       };
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
-        <FilterItem 
-          v-for="i in getSubfilterItems()" 
-          :key="i" 
-          :label="'Filter ' + (i + 1)" 
-          :index="i"
+        <FilterItem
+          v-for="i in args.subfilterCount"
+          :key="i - 1"
+          :label="getConfig(i - 1).label"
+          :index="i - 1"
+          :optionCount="getConfig(i - 1).optionCount"
+          :optionLabels="getConfig(i - 1).optionLabels"
           @selection-change="handleSelectionChange"
-        >
-          <template #default="{ selections: itemSelections, onSelectionChange }">
-            <CheckboxWithLabel 
-              :checked="itemSelections.has(\`option-\${i}-1\`)" 
-              label="Option 1"
-              @change="(checked) => onSelectionChange(\`option-\${i}-1\`, checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has(\`option-\${i}-2\`)" 
-              label="Option 2"
-              @change="(checked) => onSelectionChange(\`option-\${i}-2\`, checked)"
-              style="padding: 6px 0;"
-            />
-            <CheckboxWithLabel 
-              :checked="itemSelections.has(\`option-\${i}-3\`)" 
-              label="Option 3"
-              @change="(checked) => onSelectionChange(\`option-\${i}-3\`, checked)"
-              style="padding: 6px 0;"
-            />
-          </template>
-        </FilterItem>
+        />
+      </Filter>
+    `,
+  }),
+};
+
+export const CustomizedTexts: Story = {
+  args: {
+    title: "Verfeinern Sie Ihre Suche",
+    buttonText: "ERGEBNISSE ANZEIGEN",
+    defaultOpen: true,
+    subfilterCount: 2,
+  },
+  render: (args) => ({
+    components: { Filter, FilterItem },
+    setup() {
+      const subfilterConfig = ref([
+        {
+          label: "Größe",
+          optionCount: 4,
+          optionLabels: ["Klein", "Mittel", "Groß", "Extra Groß"],
+        },
+        {
+          label: "Marke",
+          optionCount: 3,
+          optionLabels: ["Marke X", "Marke Y", "Marke Z"],
+        },
+      ]);
+
+      const handleSave = () => {
+        alert("Suchkriterien gespeichert!");
+      };
+
+      const getConfig = (index: number) => {
+        return subfilterConfig.value[index] || {
+          label: `Filter ${index + 1}`,
+          optionCount: 3,
+          optionLabels: ["Option 1", "Option 2", "Option 3"],
+        };
+      };
+
+      return { args, subfilterConfig, handleSave, getConfig };
+    },
+    template: `
+      <Filter v-bind="args" @save="handleSave">
+        <FilterItem
+          v-for="i in args.subfilterCount"
+          :key="i - 1"
+          :label="getConfig(i - 1).label"
+          :index="i - 1"
+          :optionCount="getConfig(i - 1).optionCount"
+          :optionLabels="getConfig(i - 1).optionLabels"
+        />
+      </Filter>
+    `,
+  }),
+};
+
+export const ManyOptions: Story = {
+  args: {
+    title: "Filter",
+    buttonText: "AUSWAHL SPEICHERN",
+    defaultOpen: true,
+    subfilterCount: 2,
+  },
+  render: (args) => ({
+    components: { Filter, FilterItem },
+    setup() {
+      const subfilterConfig = ref([
+        {
+          label: "Categories",
+          optionCount: 8,
+          optionLabels: [
+            "Category 1",
+            "Category 2",
+            "Category 3",
+            "Category 4",
+            "Category 5",
+            "Category 6",
+            "Category 7",
+            "Category 8",
+          ],
+        },
+        {
+          label: "Tags",
+          optionCount: 6,
+          optionLabels: [
+            "Tag A",
+            "Tag B",
+            "Tag C",
+            "Tag D",
+            "Tag E",
+            "Tag F",
+          ],
+        },
+      ]);
+
+      const handleSave = () => {
+        alert("Filters saved!");
+      };
+
+      const getConfig = (index: number) => {
+        return subfilterConfig.value[index] || {
+          label: `Filter ${index + 1}`,
+          optionCount: 3,
+          optionLabels: ["Option 1", "Option 2", "Option 3"],
+        };
+      };
+
+      return { args, subfilterConfig, handleSave, getConfig };
+    },
+    template: `
+      <Filter v-bind="args" @save="handleSave">
+        <FilterItem
+          v-for="i in args.subfilterCount"
+          :key="i - 1"
+          :label="getConfig(i - 1).label"
+          :index="i - 1"
+          :optionCount="getConfig(i - 1).optionCount"
+          :optionLabels="getConfig(i - 1).optionLabels"
+        />
       </Filter>
     `,
   }),
