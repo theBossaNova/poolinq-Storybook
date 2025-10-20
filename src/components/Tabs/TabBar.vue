@@ -41,7 +41,6 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   type: "text",
   style: "underline",
-  items: () => [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
   defaultActiveIndex: 0,
   itemCount: 3,
 });
