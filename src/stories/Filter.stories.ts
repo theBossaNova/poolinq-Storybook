@@ -138,24 +138,26 @@ export const WithCheckboxes: Story = {
     template: `
       <Filter v-bind="args">
         <FilterItem label="Filter Options" :defaultOpen="true">
-          <div style="display: flex; flex-direction: column; padding: 6px 0;">
-            <CheckboxWithLabel 
-              v-model:checked="selections.option1" 
-              label="Label" 
-            />
-            <CheckboxWithLabel 
-              v-model:checked="selections.option2" 
-              label="Label" 
-            />
-            <CheckboxWithLabel 
-              v-model:checked="selections.option3" 
-              label="Label" 
-            />
-            <CheckboxWithLabel 
-              v-model:checked="selections.option4" 
-              label="Label" 
-            />
-          </div>
+          <CheckboxWithLabel
+            v-model:checked="selections.option1"
+            label="Label"
+            style="padding: 6px 0;"
+          />
+          <CheckboxWithLabel
+            v-model:checked="selections.option2"
+            label="Label"
+            style="padding: 6px 0;"
+          />
+          <CheckboxWithLabel
+            v-model:checked="selections.option3"
+            label="Label"
+            style="padding: 6px 0;"
+          />
+          <CheckboxWithLabel
+            v-model:checked="selections.option4"
+            label="Label"
+            style="padding: 6px 0;"
+          />
         </FilterItem>
       </Filter>
     `,
@@ -185,28 +187,28 @@ export const Interactive: Story = {
     template: `
       <Filter v-bind="args" @save="handleSave">
         <FilterItem label="Category 1" :defaultOpen="true">
-          <div style="display: flex; flex-direction: column; padding: 6px 0;">
-            <CheckboxWithLabel 
-              v-model:checked="selections.category1.option1" 
-              label="Option 1" 
-            />
-            <CheckboxWithLabel 
-              v-model:checked="selections.category1.option2" 
-              label="Option 2" 
-            />
-          </div>
+          <CheckboxWithLabel
+            v-model:checked="selections.category1.option1"
+            label="Option 1"
+            style="padding: 6px 0;"
+          />
+          <CheckboxWithLabel
+            v-model:checked="selections.category1.option2"
+            label="Option 2"
+            style="padding: 6px 0;"
+          />
         </FilterItem>
         <FilterItem label="Category 2">
-          <div style="display: flex; flex-direction: column; padding: 6px 0;">
-            <CheckboxWithLabel 
-              v-model:checked="selections.category2.option1" 
-              label="Option A" 
-            />
-            <CheckboxWithLabel 
-              v-model:checked="selections.category2.option2" 
-              label="Option B" 
-            />
-          </div>
+          <CheckboxWithLabel
+            v-model:checked="selections.category2.option1"
+            label="Option A"
+            style="padding: 6px 0;"
+          />
+          <CheckboxWithLabel
+            v-model:checked="selections.category2.option2"
+            label="Option B"
+            style="padding: 6px 0;"
+          />
         </FilterItem>
       </Filter>
     `,
