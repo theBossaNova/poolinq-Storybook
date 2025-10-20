@@ -121,20 +121,6 @@ export const IconFilled: Story = {
 };
 
 export const Interactive: Story = {
-  render: (args) => ({
-    components: { TabBar },
-    setup() {
-      const handleChange = (index: number) => {
-        console.log("Tab changed to:", index);
-      };
-      return { args, handleChange };
-    },
-    template: `
-      <div style="padding: 20px; background: #1a1a1a;">
-        <TabBar v-bind="args" @change="handleChange" />
-      </div>
-    `,
-  }),
   args: {
     type: "text",
     style: "underline",
@@ -148,46 +134,13 @@ export const Interactive: Story = {
 };
 
 export const AllStyles: Story = {
-  render: (args) => ({
-    components: { TabBar },
-    setup() {
-      return { args };
-    },
-    template: `
-      <div style="display: flex; flex-direction: column; gap: 32px; padding: 20px; background: #1a1a1a;">
-        <div style="max-width: 600px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Underline Style - 2 Items</h3>
-          <TabBar type="text" style="underline" :items="[{label: 'Item'}, {label: 'Item'}]" :defaultActiveIndex="0" />
-        </div>
-        <div style="max-width: 600px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Underline Style - 3 Items</h3>
-          <TabBar type="text" style="underline" :items="[{label: 'Item'}, {label: 'Item'}, {label: 'Item'}]" :defaultActiveIndex="1" />
-        </div>
-        <div style="max-width: 600px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Underline Style - 4 Items</h3>
-          <TabBar type="text" style="underline" :items="[{label: 'Item'}, {label: 'Item'}, {label: 'Item'}, {label: 'Item'}]" :defaultActiveIndex="2" />
-        </div>
-        <div style="max-width: 600px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Filled Style - 2 Items</h3>
-          <TabBar type="text" style="filled" :items="[{label: 'Item'}, {label: 'Item'}]" :defaultActiveIndex="0" />
-        </div>
-        <div style="max-width: 600px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Filled Style - 3 Items</h3>
-          <TabBar type="text" style="filled" :items="[{label: 'Item'}, {label: 'Item'}, {label: 'Item'}]" :defaultActiveIndex="1" />
-        </div>
-        <div style="max-width: 600px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Filled Style - 4 Items</h3>
-          <TabBar type="text" style="filled" :items="[{label: 'Item'}, {label: 'Item'}, {label: 'Item'}, {label: 'Item'}]" :defaultActiveIndex="3" />
-        </div>
-        <div style="max-width: 200px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Icon Underline</h3>
-          <TabBar type="icon" style="underline" :items="[{icon: true}, {icon: true}]" :defaultActiveIndex="0" />
-        </div>
-        <div style="max-width: 200px;">
-          <h3 style="color: #fff; margin-bottom: 12px; font-size: 14px;">Icon Filled</h3>
-          <TabBar type="icon" style="filled" :items="[{icon: true}, {icon: true}]" :defaultActiveIndex="1" />
-        </div>
-      </div>
-    `,
-  }),
+  parameters: {
+    layout: "padded",
+  },
+  args: {
+    type: "text",
+    style: "underline",
+    items: [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
+    defaultActiveIndex: 0,
+  },
 };
