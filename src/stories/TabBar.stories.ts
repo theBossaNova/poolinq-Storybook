@@ -18,9 +18,16 @@ const meta: TabBarMeta = {
       options: ["underline", "filled"],
       description: "The visual style of the tab bar",
     },
+    itemCount: {
+      control: "number",
+      min: 1,
+      max: 6,
+      step: 1,
+      description: "Number of tab items to display",
+    },
     items: {
       control: "object",
-      description: "Array of tab items",
+      description: "Array of tab items (overrides itemCount if provided)",
     },
     defaultActiveIndex: {
       control: "number",
