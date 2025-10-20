@@ -199,7 +199,10 @@ export const Interactive: Story = {
         );
       };
 
-      const handleSelectionChange = (filterIndex: number, selections: Set<string>) => {
+      const handleSelectionChange = (
+        filterIndex: number,
+        selections: Set<string>
+      ) => {
         savedSelections.value.set(filterIndex, new Set(selections));
       };
 
