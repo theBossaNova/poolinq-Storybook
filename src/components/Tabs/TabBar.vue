@@ -50,6 +50,16 @@ const emit = defineEmits<Emits>();
 
 const activeIndex = ref(props.defaultActiveIndex);
 
+const computedItems = computed(() => {
+  if (props.items && props.items.length > 0) {
+    return props.items;
+  }
+  return Array.from({ length: props.itemCount }, (_, index) => ({
+    label: props.type === "icon" ? undefined : `Item ${index + 1}`,
+    icon: props.type === "icon",
+  }));
+});
+
 const tabBarClasses = computed(() => ({
   "tab-bar": true,
   [`tab-bar--${props.style}`]: true,
