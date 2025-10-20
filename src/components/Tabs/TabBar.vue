@@ -54,10 +54,14 @@ const computedItems = computed(() => {
   if (props.items && props.items.length > 0) {
     return props.items;
   }
-  return Array.from({ length: props.itemCount }, (_, index) => ({
-    label: props.type === "icon" ? undefined : `Item ${index + 1}`,
-    icon: props.type === "icon",
-  }));
+  const items: TabItemData[] = [];
+  for (let i = 0; i < props.itemCount; i += 1) {
+    items.push({
+      label: props.type === "icon" ? undefined : `Item ${i + 1}`,
+      icon: props.type === "icon",
+    });
+  }
+  return items;
 });
 
 const tabBarClasses = computed(() => ({
