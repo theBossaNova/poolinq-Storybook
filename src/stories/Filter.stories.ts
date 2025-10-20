@@ -29,7 +29,7 @@ const meta = {
       defaultValue: false,
     },
   },
-} satisfies Meta<typeof Filter>;
+} as Meta<typeof Filter>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
