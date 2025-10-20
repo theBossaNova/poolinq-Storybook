@@ -1,5 +1,5 @@
 <template>
-<div :class="tabBarClasses">
+  <div :class="tabBarClasses">
     <template v-for="(item, index) in computedItems" :key="index">
       <div
         v-if="props.style === 'filled' && index > 0"
