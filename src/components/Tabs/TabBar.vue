@@ -31,6 +31,7 @@ interface Props {
   style?: "underline" | "filled";
   items?: TabItemData[];
   defaultActiveIndex?: number;
+  itemCount?: number;
 }
 
 interface Emits {
@@ -42,6 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
   style: "underline",
   items: () => [{ label: "Item" }, { label: "Item" }, { label: "Item" }],
   defaultActiveIndex: 0,
+  itemCount: 3,
 });
 
 const emit = defineEmits<Emits>();
