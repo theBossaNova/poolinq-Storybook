@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import CheckboxWithLabel from "../../stories/CheckboxWithLabel.vue";
 
 interface Props {
