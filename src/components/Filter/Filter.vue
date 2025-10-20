@@ -1,6 +1,6 @@
 <template>
   <div :class="containerClasses">
-    <div class="filter__header" @click="toggleOpen">
+    <div class="filter__header" @click="handleHeaderClick">
       <div class="filter__header-content">
         <svg
           class="filter__icon"
@@ -19,6 +19,9 @@
           />
         </svg>
         <div class="filter__title">{{ title }}</div>
+        <div v-if="activeFilterCount > 0" class="filter__count">
+          {{ activeFilterCount }}
+        </div>
       </div>
       <div class="filter__chevron">
         <svg
@@ -48,18 +51,20 @@
       </div>
     </div>
 
-    <div v-if="isOpen" class="filter__content">
+    <div v-if="isOpen && currentView === 'list'" class="filter__content">
       <div class="filter__items">
         <slot></slot>
       </div>
+    </div>
 
-      <button
-        :class="buttonClasses"
-        :disabled="!saveEnabled"
-        @click="handleSave"
-      >
-        {{ saveButtonText }}
-      </button>
+    <div v-if="isOpen && currentView === 'subfilter'" class="filter__content">
+      <div class="filter__subfilter-content">
+        <slot
+          :activeSubfilter="activeSubfilter"
+          :onSubfilterSave="handleSubfilterSave"
+          :onSubfilterClose="closeSubfilter"
+        ></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -70,46 +75,84 @@ import { ref, computed } from "vue";
 interface Props {
   title?: string;
   defaultOpen?: boolean;
-  saveButtonText?: string;
-  saveEnabled?: boolean;
 }
 
 interface Emits {
-  (event: "save"): void;
-  (event: "toggle", isOpen: boolean): void;
+  (event: "subfilter-open", subfilterIndex: number): void;
+  (event: "subfilter-save", subfilterIndex: number): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   title: "Filter",
   defaultOpen: false,
-  saveButtonText: "AUSWAHL SPEICHERN",
-  saveEnabled: false,
 });
 
 const emit = defineEmits<Emits>();
 
 const isOpen = ref(props.defaultOpen);
-
-const toggleOpen = () => {
-  isOpen.value = !isOpen.value;
-  emit("toggle", isOpen.value);
-};
-
-const handleSave = () => {
-  if (props.saveEnabled) {
-    emit("save");
-  }
-};
+const currentView = ref<"list" | "subfilter">("list");
+const activeSubfilter = ref<number | null>(null);
+const subfilterSelections = ref<Map<number, Set<string>>>(new Map());
 
 const containerClasses = computed(() => ({
   filter: true,
   "filter--open": isOpen.value,
 }));
 
-const buttonClasses = computed(() => ({
-  filter__button: true,
-  "filter__button--disabled": !props.saveEnabled,
-}));
+const activeFilterCount = computed(() => {
+  let count = 0;
+  subfilterSelections.value.forEach((selections) => {
+    count += selections.size;
+  });
+  return count;
+});
+
+const handleHeaderClick = () => {
+  if (!isOpen.value) {
+    isOpen.value = true;
+  } else {
+    closeFilter();
+  }
+};
+
+const openSubfilter = (subfilterIndex: number) => {
+  activeSubfilter.value = subfilterIndex;
+  currentView.value = "subfilter";
+  emit("subfilter-open", subfilterIndex);
+};
+
+const closeSubfilter = () => {
+  currentView.value = "list";
+  activeSubfilter.value = null;
+};
+
+const closeFilter = () => {
+  isOpen.value = false;
+  closeSubfilter();
+};
+
+const handleSubfilterSave = (subfilterIndex: number, selections: Set<string>) => {
+  subfilterSelections.value.set(subfilterIndex, selections);
+  closeSubfilter();
+  emit("subfilter-save", subfilterIndex);
+};
+
+const updateSubfilterSelections = (subfilterIndex: number, selections: Set<string>) => {
+  subfilterSelections.value.set(subfilterIndex, selections);
+};
+
+const getSubfilterSelections = (subfilterIndex: number): Set<string> => {
+  return subfilterSelections.value.get(subfilterIndex) || new Set();
+};
+
+defineExpose({
+  openSubfilter,
+  closeSubfilter,
+  closeFilter,
+  handleSubfilterSave,
+  updateSubfilterSelections,
+  getSubfilterSelections,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -157,6 +200,19 @@ const buttonClasses = computed(() => ({
   line-height: 140%;
 }
 
+.filter__count {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #0cba4a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .filter__chevron {
   display: flex;
   justify-content: center;
@@ -193,36 +249,11 @@ const buttonClasses = computed(() => ({
   }
 }
 
-.filter__button {
+.filter__subfilter-content {
   display: flex;
-  height: 32px;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
   align-self: stretch;
-  border-radius: 6px;
-  background: #0cba4a;
-  border: none;
-  color: #fff;
-  text-align: center;
-  font-feature-settings: "ss01" on;
-  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: opacity 0.2s ease, background-color 0.2s ease;
-
-  &:hover:not(&--disabled) {
-    background: #0aa842;
-  }
-
-  &--disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
 }
 </style>
