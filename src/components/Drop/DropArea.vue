@@ -15,19 +15,18 @@
       </div>
       <p class="drop-area__text">{{ dragText }}</p>
     </div>
-    <div class="drop-area__button-wrapper">
-      <BasicButton
-        class="drop-area__button"
-        :primary="true"
-        size="large"
-        :label="buttonText"
-        @click="onSelectFiles"
-      />
-    </div>
-    <input
+    <button 
+      class="drop-area__button"
+      type="button"
+      @click="onSelectFiles"
+    >
+      <span class="drop-area__button-icon"></span>
+      <span>{{ buttonText }}</span>
+    </button>
+    <input 
       ref="fileInput"
-      type="file"
-      class="drop-area__input"
+      type="file" 
+      class="drop-area__input" 
       multiple
       @change="onFileSelect"
     >
@@ -36,7 +35,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import BasicButton from '@/stories/BasicButton.vue';
 
 interface Props {
   state?: 'default' | 'dragOver';
@@ -141,28 +139,21 @@ const onFileSelect = (e: Event) => {
     }
   }
 
-  &__button-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__input {
-    display: none;
-  }
-
-  :deep(.drop-area__button.storybook-button) {
+  &__button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
     padding: 16px 32px 16px 56px;
     background-color: #0CBA4A;
+    color: #fff;
     font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
+    border: none;
     border-radius: 8px;
+    cursor: pointer;
     position: relative;
     transition: background-color 0.2s ease;
 
@@ -170,8 +161,7 @@ const onFileSelect = (e: Event) => {
       background-color: #0aa844;
     }
 
-    &::before {
-      content: "";
+    &-icon {
       position: absolute;
       left: 24px;
       width: 24px;
@@ -181,6 +171,10 @@ const onFileSelect = (e: Event) => {
       background-position: center;
     }
   }
+
+  &__input {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -189,7 +183,7 @@ const onFileSelect = (e: Event) => {
     gap: 20px;
     min-height: 260px;
 
-    :deep(.drop-area__button.storybook-button) {
+    &__button {
       padding: 12px 24px 12px 52px;
       font-size: 13px;
     }
