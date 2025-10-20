@@ -117,7 +117,13 @@ export const MultipleSubfilters: Story = {
         {
           label: "Filter 4",
           optionCount: 5,
-          optionLabels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
+          optionLabels: [
+            "Item 1",
+            "Item 2",
+            "Item 3",
+            "Item 4",
+            "Item 5",
+          ],
         },
       ]);
 
@@ -135,7 +141,7 @@ export const MultipleSubfilters: Story = {
         );
       };
 
-      return { args, subfilterConfig, handleSave, getConfig };
+      return { args, getConfig, handleSave };
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
@@ -180,17 +186,8 @@ export const Interactive: Story = {
         },
       ]);
 
-      const activeCount = ref(0);
-
       const handleSave = () => {
-        alert(`Selections saved! Total active: ${activeCount.value}`);
-      };
-
-      const handleSelectionChange = () => {
-        // Count total selections
-        const count = 0;
-        // This would be updated when FilterItem emits selection-change
-        activeCount.value = count;
+        alert("Filters saved!");
       };
 
       const getConfig = (index: number) => {
@@ -203,14 +200,7 @@ export const Interactive: Story = {
         );
       };
 
-      return {
-        args,
-        subfilterConfig,
-        handleSave,
-        handleSelectionChange,
-        getConfig,
-        activeCount,
-      };
+      return { args, getConfig, handleSave };
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
@@ -221,7 +211,6 @@ export const Interactive: Story = {
           :index="i - 1"
           :optionCount="getConfig(i - 1).optionCount"
           :optionLabels="getConfig(i - 1).optionLabels"
-          @selection-change="handleSelectionChange"
         />
       </Filter>
     `,
@@ -265,7 +254,7 @@ export const CustomizedTexts: Story = {
         );
       };
 
-      return { args, subfilterConfig, handleSave, getConfig };
+      return { args, getConfig, handleSave };
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
@@ -310,7 +299,14 @@ export const ManyOptions: Story = {
         {
           label: "Tags",
           optionCount: 6,
-          optionLabels: ["Tag A", "Tag B", "Tag C", "Tag D", "Tag E", "Tag F"],
+          optionLabels: [
+            "Tag A",
+            "Tag B",
+            "Tag C",
+            "Tag D",
+            "Tag E",
+            "Tag F",
+          ],
         },
       ]);
 
@@ -328,7 +324,7 @@ export const ManyOptions: Story = {
         );
       };
 
-      return { args, subfilterConfig, handleSave, getConfig };
+      return { args, getConfig, handleSave };
     },
     template: `
       <Filter v-bind="args" @save="handleSave">
