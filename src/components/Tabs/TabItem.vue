@@ -77,33 +77,42 @@ const handleClick = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0;
   cursor: pointer;
   user-select: none;
   transition: all 0.2s ease;
+  position: relative;
 
   &--text {
     padding: 0 16px;
+    min-height: 40px;
 
     &.tab-item--filled {
       padding: 6px 16px;
+      border-radius: 6px;
     }
   }
 
   &--icon {
     padding: 0 8px;
+    min-height: 40px;
 
     &.tab-item--filled {
       padding: 8px;
+      border-radius: 6px;
     }
   }
 
   &--filled.tab-item--active {
-    border-radius: 6px;
     background: #363a3e;
   }
 
+  &--underline {
+    padding-bottom: 8px;
+  }
+
   &--underline.tab-item--active {
-    border-radius: 6px;
+    padding-bottom: 6px;
   }
 }
 
@@ -115,7 +124,7 @@ const handleClick = () => {
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 16px;
 
   .tab-item--active & {
     color: #0cba4a;
@@ -127,10 +136,6 @@ const handleClick = () => {
 
   .tab-item--filled.tab-item--active & {
     color: #fff;
-  }
-
-  .tab-item--underline.tab-item--active & {
-    line-height: 16px;
   }
 }
 
@@ -146,7 +151,10 @@ const handleClick = () => {
   height: 2px;
   align-self: stretch;
   background: #0cba4a;
-  margin-top: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   .tab-item--hover & {
     background: #d9d9d9;
