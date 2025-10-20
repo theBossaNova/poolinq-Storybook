@@ -117,13 +117,7 @@ export const MultipleSubfilters: Story = {
         {
           label: "Filter 4",
           optionCount: 5,
-          optionLabels: [
-            "Item 1",
-            "Item 2",
-            "Item 3",
-            "Item 4",
-            "Item 5",
-          ],
+          optionLabels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
         },
       ]);
 
@@ -299,14 +293,7 @@ export const ManyOptions: Story = {
         {
           label: "Tags",
           optionCount: 6,
-          optionLabels: [
-            "Tag A",
-            "Tag B",
-            "Tag C",
-            "Tag D",
-            "Tag E",
-            "Tag F",
-          ],
+          optionLabels: ["Tag A", "Tag B", "Tag C", "Tag D", "Tag E", "Tag F"],
         },
       ]);
 
