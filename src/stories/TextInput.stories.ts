@@ -8,14 +8,31 @@ import InputFilled from "../components/Inputs/text Input/Input-Filled.vue";
 import InputWarning from "../components/Inputs/text Input/Input-Warning.vue";
 import InputError from "../components/Inputs/text Input/Input-Error.vue";
 import InputDisabled from "../components/Inputs/text Input/Input-Disabled.vue";
+import InputSearchIcon from "../components/Inputs/text Input/Input-SearchIcon.vue";
+import InputTypingMenu from "../components/Inputs/text Input/Input-TypingMenu.vue";
+import InputFilledMenu from "../components/Inputs/text Input/Input-FilledMenu.vue";
 
 import "./textInput.story.scss";
+
+interface SuggestionItem {
+  label: string;
+  value: string;
+}
 
 type TextInputArgs = {
   placeholder: string;
   modelValue: string;
   autofocus?: boolean;
+  showSearchIcon?: boolean;
+  showMenu?: boolean;
+  suggestions?: SuggestionItem[];
 };
+
+const defaultSuggestions: SuggestionItem[] = [
+  { label: "Lorem ipsum", value: "lorem1" },
+  { label: "Lorem ipsum", value: "lorem2" },
+  { label: "Lorem ipsum", value: "lorem3" },
+];
 
 const meta: Meta<typeof InputDefault> = {
   title: "Inputs/Text Input",
@@ -37,6 +54,18 @@ const meta: Meta<typeof InputDefault> = {
       control: { type: "select" },
       options: ["256", "160", "100", "80", "64"],
       name: "Size (px)",
+    },
+    showSearchIcon: {
+      control: { type: "boolean" },
+      name: "Show Search Icon",
+    },
+    showMenu: {
+      control: { type: "boolean" },
+      name: "Show Menu",
+    },
+    suggestions: {
+      control: { type: "object" },
+      name: "Suggestions",
     },
     autofocus: {
       control: { type: "boolean" },
@@ -116,4 +145,25 @@ export const Error: Story = createVariantStory(InputError, {
 export const Disabled: Story = createVariantStory(InputDisabled, {
   name: "Disabled",
   initialValue: "Disabled state",
+});
+
+export const WithSearchIcon: Story = createVariantStory(InputSearchIcon, {
+  name: "With Search Icon",
+});
+
+export const WithMenu: Story = createVariantStory(InputTypingMenu, {
+  name: "With Menu (Typing)",
+  initialValue: "I",
+  extraArgs: {
+    autofocus: true,
+    suggestions: defaultSuggestions,
+  },
+});
+
+export const FilledWithMenu: Story = createVariantStory(InputFilledMenu, {
+  name: "Filled With Menu",
+  initialValue: "Input",
+  extraArgs: {
+    suggestions: defaultSuggestions,
+  },
 });

@@ -77,6 +77,30 @@
         <RadioWithLabel state="disabled" :checked="false" label="Label" />
       </div>
     </section>
+
+    <section v-if="visibleSections.has('stepSort')" class="control-section">
+      <h2 class="section-title">STEP SORT</h2>
+      <div class="variant-row">
+        <span class="row-label">Default</span>
+        <StepSort variant="default" />
+      </div>
+      <div class="variant-row">
+        <span class="row-label">Disabled Top</span>
+        <StepSort variant="disabled-top" />
+      </div>
+      <div class="variant-row">
+        <span class="row-label">Disabled Bottom</span>
+        <StepSort variant="disabled-bottom" />
+      </div>
+      <div class="variant-row">
+        <span class="row-label">Hover Top</span>
+        <StepSort variant="hover-top" />
+      </div>
+      <div class="variant-row">
+        <span class="row-label">Hover Bottom</span>
+        <StepSort variant="hover-bottom" />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -85,8 +109,9 @@ import { computed } from "vue";
 import Checkbox from "./Checkbox.vue";
 import CheckboxWithLabel from "./CheckboxWithLabel.vue";
 import RadioWithLabel from "./RadioWithLabel.vue";
+import StepSort from "../components/SelectionControls/StepSort.vue";
 
-type SectionKey = "checkbox" | "radio" | "checkboxWithLabel" | "radioWithLabel";
+type SectionKey = "checkbox" | "radio" | "checkboxWithLabel" | "radioWithLabel" | "stepSort";
 
 interface Props {
   sections?: SectionKey[];
@@ -94,7 +119,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  sections: () => ["checkbox", "radio", "checkboxWithLabel", "radioWithLabel"],
+  sections: () => ["checkbox", "radio", "checkboxWithLabel", "radioWithLabel", "stepSort"],
   showTitle: true,
 });
 

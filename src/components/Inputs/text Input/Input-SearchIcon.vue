@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import TextSelectInput from "./TextSelectInput.vue";
-
-interface SuggestionItem {
-  label: string;
-  value: string;
-}
+import TextInputVariant from "./TextInputVariant.vue";
 
 interface Props {
-  suggestions?: SuggestionItem[];
+  modelValue?: string;
   placeholder?: string;
-  helperText?: string;
-  showSearchIcon?: boolean;
+  autofocus?: boolean;
   size?: "256" | "160" | "100" | "80" | "64";
 }
 
@@ -20,13 +14,9 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  suggestions: () => [
-    { label: "Lorem ipsum", value: "lorem1" },
-    { label: "Input", value: "input" },
-    { label: "Lorem ipsum", value: "lorem2" },
-  ],
+  modelValue: "",
   placeholder: "Placeholder",
-  showSearchIcon: false,
+  autofocus: false,
   size: "256",
 });
 
@@ -42,15 +32,14 @@ const handleChange = (value: string) => {
 </script>
 
 <template>
-  <TextSelectInput
-    :suggestions="props.suggestions"
+  <TextInputVariant
+    variant="empty"
+    :model-value="props.modelValue"
     :placeholder="props.placeholder"
-    :helper-text="props.helperText"
-    model-value=""
-    state="empty"
-    :show-menu="false"
-    :show-search-icon="showSearchIcon"
+    helper-text="Helper Text"
+    :autofocus="props.autofocus"
     :size="props.size"
+    :show-search-icon="true"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"
   />
