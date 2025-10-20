@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import type { Meta, StoryObj } from "@storybook/vue3";
 import Filter from "../components/Filter/Filter.vue";
 import FilterItem from "../components/Filter/FilterItem.vue";
 import CheckboxWithLabel from "./CheckboxWithLabel.vue";
