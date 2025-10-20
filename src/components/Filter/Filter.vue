@@ -47,12 +47,12 @@
         </svg>
       </div>
     </div>
-    
+
     <div v-if="isOpen" class="filter__content">
       <div class="filter__items">
         <slot></slot>
       </div>
-      
+
       <button
         :class="buttonClasses"
         :disabled="!saveEnabled"
