@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import Badge from "../components/Badges/Badge.vue";
 
-const meta = {
+type BadgeMeta = Meta<typeof Badge>;
+
+const meta: BadgeMeta = {
   title: "Components/Badge",
   component: Badge,
   tags: ["autodocs"],
@@ -42,7 +44,7 @@ const meta = {
     showIcon: true,
     showDelete: true,
   },
-} as Meta<typeof Badge>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -385,8 +387,8 @@ export const Interactive: Story = {
     },
     template: `
       <div style="display: flex; flex-wrap: wrap; gap: 12px; padding: 20px; background: #1a1a1a;">
-        <Badge 
-          v-bind="args" 
+        <Badge
+          v-bind="args"
           @delete="handleDelete"
         />
       </div>
