@@ -117,13 +117,7 @@ export const MultipleSubfilters: Story = {
         {
           label: "Filter 4",
           optionCount: 5,
-          optionLabels: [
-            "Item 1",
-            "Item 2",
-            "Item 3",
-            "Item 4",
-            "Item 5",
-          ],
+          optionLabels: ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"],
         },
       ]);
 
@@ -132,11 +126,13 @@ export const MultipleSubfilters: Story = {
       };
 
       const getConfig = (index: number) => {
-        return subfilterConfig.value[index] || {
-          label: `Filter ${index + 1}`,
-          optionCount: 3,
-          optionLabels: ["Option 1", "Option 2", "Option 3"],
-        };
+        return (
+          subfilterConfig.value[index] || {
+            label: `Filter ${index + 1}`,
+            optionCount: 3,
+            optionLabels: ["Option 1", "Option 2", "Option 3"],
+          }
+        );
       };
 
       return { args, subfilterConfig, handleSave, getConfig };
@@ -192,17 +188,19 @@ export const Interactive: Story = {
 
       const handleSelectionChange = () => {
         // Count total selections
-        let count = 0;
+        const count = 0;
         // This would be updated when FilterItem emits selection-change
         activeCount.value = count;
       };
 
       const getConfig = (index: number) => {
-        return subfilterConfig.value[index] || {
-          label: `Filter ${index + 1}`,
-          optionCount: 3,
-          optionLabels: ["Option 1", "Option 2", "Option 3"],
-        };
+        return (
+          subfilterConfig.value[index] || {
+            label: `Filter ${index + 1}`,
+            optionCount: 3,
+            optionLabels: ["Option 1", "Option 2", "Option 3"],
+          }
+        );
       };
 
       return {
@@ -258,11 +256,13 @@ export const CustomizedTexts: Story = {
       };
 
       const getConfig = (index: number) => {
-        return subfilterConfig.value[index] || {
-          label: `Filter ${index + 1}`,
-          optionCount: 3,
-          optionLabels: ["Option 1", "Option 2", "Option 3"],
-        };
+        return (
+          subfilterConfig.value[index] || {
+            label: `Filter ${index + 1}`,
+            optionCount: 3,
+            optionLabels: ["Option 1", "Option 2", "Option 3"],
+          }
+        );
       };
 
       return { args, subfilterConfig, handleSave, getConfig };
@@ -310,14 +310,7 @@ export const ManyOptions: Story = {
         {
           label: "Tags",
           optionCount: 6,
-          optionLabels: [
-            "Tag A",
-            "Tag B",
-            "Tag C",
-            "Tag D",
-            "Tag E",
-            "Tag F",
-          ],
+          optionLabels: ["Tag A", "Tag B", "Tag C", "Tag D", "Tag E", "Tag F"],
         },
       ]);
 
@@ -326,11 +319,13 @@ export const ManyOptions: Story = {
       };
 
       const getConfig = (index: number) => {
-        return subfilterConfig.value[index] || {
-          label: `Filter ${index + 1}`,
-          optionCount: 3,
-          optionLabels: ["Option 1", "Option 2", "Option 3"],
-        };
+        return (
+          subfilterConfig.value[index] || {
+            label: `Filter ${index + 1}`,
+            optionCount: 3,
+            optionLabels: ["Option 1", "Option 2", "Option 3"],
+          }
+        );
       };
 
       return { args, subfilterConfig, handleSave, getConfig };
