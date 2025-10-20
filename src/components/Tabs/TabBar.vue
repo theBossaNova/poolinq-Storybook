@@ -1,13 +1,13 @@
 <template>
-  <div :class="tabBarClasses">
+<div :class="tabBarClasses">
     <template v-for="(item, index) in computedItems" :key="index">
       <div
-        v-if="style === 'filled' && index > 0"
+        v-if="props.style === 'filled' && index > 0"
         class="tab-bar__separator"
       ></div>
       <TabItem
-        :type="type"
-        :style="style"
+        :type="props.type"
+        :style="props.style"
         :state="activeIndex === index ? 'active' : 'default'"
         :label="item.label"
         :icon="item.icon"
