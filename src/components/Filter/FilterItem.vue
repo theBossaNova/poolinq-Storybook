@@ -38,13 +38,16 @@
       <div class="filter-item__label">{{ label }}</div>
     </div>
     <div v-if="isOpen" class="filter-item__content">
-      <slot :selections="selections" :onSelectionChange="updateSelection"></slot>
+      <slot
+        :selections="selections"
+        :onSelectionChange="updateSelection"
+      ></slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 interface Props {
   label?: string;
