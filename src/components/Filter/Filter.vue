@@ -23,7 +23,7 @@
           {{ activeFilterCount }}
         </div>
       </div>
-      <div class="filter__chevron">
+      <div v-if="!isSingleSubfilter" class="filter__chevron">
         <svg
           width="24"
           height="24"
@@ -51,7 +51,10 @@
       </div>
     </div>
 
-    <div v-if="isOpen && currentView === 'list'" class="filter__content">
+    <div
+      v-if="isOpen && currentView === 'list' && !isSingleSubfilter"
+      class="filter__content"
+    >
       <div class="filter__items">
         <slot></slot>
       </div>
@@ -60,15 +63,18 @@
         :disabled="!hasSelections"
         @click="handleGlobalSave"
       >
-        AUSWAHL SPEICHERN
+        {{ buttonText }}
       </button>
     </div>
 
     <div
-      v-if="isOpen && currentView === 'subfilter' && activeSubfilter !== null"
+      v-if="isOpen && (isSingleSubfilter || (currentView === 'subfilter' && activeSubfilter !== null))"
       class="filter__content"
     >
-      <div class="filter__subfilter-header">
+      <div
+        v-if="!isSingleSubfilter"
+        class="filter__subfilter-header"
+      >
         <button class="filter__back-button" @click="closeSubfilter">
           <svg
             width="20"
@@ -98,7 +104,7 @@
         :disabled="!hasSelections"
         @click="handleGlobalSave"
       >
-        AUSWAHL SPEICHERN
+        {{ buttonText }}
       </button>
     </div>
   </div>
@@ -110,6 +116,8 @@ import { ref, computed } from "vue";
 interface Props {
   title?: string;
   defaultOpen?: boolean;
+  buttonText?: string;
+  subfilterCount?: number;
 }
 
 interface Emits {
@@ -119,6 +127,8 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   title: "Filter",
   defaultOpen: false,
+  buttonText: "AUSWAHL SPEICHERN",
+  subfilterCount: 1,
 });
 
 const emit = defineEmits<Emits>();
@@ -155,24 +165,23 @@ const hasSelections = computed(() => {
   return false;
 });
 
+const isSingleSubfilter = computed(() => props.subfilterCount === 1);
+
 const handleHeaderClick = () => {
   if (!isOpen.value) {
     isOpen.value = true;
+    if (isSingleSubfilter.value) {
+      currentView.value = "subfilter";
+      activeSubfilter.value = 0;
+    }
   } else {
     closeFilter();
   }
 };
 
-const openSubfilter = (subfilterIndex: number, subfilterCount: number) => {
-  if (subfilterCount === 1) {
-    // If only one subfilter, open it directly
-    activeSubfilter.value = subfilterIndex;
-    currentView.value = "subfilter";
-  } else {
-    // If multiple subfilters, show list
-    activeSubfilter.value = null;
-    currentView.value = "list";
-  }
+const openSubfilter = (subfilterIndex: number) => {
+  activeSubfilter.value = subfilterIndex;
+  currentView.value = "subfilter";
 };
 
 const closeSubfilter = () => {
@@ -199,7 +208,6 @@ const updateSubfilterSelections = (
 
 const getSubfilterLabel = (index: number | null): string => {
   if (index === null) return "";
-  // This will be provided by parent or we can track it
   return `Subfilter ${index + 1}`;
 };
 
