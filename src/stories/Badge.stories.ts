@@ -42,7 +42,7 @@ const meta = {
     showIcon: true,
     showDelete: true,
   },
-} satisfies Meta<typeof Badge>;
+} as Meta<typeof Badge>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
