@@ -55,16 +55,46 @@
       <div class="filter__items">
         <slot></slot>
       </div>
+      <button
+        :class="saveButtonClasses"
+        :disabled="!hasSelections"
+        @click="handleGlobalSave"
+      >
+        AUSWAHL SPEICHERN
+      </button>
     </div>
 
-    <div v-if="isOpen && currentView === 'subfilter'" class="filter__content">
-      <div class="filter__subfilter-content">
-        <slot
-          :activeSubfilter="activeSubfilter"
-          :onSubfilterSave="handleSubfilterSave"
-          :onSubfilterClose="closeSubfilter"
-        ></slot>
+    <div v-if="isOpen && currentView === 'subfilter' && activeSubfilter !== null" class="filter__content">
+      <div class="filter__subfilter-header">
+        <button class="filter__back-button" @click="closeSubfilter">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12.5 15L7.5 10L12.5 5"
+              stroke="#0CBA4A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div class="filter__subfilter-title">{{ getSubfilterLabel(activeSubfilter) }}</div>
       </div>
+      <div class="filter__subfilter-content">
+        <slot :activeSubfilter="activeSubfilter"></slot>
+      </div>
+      <button
+        :class="saveButtonClasses"
+        :disabled="!hasSelections"
+        @click="handleGlobalSave"
+      >
+        AUSWAHL SPEICHERN
+      </button>
     </div>
   </div>
 </template>
@@ -78,8 +108,7 @@ interface Props {
 }
 
 interface Emits {
-  (event: "subfilter-open", subfilterIndex: number): void;
-  (event: "subfilter-save", subfilterIndex: number): void;
+  (event: "save"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -99,12 +128,26 @@ const containerClasses = computed(() => ({
   "filter--open": isOpen.value,
 }));
 
+const saveButtonClasses = computed(() => ({
+  filter__button: true,
+  "filter__button--disabled": !hasSelections.value,
+}));
+
 const activeFilterCount = computed(() => {
   let count = 0;
   subfilterSelections.value.forEach((selections) => {
     count += selections.size;
   });
   return count;
+});
+
+const hasSelections = computed(() => {
+  for (const selections of subfilterSelections.value.values()) {
+    if (selections.size > 0) {
+      return true;
+    }
+  }
+  return false;
 });
 
 const handleHeaderClick = () => {
@@ -115,15 +158,21 @@ const handleHeaderClick = () => {
   }
 };
 
-const openSubfilter = (subfilterIndex: number) => {
-  activeSubfilter.value = subfilterIndex;
-  currentView.value = "subfilter";
-  emit("subfilter-open", subfilterIndex);
+const openSubfilter = (subfilterIndex: number, subfilterCount: number) => {
+  if (subfilterCount === 1) {
+    // If only one subfilter, open it directly
+    activeSubfilter.value = subfilterIndex;
+    currentView.value = "subfilter";
+  } else {
+    // If multiple subfilters, show list
+    activeSubfilter.value = null;
+    currentView.value = "list";
+  }
 };
 
 const closeSubfilter = () => {
-  currentView.value = "list";
   activeSubfilter.value = null;
+  currentView.value = "list";
 };
 
 const closeFilter = () => {
@@ -131,27 +180,28 @@ const closeFilter = () => {
   closeSubfilter();
 };
 
-const handleSubfilterSave = (subfilterIndex: number, selections: Set<string>) => {
-  subfilterSelections.value.set(subfilterIndex, selections);
+const handleGlobalSave = () => {
   closeSubfilter();
-  emit("subfilter-save", subfilterIndex);
+  emit("save");
 };
 
 const updateSubfilterSelections = (subfilterIndex: number, selections: Set<string>) => {
   subfilterSelections.value.set(subfilterIndex, selections);
 };
 
-const getSubfilterSelections = (subfilterIndex: number): Set<string> => {
-  return subfilterSelections.value.get(subfilterIndex) || new Set();
+const getSubfilterLabel = (index: number | null): string => {
+  if (index === null) return "";
+  // This will be provided by parent or we can track it
+  return `Subfilter ${index + 1}`;
 };
 
 defineExpose({
   openSubfilter,
   closeSubfilter,
   closeFilter,
-  handleSubfilterSave,
   updateSubfilterSelections,
-  getSubfilterSelections,
+  isOpen,
+  activeSubfilter,
 });
 </script>
 
@@ -249,11 +299,79 @@ defineExpose({
   }
 }
 
+.filter__subfilter-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  margin-bottom: 8px;
+}
+
+.filter__back-button {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.filter__subfilter-title {
+  color: #e6e1f3;
+  font-feature-settings: "ss01" on;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+}
+
 .filter__subfilter-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
+}
+
+.filter__button {
+  display: flex;
+  height: 32px;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 6px;
+  background: #0cba4a;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-feature-settings: "ss01" on;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+
+  &:hover:not(&--disabled) {
+    background: #0aa842;
+  }
+
+  &--disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 </style>
