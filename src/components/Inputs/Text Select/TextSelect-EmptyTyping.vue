@@ -11,6 +11,7 @@ interface Props {
   suggestions?: SuggestionItem[];
   placeholder?: string;
   helperText?: string;
+  showSearchIcon?: boolean;
   size?: "256" | "160" | "100" | "80" | "64";
 }
 
@@ -26,6 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
     { label: "Lorem ipsum", value: "lorem2" },
   ],
   placeholder: "Placeholder",
+  showSearchIcon: false,
   size: "256",
 });
 
@@ -58,6 +60,7 @@ const handleChange = (value: string) => {
     model-value=""
     state="focused"
     :show-menu="true"
+    :show-search-icon="showSearchIcon"
     :size="props.size"
     @update:modelValue="handleModelUpdate"
     @change="handleChange"

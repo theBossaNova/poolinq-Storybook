@@ -15,6 +15,7 @@ interface Props {
   helperText?: string;
   state?: TextSelectState;
   showMenu?: boolean;
+  showSearchIcon?: boolean;
   disabled?: boolean;
   size?: "256" | "160" | "100" | "80" | "64";
 }
@@ -31,6 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: "Placeholder",
   state: "empty",
   showMenu: false,
+  showSearchIcon: false,
   disabled: false,
   size: "256",
 });
@@ -156,6 +158,22 @@ const selectSuggestion = (suggestion: SuggestionItem) => {
       <div :class="outerWrapperClasses">
         <div :class="wrapperClasses">
           <div class="text-select-header">
+            <svg
+              v-if="showSearchIcon && displayState === 'empty'"
+              class="text-select-search-icon"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6.66659 1.33331C3.72107 1.33331 1.33325 3.72113 1.33325 6.66665C1.33325 9.61217 3.72107 12 6.66659 12C7.89906 12 9.03389 11.5819 9.93702 10.8799L13.5285 14.4714C13.7889 14.7317 14.211 14.7317 14.4713 14.4714C14.7317 14.211 14.7317 13.7889 14.4713 13.5286L10.8798 9.93708C11.5819 9.03395 11.9999 7.89912 11.9999 6.66665C11.9999 3.72113 9.6121 1.33331 6.66659 1.33331ZM2.66659 6.66665C2.66659 4.45751 4.45745 2.66665 6.66659 2.66665C8.87572 2.66665 10.6666 4.45751 10.6666 6.66665C10.6666 8.87579 8.87572 10.6666 6.66659 10.6666C4.45745 10.6666 2.66659 8.87579 2.66659 6.66665Z"
+                fill="#D9D9D9"
+              />
+            </svg>
             <input
               v-model="internalValue"
               :placeholder="placeholder"
@@ -328,6 +346,13 @@ $text-select-placeholder: #9798a5;
   gap: 8px;
   padding: 8px;
   position: relative;
+}
+
+.text-select-search-icon {
+  display: flex;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .text-select-input {
