@@ -113,13 +113,6 @@ const clampedProgress = computed(() => {
 const progressWidth = computed(() => `${clampedProgress.value}%`);
 const progressFillStyle = computed(() => ({ width: progressWidth.value }));
 const progressLabel = computed(() => `${Math.round(clampedProgress.value)}%`);
-
-const statusClasses = computed(() => ({
-  'upload-state--uploading': props.status === 'uploading',
-  'upload-state--success': props.status === 'success',
-  'upload-state--pending': props.status === 'pending',
-  'upload-state--error': props.status === 'error',
-}));
 </script>
 
 <style lang="scss" scoped>
