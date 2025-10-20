@@ -39,13 +39,6 @@
     </div>
     <div v-if="isOpen" class="filter-item__content">
       <slot :selections="selections" :onSelectionChange="updateSelection"></slot>
-      <button
-        :class="buttonClasses"
-        :disabled="selections.size === 0"
-        @click="handleSave"
-      >
-        AUSWAHL SPEICHERN
-      </button>
     </div>
   </div>
 </template>
@@ -61,7 +54,7 @@ interface Props {
 interface Emits {
   (event: "open", index: number): void;
   (event: "close", index: number): void;
-  (event: "save", index: number, selections: Set<string>): void;
+  (event: "selection-change", index: number, selections: Set<string>): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -74,18 +67,11 @@ const emit = defineEmits<Emits>();
 const isOpen = ref(false);
 const selections = ref<Set<string>>(new Set());
 
-const buttonClasses = computed(() => ({
-  "filter-item__button": true,
-  "filter-item__button--disabled": selections.value.size === 0,
-}));
-
 const handleItemClick = () => {
-  if (!isOpen.value) {
-    isOpen.value = true;
+  isOpen.value = !isOpen.value;
+  if (isOpen.value) {
     emit("open", props.index || 0);
   } else {
-    isOpen.value = false;
-    selections.value.clear();
     emit("close", props.index || 0);
   }
 };
@@ -96,21 +82,26 @@ const updateSelection = (optionId: string, isSelected: boolean) => {
   } else {
     selections.value.delete(optionId);
   }
+  emit("selection-change", props.index || 0, new Set(selections.value));
 };
 
-const handleSave = () => {
-  emit("save", props.index || 0, new Set(selections.value));
-  isOpen.value = false;
+const getSelections = (): Set<string> => {
+  return new Set(selections.value);
 };
 
 const clearSelections = () => {
   selections.value.clear();
-  isOpen.value = false;
+};
+
+const setSelections = (newSelections: Set<string>) => {
+  selections.value = new Set(newSelections);
 };
 
 defineExpose({
-  clearSelections,
   selections,
+  getSelections,
+  clearSelections,
+  setSelections,
 });
 </script>
 
@@ -158,39 +149,5 @@ defineExpose({
   align-self: stretch;
   width: 100%;
   gap: 8px;
-}
-
-.filter-item__button {
-  display: flex;
-  height: 32px;
-  padding: 16px 32px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  align-self: stretch;
-  border-radius: 6px;
-  background: #0cba4a;
-  border: none;
-  color: #fff;
-  text-align: center;
-  font-feature-settings: "ss01" on;
-  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: opacity 0.2s ease, background-color 0.2s ease;
-  width: 100%;
-
-  &:hover:not(&--disabled) {
-    background: #0aa842;
-  }
-
-  &--disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
 }
 </style>
