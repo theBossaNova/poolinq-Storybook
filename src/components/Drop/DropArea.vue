@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import BasicButton from '../../stories/BasicButton.vue';
+import BasicButton from '@/stories/BasicButton.vue';
 
 interface Props {
   state?: 'default' | 'dragOver';
