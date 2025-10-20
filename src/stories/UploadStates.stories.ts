@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import UploadStates from '../components/Drop/UploadStates.vue';
 
-import './drop.story.scss';
-
 const meta: Meta<typeof UploadStates> = {
   title: 'Drop/Upload States',
   component: UploadStates,
