@@ -38,20 +38,29 @@
       <div class="filter-item__label">{{ label }}</div>
     </div>
     <div v-if="isOpen" class="filter-item__content">
-      <slot
-        :selections="selections"
-        :onSelectionChange="updateSelection"
-      ></slot>
+      <CheckboxWithLabel
+        v-for="(optionLabel, idx) in optionLabels"
+        :key="idx"
+        :checked="selections.has(`option-${index}-${idx}`)"
+        :label="optionLabel"
+        @change="
+          (checked) => updateSelection(`option-${index}-${idx}`, checked)
+        "
+        style="padding: 6px 0"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import CheckboxWithLabel from "../stories/CheckboxWithLabel.vue";
 
 interface Props {
   label?: string;
   index?: number;
+  optionCount?: number;
+  optionLabels?: string[];
 }
 
 interface Emits {
@@ -63,12 +72,25 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   label: "Filter 1",
   index: 0,
+  optionCount: 3,
+  optionLabels: () => ["Option 1", "Option 2", "Option 3"],
 });
 
 const emit = defineEmits<Emits>();
 
 const isOpen = ref(false);
 const selections = ref<Set<string>>(new Set());
+
+const computedOptionLabels = computed(() => {
+  if (props.optionLabels && props.optionLabels.length > 0) {
+    return props.optionLabels.slice(0, props.optionCount || 3);
+  }
+  const labels = [];
+  for (let i = 0; i < (props.optionCount || 3); i++) {
+    labels.push(`Option ${i + 1}`);
+  }
+  return labels;
+});
 
 const handleItemClick = () => {
   isOpen.value = !isOpen.value;
