@@ -1,9 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import NumberCountInput from "../../components/Inputs/Number Count/NumberCountInput.vue";
-import NumberSelectInput from "../../components/Inputs/Number Select/NumberSelectInput.vue";
-import SelectInput from "../../components/Inputs/Select/SelectInput.vue";
-import TextInputVariant from "../../components/Inputs/text Input/TextInputVariant.vue";
-import TextSelectInput from "../../components/Inputs/Text Select/TextSelectInput.vue";
 
 const meta: Meta = {
   title: "Inputs/Inputs Overview",
@@ -20,13 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
   render: () => ({
-    components: {
-      NumberCountInput,
-      NumberSelectInput,
-      SelectInput,
-      TextInputVariant,
-      TextSelectInput,
-    },
     template: `
       <div class="category-overview">
         <style>
