@@ -74,6 +74,25 @@ export const Overview: Story = {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
           }
 
+          .component-preview-container {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #161616;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-sizing: border-box;
+          }
+
+          .component-preview-container > * {
+            max-width: 100%;
+            max-height: 100%;
+          }
+
           .component-card h3 {
             font-size: 18px;
             font-weight: 700;
@@ -110,18 +129,27 @@ export const Overview: Story = {
 
         <div class="components-grid">
           <a href="?path=/story/selection-controls-checkbox--default" class="component-card">
+            <div class="component-preview-container">
+              <Checkbox :type="'checkbox'" :checked="false" :disabled="false" />
+            </div>
             <h3>Checkbox</h3>
             <p>Standard checkbox control with label support</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/selection-controls-radio--default" class="component-card">
+            <div class="component-preview-container">
+              <Radio :type="'radio'" :checked="false" :disabled="false" />
+            </div>
             <h3>Radio</h3>
             <p>Radio button control for mutually exclusive selections</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/selection-controls-step-sort--default" class="component-card">
+            <div class="component-preview-container">
+              <StepSort />
+            </div>
             <h3>Step Sort</h3>
             <p>Control for ordering and sorting with step indicators</p>
             <span class="component-card-action">Open →</span>
