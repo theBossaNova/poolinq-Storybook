@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/inputs-number-count--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Number Count Preview</div>
+              <iframe src="?path=/story/inputs-number-count--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Number Count</h3>
             <p>Numeric counter input for incrementing and decrementing values</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-number-select--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Number Select Preview</div>
+              <iframe src="?path=/story/inputs-number-select--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Number Select</h3>
             <p>Dropdown select for numeric values</p>
@@ -140,7 +140,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-select--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Select Preview</div>
+              <iframe src="?path=/story/inputs-select--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Select</h3>
             <p>Standard dropdown select input</p>
@@ -149,7 +149,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-text-input--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Text Input Preview</div>
+              <iframe src="?path=/story/inputs-text-input--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Text Input</h3>
             <p>Basic text input field with various states</p>
@@ -158,12 +158,70 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-text-select--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Text Select Preview</div>
+              <iframe src="?path=/story/inputs-text-select--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Text Select</h3>
             <p>Text-based select input with search capability</p>
             <span class="component-card-action">Open →</span>
           </a>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Text Input Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Text Input component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-text-input--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Default</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-text-input--filled&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Filled</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-text-input--error&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Error</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-text-input--warning&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Warning</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-text-input--disabled&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Disabled</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-text-input--with-search-icon&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">With Search Icon</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Select Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Select component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-select--closed&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Closed</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-select--selected&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Selected</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-select--opened&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Opened</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-select--error&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Error</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/inputs-select--warning&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Warning</p>
+            </div>
+          </div>
         </div>
       </div>
     `,
