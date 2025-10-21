@@ -129,6 +129,37 @@ export const Overview: Story = {
             <span class="component-card-action">Open →</span>
           </a>
         </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Badge Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Badge component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/feedback-badge--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Default</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/feedback-badge--success-filled-rounded&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Success Filled</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/feedback-badge--error-outline-rounded&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Error Outline</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/feedback-badge--warning-filled-sharp&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Warning Filled</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/feedback-badge--neutral-subtle-rounded&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Neutral Subtle</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/feedback-badge--interactive&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Interactive</p>
+            </div>
+          </div>
+        </div>
       </div>
     `,
   }),
