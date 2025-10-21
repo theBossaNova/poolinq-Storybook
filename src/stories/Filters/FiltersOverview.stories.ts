@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
+import Filter from "../../components/Filter/Filter.vue";
 
 const meta: Meta = {
   title: "Filters/Filters Overview",
@@ -15,6 +16,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
   render: () => ({
+    components: {
+      Filter,
+    },
     template: `
       <div class="category-overview">
         <style>
