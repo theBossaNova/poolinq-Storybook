@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/dropzone-drop-area--default" class="component-card">
             <div class="component-preview-container">
-              <DropArea />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Drop Area Preview</div>
             </div>
             <h3>Drop Area</h3>
             <p>Drag-and-drop area for file uploads</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/dropzone-upload-states--default" class="component-card">
             <div class="component-preview-container">
-              <UploadStates />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Upload States Preview</div>
             </div>
             <h3>Upload States</h3>
             <p>Upload progress and state indicators</p>
