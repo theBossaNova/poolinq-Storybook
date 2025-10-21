@@ -107,6 +107,86 @@ export const Overview: Story = {
           .component-card:hover .component-card-action {
             gap: 10px;
           }
+
+          .overview-gallery-section {
+            margin-top: 80px;
+            padding-top: 48px;
+            border-top: 1px solid #2A2A2A;
+          }
+
+          .overview-gallery-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F5F5F5;
+            margin: 0 0 16px 0;
+          }
+
+          .overview-gallery-section > p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #9B9B9B;
+            margin: 0 0 32px 0;
+          }
+
+          .overview-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+          }
+
+          .overview-card {
+            background-color: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+          }
+
+          .overview-card:hover {
+            border-color: #00C47A;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px);
+          }
+
+          .overview-preview {
+            width: 100%;
+            height: 200px;
+            border-bottom: 1px solid #2A2A2A;
+            overflow: hidden;
+          }
+
+          .overview-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+          }
+
+          .overview-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+          }
+
+          .overview-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #F5F5F5;
+            margin: 0 0 8px 0;
+          }
+
+          .overview-card p {
+            font-size: 14px;
+            font-weight: 400;
+            color: #9B9B9B;
+            margin: 0;
+            flex-grow: 1;
+          }
         </style>
 
         <h1>Design System Components</h1>
