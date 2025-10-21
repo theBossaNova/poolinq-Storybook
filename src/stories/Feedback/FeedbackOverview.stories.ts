@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import Badge from "../../components/Badges/Badge.vue";
 
 const meta: Meta = {
   title: "Feedback/Feedback Overview",
@@ -16,9 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
   render: () => ({
-    components: {
-      Badge,
-    },
     template: `
       <div class="category-overview">
         <style>
