@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/inputs-number-count--default" class="component-card">
             <div class="component-preview-container">
-              <NumberCountInput />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Number Count Preview</div>
             </div>
             <h3>Number Count</h3>
             <p>Numeric counter input for incrementing and decrementing values</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-number-select--default" class="component-card">
             <div class="component-preview-container">
-              <NumberSelectInput />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Number Select Preview</div>
             </div>
             <h3>Number Select</h3>
             <p>Dropdown select for numeric values</p>
@@ -140,7 +140,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-select--default" class="component-card">
             <div class="component-preview-container">
-              <SelectInput />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Select Preview</div>
             </div>
             <h3>Select</h3>
             <p>Standard dropdown select input</p>
@@ -149,7 +149,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-text-input--default" class="component-card">
             <div class="component-preview-container">
-              <TextInputVariant />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Text Input Preview</div>
             </div>
             <h3>Text Input</h3>
             <p>Basic text input field with various states</p>
@@ -158,7 +158,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/inputs-text-select--default" class="component-card">
             <div class="component-preview-container">
-              <TextSelectInput />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Text Select Preview</div>
             </div>
             <h3>Text Select</h3>
             <p>Text-based select input with search capability</p>
