@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/selection-controls-checkbox--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Checkbox Preview</div>
+              <iframe src="?path=/story/selection-controls-checkbox--interactive&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Checkbox</h3>
             <p>Standard checkbox control with label support</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/selection-controls-radio--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Radio Preview</div>
+              <iframe src="?path=/story/selection-controls-radio--interactive&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Radio</h3>
             <p>Radio button control for mutually exclusive selections</p>
@@ -140,12 +140,34 @@ export const Overview: Story = {
 
           <a href="?path=/story/selection-controls-step-sort--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Step Sort Preview</div>
+              <iframe src="?path=/story/selection-controls-step-sort--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Step Sort</h3>
             <p>Control for ordering and sorting with step indicators</p>
             <span class="component-card-action">Open →</span>
           </a>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Checkbox Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Checkbox component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/selection-controls-checkbox--interactive&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Interactive</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Radio Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Radio component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/selection-controls-radio--interactive&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Interactive</p>
+            </div>
+          </div>
         </div>
       </div>
     `,
