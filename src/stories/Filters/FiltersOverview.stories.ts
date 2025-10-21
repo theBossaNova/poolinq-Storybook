@@ -122,12 +122,27 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/filters-filter--closed" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Filter Preview</div>
+              <iframe src="?path=/story/filters-filter--closed&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Filter</h3>
             <p>Comprehensive filter control with multiple subfilters</p>
             <span class="component-card-action">Open →</span>
           </a>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Filter Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Filter component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/filters-filter--closed&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Closed</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/filters-filter--opened&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Opened</p>
+            </div>
+          </div>
         </div>
       </div>
     `,
