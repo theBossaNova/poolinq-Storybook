@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 
-import StepSort from "../components/SelectionControls/StepSort.vue";
+import StepSort from "../../components/SelectionControls/StepSort.vue";
 
-import "./stepSort.story.scss";
+import "../stepSort.story.scss";
 
 const meta: Meta<typeof StepSort> = {
   title: "Selection Controls/Step Sort",
@@ -61,10 +61,10 @@ const createStory = (variant: StepSortVariantOption): Story => ({
 
 export const Default: Story = createStory("default");
 
-export const DisabledTop: Story = createStory("disabled-top");
-
 export const DisabledBottom: Story = createStory("disabled-bottom");
 
-export const HoverTop: Story = createStory("hover-top");
+export const DisabledTop: Story = createStory("disabled-top");
 
 export const HoverBottom: Story = createStory("hover-bottom");
+
+export const HoverTop: Story = createStory("hover-top");

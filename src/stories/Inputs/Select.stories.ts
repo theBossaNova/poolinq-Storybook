@@ -2,15 +2,15 @@ import type { Component } from "vue";
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import SelectInput from "../components/Inputs/Select/SelectInput.vue";
-import SelectClosed from "../components/Inputs/Select/Select-Closed.vue";
-import SelectOpened from "../components/Inputs/Select/Select-Opened.vue";
-import SelectSelected from "../components/Inputs/Select/Select-Selected.vue";
-import SelectSelectedOpened from "../components/Inputs/Select/Select-SelectedOpened.vue";
-import SelectWarning from "../components/Inputs/Select/Select-Warning.vue";
-import SelectError from "../components/Inputs/Select/Select-Error.vue";
+import SelectInput from "../../components/Inputs/Select/SelectInput.vue";
+import SelectClosed from "../../components/Inputs/Select/Select-Closed.vue";
+import SelectOpened from "../../components/Inputs/Select/Select-Opened.vue";
+import SelectSelected from "../../components/Inputs/Select/Select-Selected.vue";
+import SelectSelectedOpened from "../../components/Inputs/Select/Select-SelectedOpened.vue";
+import SelectWarning from "../../components/Inputs/Select/Select-Warning.vue";
+import SelectError from "../../components/Inputs/Select/Select-Error.vue";
 
-import "./select.story.scss";
+import "../select.story.scss";
 
 interface SelectItem {
   label: string;
@@ -122,25 +122,6 @@ export const Closed: Story = createVariantStory(SelectClosed, {
   name: "Closed (Empty)",
 });
 
-export const Opened: Story = createVariantStory(SelectOpened, {
-  name: "Opened (Empty)",
-});
-
-export const Selected: Story = createVariantStory(SelectSelected, {
-  name: "Selected (Closed)",
-  initialValue: "item2",
-});
-
-export const SelectedOpened: Story = createVariantStory(SelectSelectedOpened, {
-  name: "Selected (Opened)",
-  initialValue: "item2",
-});
-
-export const Warning: Story = createVariantStory(SelectWarning, {
-  name: "Warning",
-  initialValue: "item2",
-});
-
 export const Error: Story = createVariantStory(SelectError, {
   name: "Error",
   initialValue: "item2",
@@ -177,3 +158,22 @@ export const Interactive: Story = {
     `,
   }),
 };
+
+export const Opened: Story = createVariantStory(SelectOpened, {
+  name: "Opened (Empty)",
+});
+
+export const Selected: Story = createVariantStory(SelectSelected, {
+  name: "Selected (Closed)",
+  initialValue: "item2",
+});
+
+export const SelectedOpened: Story = createVariantStory(SelectSelectedOpened, {
+  name: "Selected (Opened)",
+  initialValue: "item2",
+});
+
+export const Warning: Story = createVariantStory(SelectWarning, {
+  name: "Warning",
+  initialValue: "item2",
+});

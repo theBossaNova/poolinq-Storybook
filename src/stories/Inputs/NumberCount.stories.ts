@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import NumberCountSmall from "../components/Inputs/Number Count/NumberCount-Small.vue";
-import NumberCountLarge from "../components/Inputs/Number Count/NumberCount-Large.vue";
-import NumberCountMinDefault from "../components/Inputs/Number Count/NumberCount-MinDefault.vue";
-import NumberCountMaxDefault from "../components/Inputs/Number Count/NumberCount-MaxDefault.vue";
-import NumberCountDisabled from "../components/Inputs/Number Count/NumberCount-Disabled.vue";
+import NumberCountSmall from "../../components/Inputs/Number Count/NumberCount-Small.vue";
+import NumberCountLarge from "../../components/Inputs/Number Count/NumberCount-Large.vue";
+import NumberCountMinDefault from "../../components/Inputs/Number Count/NumberCount-MinDefault.vue";
+import NumberCountMaxDefault from "../../components/Inputs/Number Count/NumberCount-MaxDefault.vue";
+import NumberCountDisabled from "../../components/Inputs/Number Count/NumberCount-Disabled.vue";
 
-import "./numberCount.story.scss";
+import "../numberCount.story.scss";
 
 type NumberCountArgs = {
   modelValue: number;
@@ -85,14 +85,11 @@ const createStory = (
   }),
 });
 
-export const Small: Story = createStory(NumberCountSmall, {
-  name: "Small",
-  initialValue: 5,
-});
-
-export const Large: Story = createStory(NumberCountLarge, {
-  name: "Large",
-  initialValue: 5,
+export const AtMaximum: Story = createStory(NumberCountMaxDefault, {
+  name: "At Maximum",
+  initialValue: 10,
+  min: 0,
+  max: 10,
 });
 
 export const AtMinimum: Story = createStory(NumberCountMinDefault, {
@@ -102,14 +99,17 @@ export const AtMinimum: Story = createStory(NumberCountMinDefault, {
   max: 10,
 });
 
-export const AtMaximum: Story = createStory(NumberCountMaxDefault, {
-  name: "At Maximum",
-  initialValue: 10,
-  min: 0,
-  max: 10,
-});
-
 export const Disabled: Story = createStory(NumberCountDisabled, {
   name: "Disabled",
+  initialValue: 5,
+});
+
+export const Large: Story = createStory(NumberCountLarge, {
+  name: "Large",
+  initialValue: 5,
+});
+
+export const Small: Story = createStory(NumberCountSmall, {
+  name: "Small",
   initialValue: 5,
 });

@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import Topbar from "./Topbar.vue";
+import Topbar from "../Topbar.vue";
 
 export default {
   title: "Navigation/Topbar",

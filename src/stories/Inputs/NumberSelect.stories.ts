@@ -2,13 +2,13 @@ import type { Component } from "vue";
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import NumberSelectDefault from "../components/Inputs/Number Select/NumberSelect-Default.vue";
-import NumberSelectFocused from "../components/Inputs/Number Select/NumberSelect-Focused.vue";
-import NumberSelectFilled from "../components/Inputs/Number Select/NumberSelect-Filled.vue";
-import NumberSelectWarning from "../components/Inputs/Number Select/NumberSelect-Warning.vue";
-import NumberSelectError from "../components/Inputs/Number Select/NumberSelect-Error.vue";
+import NumberSelectDefault from "../../components/Inputs/Number Select/NumberSelect-Default.vue";
+import NumberSelectFocused from "../../components/Inputs/Number Select/NumberSelect-Focused.vue";
+import NumberSelectFilled from "../../components/Inputs/Number Select/NumberSelect-Filled.vue";
+import NumberSelectWarning from "../../components/Inputs/Number Select/NumberSelect-Warning.vue";
+import NumberSelectError from "../../components/Inputs/Number Select/NumberSelect-Error.vue";
 
-import "./numberSelect.story.scss";
+import "../numberSelect.story.scss";
 
 type NumberSelectArgs = {
   modelValue: number;
@@ -93,9 +93,9 @@ export const Default: Story = createVariantStory(NumberSelectDefault, {
   name: "Default",
 });
 
-export const Focused: Story = createVariantStory(NumberSelectFocused, {
-  name: "Focused",
-  initialValue: 0,
+export const Error: Story = createVariantStory(NumberSelectError, {
+  name: "Error",
+  initialValue: 8,
 });
 
 export const Filled: Story = createVariantStory(NumberSelectFilled, {
@@ -103,12 +103,12 @@ export const Filled: Story = createVariantStory(NumberSelectFilled, {
   initialValue: 8,
 });
 
-export const Warning: Story = createVariantStory(NumberSelectWarning, {
-  name: "Warning",
-  initialValue: 8,
+export const Focused: Story = createVariantStory(NumberSelectFocused, {
+  name: "Focused",
+  initialValue: 0,
 });
 
-export const Error: Story = createVariantStory(NumberSelectError, {
-  name: "Error",
+export const Warning: Story = createVariantStory(NumberSelectWarning, {
+  name: "Warning",
   initialValue: 8,
 });

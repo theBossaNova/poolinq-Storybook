@@ -2,14 +2,14 @@ import type { Component } from "vue";
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import TextSelectEmpty from "../components/Inputs/Text Select/TextSelect-Empty.vue";
-import TextSelectEmptyTyping from "../components/Inputs/Text Select/TextSelect-EmptyTyping.vue";
-import TextSelectFilled from "../components/Inputs/Text Select/TextSelect-Filled.vue";
-import TextSelectFilledTyping from "../components/Inputs/Text Select/TextSelect-FilledTyping.vue";
-import TextSelectWarning from "../components/Inputs/Text Select/TextSelect-Warning.vue";
-import TextSelectError from "../components/Inputs/Text Select/TextSelect-Error.vue";
+import TextSelectEmpty from "../../components/Inputs/Text Select/TextSelect-Empty.vue";
+import TextSelectEmptyTyping from "../../components/Inputs/Text Select/TextSelect-EmptyTyping.vue";
+import TextSelectFilled from "../../components/Inputs/Text Select/TextSelect-Filled.vue";
+import TextSelectFilledTyping from "../../components/Inputs/Text Select/TextSelect-FilledTyping.vue";
+import TextSelectWarning from "../../components/Inputs/Text Select/TextSelect-Warning.vue";
+import TextSelectError from "../../components/Inputs/Text Select/TextSelect-Error.vue";
 
-import "./textSelect.story.scss";
+import "../textSelect.story.scss";
 
 interface SuggestionItem {
   label: string;
@@ -127,6 +127,12 @@ export const EmptyTyping: Story = createVariantStory(TextSelectEmptyTyping, {
   name: "Empty (Typing with Dropdown)",
 });
 
+export const Error: Story = createVariantStory(TextSelectError, {
+  name: "Error",
+  initialValue: "Placeholder",
+  helperText: "Error message",
+});
+
 export const Filled: Story = createVariantStory(TextSelectFilled, {
   name: "Filled (Closed)",
   initialValue: "Input",
@@ -146,12 +152,6 @@ export const Warning: Story = createVariantStory(TextSelectWarning, {
   name: "Warning",
   initialValue: "Placeholder",
   helperText: "Warning message",
-});
-
-export const Error: Story = createVariantStory(TextSelectError, {
-  name: "Error",
-  initialValue: "Placeholder",
-  helperText: "Error message",
 });
 
 export const WithSearchIcon: Story = createVariantStory(TextSelectEmpty, {

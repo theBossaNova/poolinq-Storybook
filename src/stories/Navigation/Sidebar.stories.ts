@@ -1,5 +1,5 @@
 import { Story } from "@storybook/vue3";
-import Sidebar from "./Sidebar.vue";
+import Sidebar from "../Sidebar.vue";
 
 export default {
   title: "Navigation/Sidebar",
@@ -19,12 +19,12 @@ const Template: Story = (args) => ({
   template: '<sidebar v-bind="args" />',
 });
 
-export const Expanded = Template.bind({});
-Expanded.args = {
-  collapsed: false,
-};
-
 export const Collapsed = Template.bind({});
 Collapsed.args = {
   collapsed: true,
+};
+
+export const Expanded = Template.bind({});
+Expanded.args = {
+  collapsed: false,
 };

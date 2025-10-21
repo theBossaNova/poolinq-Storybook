@@ -2,17 +2,17 @@ import type { Component } from "vue";
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
 
-import InputDefault from "../components/Inputs/text Input/Input-Default.vue";
-import InputTyping from "../components/Inputs/text Input/Input-Typing.vue";
-import InputFilled from "../components/Inputs/text Input/Input-Filled.vue";
-import InputWarning from "../components/Inputs/text Input/Input-Warning.vue";
-import InputError from "../components/Inputs/text Input/Input-Error.vue";
-import InputDisabled from "../components/Inputs/text Input/Input-Disabled.vue";
-import InputSearchIcon from "../components/Inputs/text Input/Input-SearchIcon.vue";
-import InputTypingMenu from "../components/Inputs/text Input/Input-TypingMenu.vue";
-import InputFilledMenu from "../components/Inputs/text Input/Input-FilledMenu.vue";
+import InputDefault from "../../components/Inputs/text Input/Input-Default.vue";
+import InputTyping from "../../components/Inputs/text Input/Input-Typing.vue";
+import InputFilled from "../../components/Inputs/text Input/Input-Filled.vue";
+import InputWarning from "../../components/Inputs/text Input/Input-Warning.vue";
+import InputError from "../../components/Inputs/text Input/Input-Error.vue";
+import InputDisabled from "../../components/Inputs/text Input/Input-Disabled.vue";
+import InputSearchIcon from "../../components/Inputs/text Input/Input-SearchIcon.vue";
+import InputTypingMenu from "../../components/Inputs/text Input/Input-TypingMenu.vue";
+import InputFilledMenu from "../../components/Inputs/text Input/Input-FilledMenu.vue";
 
-import "./textInput.story.scss";
+import "../textInput.story.scss";
 
 interface SuggestionItem {
   label: string;
@@ -121,20 +121,9 @@ export const Default: Story = createVariantStory(InputDefault, {
   name: "Default",
 });
 
-export const Typing: Story = createVariantStory(InputTyping, {
-  name: "Typing",
-  initialValue: "Pl",
-  extraArgs: { autofocus: true },
-});
-
-export const Filled: Story = createVariantStory(InputFilled, {
-  name: "Filled",
-  initialValue: "Placeholder text",
-});
-
-export const Warning: Story = createVariantStory(InputWarning, {
-  name: "Warning",
-  initialValue: "Placeholder text",
+export const Disabled: Story = createVariantStory(InputDisabled, {
+  name: "Disabled",
+  initialValue: "Disabled state",
 });
 
 export const Error: Story = createVariantStory(InputError, {
@@ -142,13 +131,28 @@ export const Error: Story = createVariantStory(InputError, {
   initialValue: "Placeholder text",
 });
 
-export const Disabled: Story = createVariantStory(InputDisabled, {
-  name: "Disabled",
-  initialValue: "Disabled state",
+export const FilledWithMenu: Story = createVariantStory(InputFilledMenu, {
+  name: "Filled With Menu",
+  initialValue: "Input",
+  extraArgs: {
+    suggestions: defaultSuggestions,
+  },
 });
 
-export const WithSearchIcon: Story = createVariantStory(InputSearchIcon, {
-  name: "With Search Icon",
+export const Filled: Story = createVariantStory(InputFilled, {
+  name: "Filled",
+  initialValue: "Placeholder text",
+});
+
+export const Typing: Story = createVariantStory(InputTyping, {
+  name: "Typing",
+  initialValue: "Pl",
+  extraArgs: { autofocus: true },
+});
+
+export const Warning: Story = createVariantStory(InputWarning, {
+  name: "Warning",
+  initialValue: "Placeholder text",
 });
 
 export const WithMenu: Story = createVariantStory(InputTypingMenu, {
@@ -160,10 +164,6 @@ export const WithMenu: Story = createVariantStory(InputTypingMenu, {
   },
 });
 
-export const FilledWithMenu: Story = createVariantStory(InputFilledMenu, {
-  name: "Filled With Menu",
-  initialValue: "Input",
-  extraArgs: {
-    suggestions: defaultSuggestions,
-  },
+export const WithSearchIcon: Story = createVariantStory(InputSearchIcon, {
+  name: "With Search Icon",
 });

@@ -1,18 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { useArgs } from "@storybook/preview-api";
-import RadioWithLabel from "./RadioWithLabel.vue";
-import "./selectionControls.story.scss";
+import CheckboxWithLabel from "../CheckboxWithLabel.vue";
+import "../selectionControls.story.scss";
 
-const meta: Meta<typeof RadioWithLabel> = {
-  title: "Selection Controls/Radio With Label",
-  component: RadioWithLabel,
+const meta: Meta<typeof CheckboxWithLabel> = {
+  title: "Selection Controls/Checkbox With Label",
+  component: CheckboxWithLabel,
   args: {
+    type: "checkbox",
     checked: false,
     disabled: false,
     label: "Label",
     state: "default",
   },
   argTypes: {
+    type: { table: { disable: true } },
     state: { table: { disable: true } },
     checked: { control: { type: "boolean" } },
     disabled: { control: { type: "boolean" } },
@@ -30,7 +32,7 @@ type Story = StoryObj<typeof meta>;
 export const Interactive: Story = {
   name: "Interactive",
   render: (args) => ({
-    components: { RadioWithLabel },
+    components: { CheckboxWithLabel },
     setup() {
       const [, updateArgs] = useArgs();
       const handleUpdate = (value: boolean) => {
@@ -40,7 +42,7 @@ export const Interactive: Story = {
     },
     template: `
       <div class="control-story-wrapper">
-        <radio-with-label v-bind="args" @update:checked="handleUpdate" />
+        <checkbox-with-label v-bind="args" @update:checked="handleUpdate" />
       </div>
     `,
   }),
