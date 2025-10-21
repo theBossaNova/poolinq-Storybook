@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/filters-filter--closed" class="component-card">
             <div class="component-preview-container">
-              <Filter :closed="true" />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Filter Preview</div>
             </div>
             <h3>Filter</h3>
             <p>Comprehensive filter control with multiple subfilters</p>
