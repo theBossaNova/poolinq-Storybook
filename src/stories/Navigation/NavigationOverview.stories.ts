@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
+import Sidebar from "../Sidebar.vue";
+import Tabs from "../Tabs.vue";
+import Topbar from "../Topbar.vue";
 
 const meta: Meta = {
   title: "Navigation/Navigation Overview",
@@ -15,6 +18,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
   render: () => ({
+    components: {
+      Sidebar,
+      Tabs,
+      Topbar,
+    },
     template: `
       <div class="category-overview">
         <style>
