@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/feedback-badge--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Badge Preview</div>
+              <iframe src="?path=/story/feedback-badge--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Badge</h3>
             <p>Status badges with various types, variants, and shapes</p>
