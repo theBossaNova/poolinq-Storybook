@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
+import Checkbox from "../Checkbox.vue";
+import Radio from "../Checkbox.vue";
+import StepSort from "../../components/SelectionControls/StepSort.vue";
 
 const meta: Meta = {
   title: "Selection Controls/Selection Controls Overview",
@@ -15,6 +18,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
   render: () => ({
+    components: {
+      Checkbox,
+      Radio,
+      StepSort,
+    },
     template: `
       <div class="category-overview">
         <style>
