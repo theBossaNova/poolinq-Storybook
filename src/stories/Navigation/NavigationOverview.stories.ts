@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/navigation-navigation-layout--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Navigation Layout Preview</div>
+              <iframe src="?path=/story/navigation-navigation-layout--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Navigation Layout</h3>
             <p>Complete navigation layout component</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/navigation-sidebar--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Sidebar Preview</div>
+              <iframe src="?path=/story/navigation-sidebar--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Sidebar</h3>
             <p>Sidebar navigation component</p>
@@ -140,7 +140,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/navigation-tabs--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Tabs Preview</div>
+              <iframe src="?path=/story/navigation-tabs--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Tabs</h3>
             <p>Tab navigation with multiple display styles</p>
@@ -149,12 +149,27 @@ export const Overview: Story = {
 
           <a href="?path=/story/navigation-topbar--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Topbar Preview</div>
+              <iframe src="?path=/story/navigation-topbar--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Topbar</h3>
             <p>Top navigation bar component</p>
             <span class="component-card-action">Open →</span>
           </a>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Sidebar Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Sidebar component variants and states</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/navigation-sidebar--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Default</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/navigation-sidebar--collapsed&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Collapsed</p>
+            </div>
+          </div>
         </div>
       </div>
     `,
