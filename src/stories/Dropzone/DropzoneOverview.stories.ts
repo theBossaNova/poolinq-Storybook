@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import DropArea from "../../components/Drop/DropArea.vue";
-import UploadStates from "../../components/Drop/UploadStates.vue";
 
 const meta: Meta = {
   title: "Dropzone/Dropzone Overview",
@@ -17,10 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Overview: Story = {
   render: () => ({
-    components: {
-      DropArea,
-      UploadStates,
-    },
     template: `
       <div class="category-overview">
         <style>
