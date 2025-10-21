@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/navigation-navigation-layout--default" class="component-card">
             <div class="component-preview-container">
-              <Sidebar :collapsed="false" />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Navigation Layout Preview</div>
             </div>
             <h3>Navigation Layout</h3>
             <p>Complete navigation layout component</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/navigation-sidebar--default" class="component-card">
             <div class="component-preview-container">
-              <Sidebar :collapsed="false" />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Sidebar Preview</div>
             </div>
             <h3>Sidebar</h3>
             <p>Sidebar navigation component</p>
@@ -140,7 +140,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/navigation-tabs--default" class="component-card">
             <div class="component-preview-container">
-              <Tabs />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Tabs Preview</div>
             </div>
             <h3>Tabs</h3>
             <p>Tab navigation with multiple display styles</p>
@@ -149,7 +149,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/navigation-topbar--default" class="component-card">
             <div class="component-preview-container">
-              <Topbar />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Topbar Preview</div>
             </div>
             <h3>Topbar</h3>
             <p>Top navigation bar component</p>
