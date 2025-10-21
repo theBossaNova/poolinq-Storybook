@@ -72,6 +72,25 @@ export const Overview: Story = {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
           }
 
+          .component-preview-container {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #161616;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-sizing: border-box;
+          }
+
+          .component-preview-container > * {
+            max-width: 100%;
+            max-height: 100%;
+          }
+
           .component-card h3 {
             font-size: 18px;
             font-weight: 700;
@@ -108,12 +127,18 @@ export const Overview: Story = {
 
         <div class="components-grid">
           <a href="?path=/story/dropzone-drop-area--default" class="component-card">
+            <div class="component-preview-container">
+              <DropArea />
+            </div>
             <h3>Drop Area</h3>
             <p>Drag-and-drop area for file uploads</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/dropzone-upload-states--default" class="component-card">
+            <div class="component-preview-container">
+              <UploadStates />
+            </div>
             <h3>Upload States</h3>
             <p>Upload progress and state indicators</p>
             <span class="component-card-action">Open →</span>
