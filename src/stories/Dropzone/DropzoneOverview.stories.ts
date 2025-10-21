@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/dropzone-drop-area--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Drop Area Preview</div>
+              <iframe src="?path=/story/dropzone-drop-area--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Drop Area</h3>
             <p>Drag-and-drop area for file uploads</p>
@@ -131,12 +131,27 @@ export const Overview: Story = {
 
           <a href="?path=/story/dropzone-upload-states--default" class="component-card">
             <div class="component-preview-container">
-              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Upload States Preview</div>
+              <iframe src="?path=/story/dropzone-upload-states--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
             </div>
             <h3>Upload States</h3>
             <p>Upload progress and state indicators</p>
             <span class="component-card-action">Open →</span>
           </a>
+        </div>
+
+        <div style="margin-top: 64px;">
+          <h2>Upload States Variants</h2>
+          <p style="color: #9B9B9B; margin-bottom: 32px;">Explore all Upload States component variants</p>
+          <div class="variants-grid">
+            <div class="variant-card">
+              <iframe src="?path=/story/dropzone-upload-states--default&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Default</p>
+            </div>
+            <div class="variant-card">
+              <iframe src="?path=/story/dropzone-upload-states--error&viewMode=story" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>
+              <p style="font-size: 13px; color: #9B9B9B; margin-top: 12px;">Error</p>
+            </div>
+          </div>
         </div>
       </div>
     `,
