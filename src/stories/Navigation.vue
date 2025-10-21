@@ -1,0 +1,103 @@
+<template>
+  <div class="navigation-variants">
+    <h1 v-if="props.showTitle" class="main-title">Navigation Components</h1>
+
+    <section class="control-section">
+      <h2 class="section-title">SIDEBAR</h2>
+      <div class="variant-row">
+        <span class="row-label">Expanded</span>
+        <Sidebar :collapsed="false" />
+      </div>
+      <div class="variant-row">
+        <span class="row-label">Collapsed</span>
+        <Sidebar :collapsed="true" />
+      </div>
+    </section>
+
+    <section class="control-section">
+      <h2 class="section-title">TABS</h2>
+      <div class="variant-row">
+        <span class="row-label">Default</span>
+        <Tabs />
+      </div>
+    </section>
+
+    <section class="control-section">
+      <h2 class="section-title">TOPBAR</h2>
+      <div class="variant-row">
+        <span class="row-label">Default</span>
+        <Topbar />
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Sidebar from "../stories/Sidebar.vue";
+import Tabs from "../stories/Tabs.vue";
+import Topbar from "../stories/Topbar.vue";
+
+interface Props {
+  showTitle?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
+  showTitle: true,
+});
+</script>
+
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+.navigation-variants {
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 40px;
+  color: #fff;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.main-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #fff;
+}
+
+.control-section {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.variant-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.row-label {
+  min-width: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+</style>
