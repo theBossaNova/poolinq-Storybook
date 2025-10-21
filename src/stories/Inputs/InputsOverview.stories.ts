@@ -78,6 +78,25 @@ export const Overview: Story = {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
           }
 
+          .component-preview-container {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #161616;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-sizing: border-box;
+          }
+
+          .component-preview-container > * {
+            max-width: 100%;
+            max-height: 100%;
+          }
+
           .component-card h3 {
             font-size: 18px;
             font-weight: 700;
@@ -114,30 +133,45 @@ export const Overview: Story = {
 
         <div class="components-grid">
           <a href="?path=/story/inputs-number-count--default" class="component-card">
+            <div class="component-preview-container">
+              <NumberCountInput />
+            </div>
             <h3>Number Count</h3>
             <p>Numeric counter input for incrementing and decrementing values</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/inputs-number-select--default" class="component-card">
+            <div class="component-preview-container">
+              <NumberSelectInput />
+            </div>
             <h3>Number Select</h3>
             <p>Dropdown select for numeric values</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/inputs-select--default" class="component-card">
+            <div class="component-preview-container">
+              <SelectInput />
+            </div>
             <h3>Select</h3>
             <p>Standard dropdown select input</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/inputs-text-input--default" class="component-card">
+            <div class="component-preview-container">
+              <TextInputVariant />
+            </div>
             <h3>Text Input</h3>
             <p>Basic text input field with various states</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/inputs-text-select--default" class="component-card">
+            <div class="component-preview-container">
+              <TextSelectInput />
+            </div>
             <h3>Text Select</h3>
             <p>Text-based select input with search capability</p>
             <span class="component-card-action">Open →</span>
