@@ -74,6 +74,25 @@ export const Overview: Story = {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
           }
 
+          .component-preview-container {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #161616;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-sizing: border-box;
+          }
+
+          .component-preview-container > * {
+            max-width: 100%;
+            max-height: 100%;
+          }
+
           .component-card h3 {
             font-size: 18px;
             font-weight: 700;
@@ -110,24 +129,36 @@ export const Overview: Story = {
 
         <div class="components-grid">
           <a href="?path=/story/navigation-navigation-layout--default" class="component-card">
+            <div class="component-preview-container">
+              <Sidebar :collapsed="false" />
+            </div>
             <h3>Navigation Layout</h3>
             <p>Complete navigation layout component</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/navigation-sidebar--default" class="component-card">
+            <div class="component-preview-container">
+              <Sidebar :collapsed="false" />
+            </div>
             <h3>Sidebar</h3>
             <p>Sidebar navigation component</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/navigation-tabs--default" class="component-card">
+            <div class="component-preview-container">
+              <Tabs />
+            </div>
             <h3>Tabs</h3>
             <p>Tab navigation with multiple display styles</p>
             <span class="component-card-action">Open →</span>
           </a>
 
           <a href="?path=/story/navigation-topbar--default" class="component-card">
+            <div class="component-preview-container">
+              <Topbar />
+            </div>
             <h3>Topbar</h3>
             <p>Top navigation bar component</p>
             <span class="component-card-action">Open →</span>
