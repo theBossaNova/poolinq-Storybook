@@ -122,7 +122,7 @@ export const Overview: Story = {
         <div class="components-grid">
           <a href="?path=/story/selection-controls-checkbox--default" class="component-card">
             <div class="component-preview-container">
-              <Checkbox :type="'checkbox'" :checked="false" :disabled="false" />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Checkbox Preview</div>
             </div>
             <h3>Checkbox</h3>
             <p>Standard checkbox control with label support</p>
@@ -131,7 +131,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/selection-controls-radio--default" class="component-card">
             <div class="component-preview-container">
-              <Radio :type="'radio'" :checked="false" :disabled="false" />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Radio Preview</div>
             </div>
             <h3>Radio</h3>
             <p>Radio button control for mutually exclusive selections</p>
@@ -140,7 +140,7 @@ export const Overview: Story = {
 
           <a href="?path=/story/selection-controls-step-sort--default" class="component-card">
             <div class="component-preview-container">
-              <StepSort />
+              <div style="font-size: 14px; color: #9B9B9B; text-align: center;">Step Sort Preview</div>
             </div>
             <h3>Step Sort</h3>
             <p>Control for ordering and sorting with step indicators</p>
