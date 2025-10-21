@@ -114,6 +114,26 @@ export const Overview: Story = {
           .component-card:hover .component-card-action {
             gap: 10px;
           }
+
+          .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+          }
+
+          .variant-card {
+            background-color: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 180px;
+            transition: all 0.2s ease;
+          }
+
+          .variant-card:hover {
+            border-color: #00C47A;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+          }
         </style>
 
         <h1>Filters Components</h1>
